@@ -2,7 +2,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_item	*items;
+	t_itemlist	**items;
 
 	if (argc != 2)
 		return (1);
