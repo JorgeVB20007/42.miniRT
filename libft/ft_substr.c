@@ -3,53 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 19:27:17 by jvacaris          #+#    #+#             */
-/*   Updated: 2021/06/04 19:27:19 by jvacaris         ###   ########.fr       */
+/*   Created: 2021/05/28 21:27:59 by emadriga          #+#    #+#             */
+/*   Updated: 2021/06/05 18:45:24 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*secondpartjvb(char *t, char const *s, unsigned int start, int max)
-{
-	int	r;
-
-	r = 0;
-	while (r < max)
-	{
-		t[r] = s[r + start];
-		r++;
-	}
-	t[r] = 0;
-	return (t);
-}
-
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*t;
-	int		r;
-	int		max;
+	char	*out;
+	size_t	i;
+	size_t	len_s;
 
-	r = 0;
 	if (!s)
 		return (NULL);
-	r = ft_strlen(s);
-	if (start > (unsigned int)r)
+	len_s = ft_strlen(s);
+	if (len_s <= (size_t)start)
+		return (ft_strdup(""));
+	i = 0;
+	if (len_s - start < len)
+		len = len_s - start;
+	out = ft_calloc(sizeof(char), (len + 1));
+	if (!out)
+		return (0);
+	while (s[start + i] != '\0' && i < len)
 	{
-		t = malloc(1);
-		if (!t)
-			return (NULL);
-		t[0] = '\0';
-		return (t);
+		out[i] = s[start + i];
+		i++;
 	}
-	if (len > r - start)
-		max = r - start;
-	else
-		max = len;
-	t = malloc(max + 1);
-	if (!t)
-		return (NULL);
-	return (secondpartjvb(t, s, start, max));
+	out[i] = '\0';
+	return (out);
 }

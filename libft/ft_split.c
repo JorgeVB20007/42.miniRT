@@ -3,125 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 19:20:37 by jvacaris          #+#    #+#             */
-/*   Updated: 2021/06/04 19:20:40 by jvacaris         ###   ########.fr       */
+/*   Created: 2021/05/30 22:33:25 by emadriga          #+#    #+#             */
+/*   Updated: 2021/06/05 18:55:50 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_rows(char const *s, char c)
+typedef struct s_utils
 {
-	int	a;
-	int	h;
+	size_t	tot_words;
+	size_t	len_word;
+	size_t	index;
+}t_utils;
 
-	a = 0;
-	h = 0;
-	while (s[a] == c)
-		a++;
-	while (s[a] != '\0')
+static size_t	ft_word_counter(char const *s, char c)
+{
+	size_t	tot;
+
+	tot = 0;
+	while (*s != '\0')
 	{
-		if (s[a] == c)
+		while (*s == c)
+			s++;
+		if (*s != c && *s != '\0')
 		{
-			h++;
-			a++;
-			while (s[a] == c)
-				a++;
+			tot ++;
+			while (*s != c && *s != '\0')
+				s++;
 		}
-		else
-			a++;
 	}
-	if (s[a - 1] == c)
-		return (h + 1);
-	else
-		return (h + 2);
+	return (tot);
 }
 
-int	row_locator(char const *s, char c, int a, int b)
+static void	*freematrix(char **matrix, size_t i)
 {
-	int	d;
-
-	d = 0;
-	while (d < a)
-	{
-		if (s[b] == c)
-		{
-			d++;
-			b++;
-			while (s[b] == c)
-			{
-				b++;
-			}
-		}
-		else
-			b++;
-	}
-	return (b);
-}
-
-char	*column_gen(char const *s, char c, int a)
-{
-	char	*result;
-	int		b;
-	int		e;
-
-	b = 0;
-	while (s[b] == c)
-	{
-		b++;
-	}
-	b = row_locator(s, c, a, b);
-	e = 0;
-	while (s[e + b] != c && s[e + b] != 0)
-		e++;
-	result = malloc(e + 1);
-	e = 0;
-	while (s[b + e] != c && s[b + e] != 0)
-	{
-		result[e] = s[b + e];
-		e++;
-	}
-	result[e] = '\0';
-	return (result);
-}
-
-char	**split_error_mngmnt(char const *s, char c)
-{
-	int		a;
-	char	**result;
-
-	a = 0;
-	result = malloc(sizeof(char *) + (!c * sizeof(char *)));
-	if (!result)
-		return (NULL);
-	if (s[0] != '\0')
-		result[a++] = ft_strdup(s);
-	result[a] = NULL;
-	return (result);
+	while (i--)
+		free(matrix[i]);
+	free(matrix);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		rows;
-	char	**result;
-	int		a;
+	char	**out;
+	t_utils	u;
 
-	a = 0;
 	if (!s)
 		return (NULL);
-	if (s[0] == '\0' || c == '\0')
-		return (split_error_mngmnt(s, c));
-	rows = count_rows(s, c);
-	result = malloc(sizeof(char *) * rows);
-	if (!result)
+	u.tot_words = ft_word_counter(s, c);
+	out = ft_calloc(sizeof(char *), u.tot_words + 1);
+	if (!out)
 		return (NULL);
-	while (a < rows - 1)
+	u.index = 0;
+	while (u.tot_words--)
 	{
-		result[a] = column_gen(s, c, a);
-		a++;
+		while (*s == c)
+			s++;
+		u.len_word = 0;
+		while (s[u.len_word] != c && s[u.len_word] != '\0')
+			u.len_word++;
+		out[u.index] = ft_calloc(sizeof(char), u.len_word + 1);
+		if (!out[u.index])
+			freematrix(out, u.index);
+		ft_memmove(out[u.index++], s, u.len_word);
+		s = s + u.len_word;
 	}
-	result[rows - 1] = NULL;
-	return (result);
+	out[u.index] = 0;
+	return (out);
 }

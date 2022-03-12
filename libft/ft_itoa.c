@@ -3,82 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 19:15:22 by jvacaris          #+#    #+#             */
-/*   Updated: 2021/06/04 19:15:26 by jvacaris         ###   ########.fr       */
+/*   Created: 2021/05/28 21:40:56 by emadriga          #+#    #+#             */
+/*   Updated: 2021/05/29 12:06:37 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*minnumber(int n)
+static unsigned int	ft_abs(int n)
 {
-	char	*a;
-
-	if (n == -2147483648)
-	{
-		a = malloc(12);
-		a[0] = '-';
-		a[1] = '2';
-		a[2] = '1';
-		a[3] = '4';
-		a[4] = '7';
-		a[5] = '4';
-		a[6] = '8';
-		a[7] = '3';
-		a[8] = '6';
-		a[9] = '4';
-		a[10] = '8';
-		a[11] = 0;
-	}
-	else
-	{
-		a = malloc(2);
-		a[0] = '0';
-		a[1] = 0;
-	}
-	return (a);
+	if (n < 0)
+		return ((unsigned int) n * -1);
+	return ((unsigned int) n);
 }
 
-int	checklong(int n)
+static int	ft_numlen(int n)
 {
-	int	p;
+	unsigned int	un;
+	int				len;
 
-	p = 0;
-	while (n != 0)
-	{
-		n = n / 10;
-		p++;
-	}
-	return (p);
+	len = 0;
+	un = ft_abs(n);
+	if (n < 0)
+		len++;
+	while (un > 0 && ++len)
+		un /= 10;
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	int		neg;
-	int		largo;
-	char	*result;
+	int				len;
+	char			*out;
+	unsigned int	un;
 
-	neg = 0;
-	largo = 0;
-	if (n == -2147483648 || n == 0)
-		return (minnumber(n));
-	else if (n < 0)
-		neg = 1;
-	if (neg == 1)
-		n = n * -1;
-	largo = checklong(n);
-	result = malloc(largo + neg + 1);
-	if (!result)
-		return (0);
-	result[largo + neg] = 0;
-	result[0] = '-';
-	while (n > 0)
+	if (n == 0)
+		return (ft_strdup("0"));
+	len = ft_numlen(n);
+	out = malloc(sizeof(char) * (len + 1));
+	if (!out)
+		return (NULL);
+	un = ft_abs(n);
+	out[len] = '\0';
+	while (--len >= 0 && un > 0)
 	{
-		result[largo - !neg] = (n % 10) + 48;
-		n = n / 10;
-		largo--;
+		out[len] = (unsigned char)(un % 10 + '0');
+		un /= 10;
 	}
-	return (result);
+	if (n < 0)
+		out[len] = '-';
+	return (out);
 }

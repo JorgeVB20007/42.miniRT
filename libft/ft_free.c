@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/28 16:50:15 by emadriga          #+#    #+#             */
-/*   Updated: 2021/06/04 18:48:06 by emadriga         ###   ########.fr       */
+/*   Created: 2022/01/23 23:22:24 by emadriga          #+#    #+#             */
+/*   Updated: 2022/01/29 19:05:15 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+#include "libft.h"
+
+void	ft_free(void **ptr)
 {
-	if (c >= 'a' && c <= 'z')
-		c += 'A' - 'a';
-	return (c);
+	if (*ptr != NULL)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
 }

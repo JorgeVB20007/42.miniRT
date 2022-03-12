@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:49:52 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/08 18:18:02 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/09 16:21:56 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ double	ft_atof(char *str)
 {
 	double	result;
 	int		ctr;
-	int		neg;
+	double	neg;
 
 	result = 0.0;
 	ctr = 0;
-	neg = 1;
+	neg = 1.0;
 	if (str[ctr] == '-' || str[ctr] == '+')
 	{
-		neg = -1;
+		neg = -1.0;
 		ctr++;
 	}
 	while (ft_isdigit(str[ctr]))
@@ -50,5 +50,6 @@ double	ft_atof(char *str)
 	{
 		result = result + get_decimals(&(str[ctr]));
 	}
+	result = result * neg;
 	return (result);
 }

@@ -25,11 +25,9 @@ t_itemlist	**get_items(char *argv)
 				ft_rt_lstadd_front(items_list, ft_rt_lstnew(line2plane(sep_line)));
 			else if (!ft_strcmp(sep_line[0], "cy"))
 				ft_rt_lstadd_front(items_list, ft_rt_lstnew(line2cylinder(sep_line)));
-			write(1, "J ", 2);
 			free(line);
-			write(1, "K ", 2);
 		}
 	}
-	printf("\nNumber one: %d @ (%f, %f, %f)\n", (**items_list).content->type, (**items_list).content->loc.x, (**items_list).content->loc.y, (**items_list).content->loc.z);
+//	printf("\nNumber one: %d @ (%f, %f, %f)\n", (**items_list).content->type, (**items_list).content->loc.x, (**items_list).content->loc.y, (**items_list).content->loc.z);
 	return (items_list);
 }

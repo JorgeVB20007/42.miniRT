@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 19:26:35 by jvacaris          #+#    #+#             */
-/*   Updated: 2021/06/04 19:26:36 by jvacaris         ###   ########.fr       */
+/*   Created: 2021/05/28 17:04:33 by emadriga          #+#    #+#             */
+/*   Updated: 2021/06/04 18:46:47 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,19 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	char	*hs;
-	char	*nl;
-	size_t	contr;
-	int		subcontr;
+	size_t	len_needle;
 
-	hs = (char *)haystack;
-	nl = (char *)needle;
-	contr = 0;
-	if (nl[0] == 0)
-		return (hs);
-	while (contr < len && hs[contr] != 0)
+	if (!*needle)
+		return ((char *)haystack);
+	len_needle = ft_strlen(needle);
+	while (*haystack != '\0' && len-- > 0)
 	{
-		subcontr = 0;
-		if (hs[contr] == nl[0])
-		{
-			while (nl[subcontr] == hs[contr + subcontr] && nl[subcontr] != 0)
-				subcontr++;
-			if (contr + subcontr > len)
-				return (NULL);
-			if (nl[subcontr] == 0)
-				return (&hs[contr]);
-		}
-		contr++;
+		if (*haystack == *needle)
+			if (!ft_strncmp(haystack, needle, len_needle))
+				return ((char *)haystack);
+		haystack++;
+		if (len_needle > len)
+			break ;
 	}
-	return (NULL);
+	return (0);
 }

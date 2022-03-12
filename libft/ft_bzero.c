@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 19:13:17 by jvacaris          #+#    #+#             */
-/*   Updated: 2021/06/04 19:13:23 by jvacaris         ###   ########.fr       */
+/*   Created: 2021/05/28 16:51:36 by emadriga          #+#    #+#             */
+/*   Updated: 2021/05/28 18:00:00 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,5 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	a;
-	char	*e;
-
-	a = 0;
-	e = s;
-	while (a < n)
-	{
-		e[a] = 0;
-		a++;
-	}
+	ft_memset(s, '\0', n);
 }

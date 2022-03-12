@@ -3,48 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 19:18:58 by jvacaris          #+#    #+#             */
-/*   Updated: 2021/06/04 19:18:59 by jvacaris         ###   ########.fr       */
+/*   Created: 2021/05/28 16:56:26 by emadriga          #+#    #+#             */
+/*   Updated: 2021/05/28 18:06:37 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned char	*fcalc(unsigned char *f, const unsigned char *g, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	a;
+	unsigned char	*mem;
+	unsigned char	*out;
 
-	if (f > g)
+	if (dst != src)
 	{
-		a = n;
-		while (a > 0)
+		if (dst < src)
+			ft_memcpy(dst, src, len);
+		else
 		{
-			a--;
-			f[a] = g[a];
+			mem = (unsigned char *)src + len - 1;
+			out = dst + len - 1;
+			while (len--)
+				*out-- = *mem--;
 		}
 	}
-	else
-	{
-		a = 0;
-		while (a < n)
-		{
-			f[a] = g[a];
-			a++;
-		}
-	}
-	return (f);
-}
-
-void	*ft_memmove(void *dest, const void *src, size_t n)
-{
-	unsigned char		*f;
-	const unsigned char	*g;
-
-	f = dest;
-	g = src;
-	if (dest == NULL && src == NULL)
-		return (NULL);
-	return (fcalc(f, g, n));
+	return (dst);
 }

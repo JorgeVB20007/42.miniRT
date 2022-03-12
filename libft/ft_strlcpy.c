@@ -3,43 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 19:25:39 by jvacaris          #+#    #+#             */
-/*   Updated: 2021/06/04 19:25:41 by jvacaris         ###   ########.fr       */
+/*   Created: 2021/05/28 17:00:59 by emadriga          #+#    #+#             */
+/*   Updated: 2021/06/04 23:17:03 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	calcreturn(const char	*src)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	c;
+	size_t	i;
 
-	c = 0;
-	while (src[c] != 0)
-		c++;
-	return (c);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t n)
-{
-	size_t	c;
-
-	c = 0;
+	i = 0;
 	if (!src)
 		return (0);
-	if (n == 0)
+	if (dstsize > 0)
 	{
-		return (calcreturn(src));
+		while (src[i] != 0 && i < (dstsize - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	while (c < n - 1)
-	{
-		if (src[c] == 0)
-			break ;
-		dst[c] = src[c];
-		c++;
-	}
-	dst[c] = 0;
-	return (calcreturn(src));
+	return (ft_strlen(src));
 }

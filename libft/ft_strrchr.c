@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 19:26:48 by jvacaris          #+#    #+#             */
-/*   Updated: 2021/06/04 19:26:49 by jvacaris         ###   ########.fr       */
+/*   Created: 2021/05/28 17:02:42 by emadriga          #+#    #+#             */
+/*   Updated: 2021/05/30 23:10:44 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,18 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int		a;
-	char	*l;
-	int		b;
+	char	*mem;
+	size_t	s_len;
 
-	a = 0;
-	l = (char *)s;
-	b = 0;
-	if (s[0] == '\0' && c == '\0')
-		return (&l[a]);
-	if (s[0] == '\0')
-		return (NULL);
-	while (l[a] != 0)
-		a++;
+	s_len = ft_strlen(s);
 	if (c == 0)
-		return (&l[a]);
-	a--;
-	while (l[a] != (char)c)
+		return ((char *)s + s_len);
+	mem = (char *)s + s_len - 1;
+	while (s_len-- > 0)
 	{
-		if (a <= 0)
-		{
-			return (NULL);
-		}
-		a--;
+		if (*mem == (unsigned char)c)
+			return (mem);
+		mem--;
 	}
-	return (&l[a]);
+	return (0);
 }

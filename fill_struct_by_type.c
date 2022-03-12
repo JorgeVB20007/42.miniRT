@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:11:58 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/08 18:26:17 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/09 17:47:13 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,14 @@ t_item	*line2alight(char **line)
 	t_item	*item;
 	char	**split_commas;
 
-	write(1, "A ", 2);
 	item = malloc(sizeof(t_item));
-	write(1, "B ", 2);
 	item->type = ALIGHT;
-	write(1, "C ", 2);
 	item->brightness = ft_atof(line[1]);
-	write(1, "D ", 2);
 	split_commas =  ft_split(line[2], ',');
-	write(1, "E ", 2);
 	item->color.r = ft_atof(split_commas[0]);
-	write(1, "F ", 2);
 	item->color.g = ft_atof(split_commas[1]);
-	write(1, "G ", 2);
 	item->color.b = ft_atof(split_commas[2]);
-	write(1, "H ", 2);
 	megafree(&split_commas);
-	write(1, "I ", 2);
 	return (item);
 }
 
