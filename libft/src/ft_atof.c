@@ -6,11 +6,11 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:49:52 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/09 16:21:56 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/13 15:29:46 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
 static double	get_decimals(char *str)
 {
