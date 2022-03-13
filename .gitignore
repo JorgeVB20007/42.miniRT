@@ -17,6 +17,7 @@ test*
 gnl/*.gch
 libft/*.gch
 gnl/*.o
+miniRT
 a
 b
 c

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+         #
+#    By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/03/13 15:17:14 by emadriga         ###   ########.fr        #
+#    Updated: 2022/03/13 17:10:18 by jvacaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,8 +88,7 @@ fclean:		clean
 			
 # mynorm rule
 mynorm:
-	norminette $(SRC_DIR) $(INC_DIR) 
-	@make -C $(LIBFT_DIR) mynorm
+	norminette $(SRC_DIR) $(INC_DIR) $(LIBFT_DIR)
 
 # re rule
 re:			fclean all bonus
