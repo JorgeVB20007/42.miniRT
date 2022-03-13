@@ -97,13 +97,7 @@ t_item		*line2sphere(char **line);
 t_item		*line2plane(char **line);
 t_item		*line2cylinder(char **line);
 
-double		ft_atof(char *str);
-
 t_itemlist		**get_items(char *argv);
-
-int			ft_strcmp(const char *s1, const char *s2);
-
-void		megafree(char ***list);
 
 void		ft_rt_lstadd_front(t_itemlist **alst, t_itemlist *new);
 t_itemlist	*ft_rt_lstnew(t_item *content);

@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-t_itemlist	*ft_rt_lstnew(t_item *content)
+t_itemlist	*rt_lstnew(t_item *content)
 {
 	t_itemlist	*result;
 
@@ -24,7 +24,7 @@ t_itemlist	*ft_rt_lstnew(t_item *content)
 	return (result);
 }
 
-void	ft_rt_lstadd_front(t_itemlist **alst, t_itemlist *new)
+void	rt_lstadd_front(t_itemlist **alst, t_itemlist *new)
 {
 	if (!alst || !new)
 		return ;
