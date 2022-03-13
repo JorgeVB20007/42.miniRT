@@ -65,7 +65,8 @@ SRC_FILES	=		ft_atof.c					\
 					ft_substr.c					\
 					ft_tolower.c				\
 					ft_toupper.c				\
-					get_next_line.c
+					get_next_line.c				\
+					megafree.c
 
 OBJ_FILES	= $(SRC_FILES:.c=.o)
 
