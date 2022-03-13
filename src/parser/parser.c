@@ -8,23 +8,24 @@ t_itemlist	**get_items(char *argv)
 	t_itemlist	**items_list;
 
 	fd = open(argv, O_RDONLY);
+	items_list = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (ft_strlen(line) > 2)
 		{
 			sep_line = ft_split(line, ' ');
 			if (!ft_strcmp(sep_line[0], "A"))
-				ft_rt_lstadd_front(items_list, ft_rt_lstnew(line2alight(sep_line)));
+				lst_rt_add_front(items_list, lst_rt_new(line2alight(sep_line)));
 			else if (!ft_strcmp(sep_line[0], "C"))
-				ft_rt_lstadd_front(items_list, ft_rt_lstnew(line2camera(sep_line)));
+				lst_rt_add_front(items_list, lst_rt_new(line2camera(sep_line)));
 			else if (!ft_strcmp(sep_line[0], "L"))
-				ft_rt_lstadd_front(items_list, ft_rt_lstnew(line2light(sep_line)));
+				lst_rt_add_front(items_list, lst_rt_new(line2light(sep_line)));
 			else if (!ft_strcmp(sep_line[0], "sp"))
-				ft_rt_lstadd_front(items_list, ft_rt_lstnew(line2sphere(sep_line)));
+				lst_rt_add_front(items_list, lst_rt_new(line2sphere(sep_line)));
 			else if (!ft_strcmp(sep_line[0], "pl"))
-				ft_rt_lstadd_front(items_list, ft_rt_lstnew(line2plane(sep_line)));
+				lst_rt_add_front(items_list, lst_rt_new(line2plane(sep_line)));
 			else if (!ft_strcmp(sep_line[0], "cy"))
-				ft_rt_lstadd_front(items_list, ft_rt_lstnew(line2cylinder(sep_line)));
+				lst_rt_add_front(items_list, lst_rt_new(line2cylinder(sep_line)));
 			free(line);
 		}
 	}

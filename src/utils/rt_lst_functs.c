@@ -12,7 +12,12 @@
 
 #include "minirt.h"
 
-t_itemlist	*rt_lstnew(t_item *content)
+/**
+ * * Add new node into list at begining
+ * @param list		list
+ * @param new_node	new node to link
+*/
+t_itemlist	*lst_rt_new(t_item *content)
 {
 	t_itemlist	*result;
 
@@ -24,7 +29,10 @@ t_itemlist	*rt_lstnew(t_item *content)
 	return (result);
 }
 
-void	rt_lstadd_front(t_itemlist **alst, t_itemlist *new)
+/**
+ * * Returns malloced node
+*/
+void	lst_rt_add_front(t_itemlist **alst, t_itemlist *new)
 {
 	if (!alst || !new)
 		return ;
