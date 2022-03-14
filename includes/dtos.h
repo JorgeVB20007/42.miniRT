@@ -6,14 +6,14 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/08 20:59:16 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:25:16 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DTOS_H
 # define DTOS_H
 
-//?	Para guardar coordenadas en x,y,z.
+//?	To store coordinates in x,y,z.
 typedef struct s_coords
 {
 	float	x;
@@ -21,14 +21,14 @@ typedef struct s_coords
 	float	z;
 }	t_coords;
 
-//?	Para guardar vectores con su coordenada (loc) y su dirección (dir).
+//?	To store vectors with their coordinates (loc) & its direction (dir).
 typedef struct s_vectors
 {
 	t_coords	loc;
 	t_coords	dir;
 }	t_vectors;
 
-//?	Para guardar colores en r,g,b.
+//?	To store colors in r,g,b.
 typedef struct s_colors
 {
 	float	r;
@@ -36,16 +36,24 @@ typedef struct s_colors
 	float	b;
 }	t_colors;
 
+typedef struct s_corners
+{
+	t_coords	tl;
+	t_coords	tr;
+	t_coords	bl;
+	t_coords	br;
+}	t_corners;
+
 /*
-?	Para guardar cada ítem que nos pasen:
-*	type:		el tipo de objeto (ver e_type_of_object).
-*	loc:		la posición del objeto en xyz.
-*	color:		el color del objeto en rgb.
-*	orient:		el vector normal del objeto.
-*	brightness:	el brillo de una luz/luz ambiental.
-*	diameter:	el diámetro del objeto.
-*	height:		la altura del cilindro.
-*	fov:		el ángulo de visión horizontal de la cámara.
+?	To store every item we're given:
+*	type:		type of object (see e_type_of_object).
+*	loc:		position of the object in xyz.
+*	color:		object's color in rgb.
+*	orient:		normal vector of the object.
+*	brightness:	the brightness of a light or ambient light.
+*	diameter:	the diameter of the object.
+*	height:		la height of the cylinder.
+*	fov:		the horizontal angle of vision of the camera.
 */
 typedef struct s_item
 {
@@ -59,7 +67,7 @@ typedef struct s_item
 	float		fov;		//* Applies only to CAMERA.
 }	t_item;
 
-//?	Lista enlazada donde content apunta a una estructura t_item.
+//? Linked list where content points to a t_item structure.
 typedef struct s_itemlist
 {
 	t_item				*content;

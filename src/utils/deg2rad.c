@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   constants.h                                        :+:      :+:    :+:   */
+/*   deg2rad.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/14 18:01:02 by jvacaris         ###   ########.fr       */
+/*   Created: 2022/03/14 18:31:45 by jvacaris          #+#    #+#             */
+/*   Updated: 2022/03/14 18:36:49 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONSTANTS_H
-# define CONSTANTS_H
-//? VERTICAL resolution of the image. Horizontal resolution is 16/9 times greater.
-# define RESOLUTION 1080
+#include "minirt.h"
 
-//?	All the types of object specified in the subject.
-enum e_type_of_object
+float	deg2rad(float deg)
 {
-	ALIGHT,
-	CAMERA,
-	LIGHT,
-	SPHERE,
-	PLANE,
-	CYLINDER
-};
-#endif
+	return(deg * (M_PI / 180.0));
+}
+
+float	rad2deg(float rad)
+{
+	return(rad * (180.0 / M_PI));
+}

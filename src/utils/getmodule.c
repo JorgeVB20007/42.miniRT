@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   constants.h                                        :+:      :+:    :+:   */
+/*   getmodule.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/14 18:01:02 by jvacaris         ###   ########.fr       */
+/*   Created: 2022/03/14 19:57:34 by jvacaris          #+#    #+#             */
+/*   Updated: 2022/03/14 20:06:09 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONSTANTS_H
-# define CONSTANTS_H
-//? VERTICAL resolution of the image. Horizontal resolution is 16/9 times greater.
-# define RESOLUTION 1080
+#include "minirt.h"
 
-//?	All the types of object specified in the subject.
-enum e_type_of_object
+float	getmodule(t_coords vector)
 {
-	ALIGHT,
-	CAMERA,
-	LIGHT,
-	SPHERE,
-	PLANE,
-	CYLINDER
-};
-#endif
+	float	result;
+
+	result = sqrtf(powf(vector.x, 2) + powf(vector.y, 2) + powf(vector.z, 2));
+	return (result);
+}
