@@ -6,7 +6,7 @@
 #    By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/03/14 20:08:10 by jvacaris         ###   ########.fr        #
+#    Updated: 2022/03/15 17:05:53 by jvacaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_FILES	= 	main.c								\
 				parser/fill_struct_by_type.c		\
 				parser/parser.c						\
 				parser/setting_corners.c			\
+				parser/setting_cam_vectors.c		\
 				utils/rt_lst_functs.c				\
 				utils/deg2rad.c						\
 				utils/getmodule.c

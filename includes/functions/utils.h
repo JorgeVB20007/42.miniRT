@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/14 20:04:02 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:02:14 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ void		lst_rt_add_front(t_itemlist **alst, t_itemlist *new_node);
  * * Returns malloced node
 */
 t_itemlist	*lst_rt_new(t_item *content);
+
+//* Returns an item of t_itemlist that has the type given.
+t_item		get_item_by_type(t_itemlist **item, int type);
 
 //*	Gets degrees, returns radians.
 float		deg2rad(float deg);

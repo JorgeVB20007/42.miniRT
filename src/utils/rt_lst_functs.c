@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/13 22:13:11 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:08:26 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,28 @@ void	lst_rt_add_front(t_itemlist **alst, t_itemlist *new)
 		return ;
 	new -> next = *alst;
 	*alst = new;
+}
+
+/**
+ * * Returns an item of t_itemlist that has the type given.
+ * @param item	list of items
+ * @param type	type of item to get
+*/
+t_item	get_item_by_type(t_itemlist **item, int type)
+{
+	t_itemlist	*iter;
+	t_item		returning;
+
+	returning.type = -1;
+	iter = *item;
+	while (iter)
+	{
+		if (iter->content->type == type)
+		{
+			returning = *iter->content;
+			return (returning);
+		}
+		iter = iter -> next;
+	}
+	return (returning);
 }

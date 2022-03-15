@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:26:26 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/14 20:28:41 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:15:29 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static t_coords	get_unit_q(t_coords unit_v)
 	return (unit_q);
 }
 
-t_corners	set_corners(t_itemlist *item)
+t_corners	set_corners(t_item item)
 {
 	t_coords	unit_v;
 	float		module;
@@ -66,23 +66,21 @@ t_corners	set_corners(t_itemlist *item)
 	t_coords	a;
 	t_corners	corn;
 
-	module = getmodule(item->content->orient);
-	unit_v.x = item->content->orient.x / module;
-	unit_v.y = item->content->orient.y / module;
-	unit_v.z = item->content->orient.z / module;
+	module = getmodule(item.orient);
+	unit_v.x = item.orient.x / module;
+	unit_v.y = item.orient.y / module;
+	unit_v.z = item.orient.z / module;
 	unit_q = get_unit_q(unit_v);
 	a.x = -unit_q.z * unit_v.y;
 	a.y = +unit_v.x * unit_q.z - unit_q.x * unit_v.z;
 	a.z = -unit_q.x * unit_v.y;
-	corn = corners_write2struct(unit_v, unit_q, a, item->content->fov);
+	corn = corners_write2struct(unit_v, unit_q, a, item.fov);
 	return (corn);
 }
 
-	// printf("\nCamera position:    (%2f, %2f, %2f)\n", item->content->loc.x,
-	// item->content->loc.y, item->content->loc.z);
-	// printf("Camera orientation: (%2f, %2f, %2f)\n", item->content->orient.x,
-	// item->content->orient.y, item->content->orient.z);
-	// printf("\nTop left:  (%2f, %2f, %2f)", corn.tl.x, corn.tl.y, corn.tl.z);
-	// printf("\nTop right:  (%2f, %2f, %2f)", corn.tr.x, corn.tr.y, corn.tr.z);
-	// printf("\nBtm left:  (%2f, %2f, %2f)", corn.bl.x, corn.bl.y, corn.bl.z);
-	// printf("\nBtm right:  (%2f, %2f, %2f)\n", corn.br.x, corn.br.y, corn.br.z);
+	// printf("\nCam pos (%f, %f, %f)\n", item.loc.x, item.loc.y, item.loc.z);
+	// printf("Cam ori (%f, %f, %f)", item.orient.x, item.orient.y, item.orient.z);
+	// printf("\n\nTop left:  (%f, %f, %f)", corn.tl.x, corn.tl.y, corn.tl.z);
+	// printf("\nTop right: (%f, %f, %f)", corn.tr.x, corn.tr.y, corn.tr.z);
+	// printf("\nBtm left:  (%f, %f, %f)", corn.bl.x, corn.bl.y, corn.bl.z);
+	// printf("\nBtm right: (%f, %f, %f)\n", corn.br.x, corn.br.y, corn.br.z);

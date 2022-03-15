@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 21:16:37 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/14 18:53:45 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/15 16:49:45 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_itemlist	**get_items(char *argv)
 			else if (!ft_strcmp(sep_line[0], "C"))
 			{
 				lst_rt_add_front(items_list, lst_rt_new(line2camera(sep_line)));
-				set_corners(*items_list);
 			}
 			else if (!ft_strcmp(sep_line[0], "L"))
 				lst_rt_add_front(items_list, lst_rt_new(line2light(sep_line)));
