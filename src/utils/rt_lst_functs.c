@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/15 23:09:42 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/03/15 23:49:19 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ static t_item	*copy_rt_content(t_item *content)
 	result = NULL;
 	result = malloc(sizeof(t_item));
 	result->brightness = content->brightness;
-	result->color = get_color(content->color);
+	result->color = content->color;
 	result->diameter = content->diameter;
 	result->fov = content->fov;
 	result->height = content->height;
-	result->loc = get_coords(content->loc);
-	result->orient = get_coords(content->orient);
+	result->loc = content->loc;
+	result->orient = content->orient;
 	result->type = content->type;
 	return (result);
 }

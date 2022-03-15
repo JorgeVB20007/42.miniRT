@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:57:34 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/15 22:23:13 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/03/15 23:49:49 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,42 +24,28 @@ float	getmodule(t_coords vector)
 	return (result);
 }
 
-t_colors get_color(t_colors rgb)
+t_colors set_color(const char *rgb)
 {
 	t_colors	color;
+	char		**split;
 
-	color.r = rgb.r;
-	color.g = rgb.g;
-	color.b = rgb.b;
+	split = ft_split(rgb, ',');
+	color.r = ft_atof(split[0]);
+	color.g = ft_atof(split[1]);
+	color.b = ft_atof(split[2]);
+	megafree(&split);
 	return (color);
 }
 
-t_colors set_color(char **rgb)
-{
-	t_colors	color;
-
-	color.r = ft_atof(rgb[0]);
-	color.g = ft_atof(rgb[1]);
-	color.b = ft_atof(rgb[2]);
-	return (color);
-}
-
-t_coords get_coords(t_coords coords)
+t_coords set_coords(const char *coords)
 {
 	t_coords	coordinates;
+	char		**split;
 
-	coordinates.x = coords.x;
-	coordinates.y = coords.y;
-	coordinates.z = coords.z;
-	return (coordinates);
-}
-
-t_coords set_coords(char **coords)
-{
-	t_coords	coordinates;
-
-	coordinates.x = ft_atof(coords[0]);
-	coordinates.y = ft_atof(coords[1]);
-	coordinates.z = ft_atof(coords[2]);
+	split = ft_split(coords, ',');
+	coordinates.x = ft_atof(split[0]);
+	coordinates.y = ft_atof(split[1]);
+	coordinates.z = ft_atof(split[2]);
+	megafree(&split);
 	return (coordinates);
 }

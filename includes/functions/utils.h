@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/15 23:01:39 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/03/15 23:50:14 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,7 @@ float		rad2deg(float rad);
 */
 float		getmodule(t_coords vector);
 
-t_colors get_color(t_colors rgb);
+t_colors	set_color(const char *rgb);
 
-t_colors set_color(char **rgb);
-
-t_coords get_coords(t_coords coords);
-
-t_coords set_coords(char **coords);
+t_coords	set_coords(const char *coords);
 #endif
