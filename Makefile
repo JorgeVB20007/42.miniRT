@@ -6,7 +6,7 @@
 #    By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/03/15 17:05:53 by jvacaris         ###   ########.fr        #
+#    Updated: 2022/03/16 20:03:17 by jvacaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,14 @@ SANITIZE = -Ofast -fsanitize=address
 INCLUDES_FILES =	constants.h				\
 					minirt.h				\
 					dtos.h					\
+					functions/coloring.h	\
 					functions/parser.h		\
 					functions/utils.h
 
 # Source and object files
 SRC_FILES	= 	main.c								\
+				coloring/line_collision_checker.c	\
+				coloring/set_color_matrix.c			\
 				parser/fill_struct_by_type.c		\
 				parser/parser.c						\
 				parser/setting_corners.c			\
@@ -65,6 +68,7 @@ obj:
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)parser/
 	@mkdir -p $(OBJ_DIR)utils/
+	@mkdir -p $(OBJ_DIR)coloring/
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(INCLUDES)
 	@$(GCC) $(FLAGS) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
 $(LIBFT):
