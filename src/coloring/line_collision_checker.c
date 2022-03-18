@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:17:25 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/17 21:43:54 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:06:54 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 *	the shapes or not.
 !	We're not checking the point nor the angle of such collision yet.
 */
-int	touches_sphere(t_vectors ray, t_item sphere)
+static int	touches_sphere(t_vectors ray, t_item sphere)
 {
 	t_coords	vector_point2point;
 	t_coords	vector_crossproduct;
@@ -39,7 +39,7 @@ int	touches_sphere(t_vectors ray, t_item sphere)
 	*/
 }
 
-int	touches_cylinder(t_vectors ray, t_item cylinder)
+static int	touches_cylinder(t_vectors ray, t_item cylinder)
 {
 	/*
 	TODO	No idea how to check this one yet, specially when the cylinder
@@ -47,14 +47,14 @@ int	touches_cylinder(t_vectors ray, t_item cylinder)
 			- Jorge
 	*/
 
-// ~~~~ Useless stuff to make the complier happy ~~~~
-	ray.loc.x = 0;									//
-	cylinder.type = 0;								//
-	return (0);										//
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//! ~~~~ Useless stuff to make the complier happy ~~~~
+	ray.loc.x = 0;									//!
+	cylinder.type = 0;								//!
+	return (0);										//!
+//! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }
 
-int	touches_plane(t_vectors ray, t_item plane)
+static int	touches_plane(t_vectors ray, t_item plane)
 {
 	/*
 	*	Check
@@ -62,9 +62,41 @@ int	touches_plane(t_vectors ray, t_item plane)
 	*	under the section "Algebraic Form"
 	*/
 
-// ~~~~ Useless stuff to make the complier happy ~~~~
-	ray.loc.x = 0;									//
-	plane.type = 0;									//
-	return (0);										//
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//! ~~~~ Useless stuff to make the complier happy ~~~~
+	ray.loc.x = 0;									//!
+	plane.type = 0;									//!
+	return (0);										//!
+//! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+}
+
+int	check4collisions(t_coords vector, t_itemlist *items)
+{
+	t_vectors	ray;
+	t_item		cam;
+
+	ray.dir = vector;
+	cam = get_item_by_type(&items, CAMERA);
+	ray.loc = cam.loc;
+	while (items)
+	{
+		if (items->content->type == SPHERE)
+		{
+			if (touches_sphere(ray, *(items->content)))
+				return(1);
+		}
+		else if (items->content->type == CYLINDER)
+		{
+			if (touches_cylinder(ray, *(items->content)))
+				return(1);
+		}
+		else if (items->content->type == PLANE)
+		{
+			if (touches_plane(ray, *(items->content)))
+				return(1);
+		}
+		if (items->next == NULL)		// TODO Unsure if it's needed.
+			break;						// TODO Unsure if it's needed
+		items = items->next;
+	}
+	return (0);
 }

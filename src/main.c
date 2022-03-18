@@ -13,9 +13,9 @@ static t_colors	**doing_calculations(char **argv)
 	v_matrix = set_cam_vectors(set_corners(get_item_by_type(&items, CAMERA)));
 	c_matrix = set_color_matrix(items, v_matrix);
 
-	lst_rt_print(items);
-	get_items_by_type(&items2, items, SPHERE);
-	lst_rt_print(items2);
+//	lst_rt_print(items);
+//	get_items_by_type(&items2, items, SPHERE);
+//	lst_rt_print(items2);
 	lst_rt_free(&items);
 	lst_rt_free(&items2);
 	return (c_matrix);
