@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getmodule.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:57:34 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/15 23:49:49 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:41:05 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ float	getmodule(t_coords vector)
 	float	result;
 
 	result = sqrtf(powf(vector.x, 2) + powf(vector.y, 2) + powf(vector.z, 2));
-	return (result);
+	return (fabs(result));
 }
 
 t_colors set_color(const char *rgb)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/15 23:50:14 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/03/18 16:59:34 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,13 @@ float		getmodule(t_coords vector);
 t_colors	set_color(const char *rgb);
 
 t_coords	set_coords(const char *coords);
+
+t_coords	v_v_cross_product(t_coords a, t_coords b);
+
+t_coords	v_v_sub(t_coords a, t_coords b);
+
+t_coords	v_v_sum(t_coords a, t_coords b);
+
+t_coords	v_i_mult(t_coords v, int i);
+
 #endif
