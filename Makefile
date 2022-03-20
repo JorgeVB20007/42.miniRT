@@ -54,6 +54,7 @@ INC_DIR = ./includes/
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
 LIBFT_DIR = ./libft/
+MINLBX_DIR = ./minilibx_mms_20200219/
 
 # Paths
 INCLUDES = $(addprefix $(INC_DIR), $(INCLUDES_FILES))
@@ -61,8 +62,9 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 
-# Libft linkers
-LNK  = -L $(LIBFT_DIR) -lft $(SANITIZE)
+# Libft and Minilibx linkers
+LNK  = -L $(LIBFT_DIR) -lft $(SANITIZE) -L $(MINLBX_DIR) \
+	   -lmlx -framework OpenGL -framework AppKit
 
 # all rule
 all: obj $(LIBFT) $(NAME)
