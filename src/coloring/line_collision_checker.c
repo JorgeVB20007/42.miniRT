@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:17:25 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/18 21:06:54 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:27:20 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,25 @@ static int	touches_cylinder(t_vectors ray, t_item cylinder)
 
 static int	touches_plane(t_vectors ray, t_item plane)
 {
+	t_vectors	plane_vectors;
+	int			result;
+
+	plane_vectors.dir = plane.orient;
+	plane_vectors.loc = plane.loc;
+	result = line_plane_correlation(ray, plane_vector2equation(plane_vectors));
+	if (!result)
+		return (1);
+	else
+		return (0);
 	/*
-	*	Check
-	?	https://en.wikipedia.org/wiki/Line%E2%80%93plane_intersection
-	*	under the section "Algebraic Form"
+	//	Turn plane from vector and point form to equation
+	//	https://www.youtube.com/watch?v=M5JQvPGueMI
+
+	*	Intersection plane-line
+	?	https://www.youtube.com/watch?v=Is_wLo6yhxE
 	*/
 
-//! ~~~~ Useless stuff to make the complier happy ~~~~
-	ray.loc.x = 0;									//!
-	plane.type = 0;									//!
-	return (0);										//!
-//! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 }
 
 int	check4collisions(t_coords vector, t_itemlist *items)

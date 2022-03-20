@@ -6,7 +6,7 @@
 #    By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/03/18 20:34:17 by jvacaris         ###   ########.fr        #
+#    Updated: 2022/03/20 22:03:10 by jvacaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC_FILES	= 	main.c								\
 				utils/rt_lst_functs.c				\
 				utils/deg2rad.c						\
 				utils/getmodule.c					\
+				utils/plane_managing.c				\
 				utils/vctr_int_operations.c			\
 				utils/vctr_vctr_operations.c
 

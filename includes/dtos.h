@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/14 18:25:16 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:53:10 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,17 @@ typedef struct s_itemlist
 	t_item				*content;
 	struct s_itemlist	*next;
 }	t_itemlist;
+
+/*
+*	Structure to store a plane equation in the format:
+?	ax + by + cz + d = 0
+*/
+typedef struct s_plane_equation
+{
+	float	a;
+	float	b;
+	float	c;
+	float	d;
+}	t_plane_equation;
+
 #endif

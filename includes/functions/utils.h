@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/18 17:15:12 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:27:49 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,11 @@ t_coords	v_v_sum(t_coords a, t_coords b);
 t_coords	v_i_mult(t_coords v, int i);
 
 int			rgb2int(t_colors rgb);
+
+t_plane_equation	plane_vector2equation(t_vectors norm_vector);
+
+int	line_plane_correlation(t_vectors ray, t_plane_equation equation);
+
+float	get_the_t(t_vectors ray, t_plane_equation equation);
 
 #endif
