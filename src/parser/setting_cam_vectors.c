@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:01:28 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/15 17:39:38 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:56:14 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	set_cam_margins(t_coords **matrix)
 	t_coords	diff;
 
 	ctr = 1;
-	max_x = RESOLUTION * (16 / 9) - 1;
+	max_x = HORIZ_RESOLUTION - 1;
 	max_y = RESOLUTION - 1;
 	while (ctr < RESOLUTION)
 	{
@@ -48,7 +48,7 @@ static void	set_cam_middle(t_coords **matrix)
 	t_coords	diff;
 
 	ctr_y = 0;
-	max_x = RESOLUTION * (16 / 9) - 1;
+	max_x = HORIZ_RESOLUTION - 1;
 	while (ctr_y < RESOLUTION)
 	{
 		ctr_x = 0;
@@ -74,17 +74,17 @@ t_coords	**set_cam_vectors(t_corners corn)
 	t_coords	**matrix;
 	int			ctr;
 
-	matrix = malloc(sizeof(t_coords *) * RESOLUTION * (16 / 9));
+	matrix = malloc(sizeof(t_coords *) * HORIZ_RESOLUTION);
 	ctr = 0;
-	while (ctr < RESOLUTION * (16 / 9))
+	while (ctr < HORIZ_RESOLUTION)
 	{
 		matrix[ctr] = malloc(sizeof(t_coords) * RESOLUTION);
 		ctr++;
 	}
 	matrix[0][0] = corn.tl;
-	matrix[RESOLUTION * (16 / 9) - 1][0] = corn.tr;
+	matrix[HORIZ_RESOLUTION - 1][0] = corn.tr;
 	matrix[0][RESOLUTION - 1] = corn.bl;
-	matrix[RESOLUTION * (16 / 9) - 1][RESOLUTION - 1] = corn.br;
+	matrix[HORIZ_RESOLUTION - 1][RESOLUTION - 1] = corn.br;
 	set_cam_margins(matrix);
 	set_cam_middle(matrix);
 	return (matrix);

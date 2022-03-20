@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:04:24 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/20 22:27:44 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/20 23:21:46 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,17 @@ t_colors	**set_color_matrix(t_itemlist *items, t_coords **v_matrix)
 	int			x;
 	int			y;
 
-	c_matrix = malloc(sizeof(t_coords *) * RESOLUTION * (16 / 9));
+//! ~~ Testing started ~~~~~~~~~~
+/*	void	*gnrl_ptr;
+	void	*win_ptr;
+
+	gnrl_ptr = mlx_init();
+	win_ptr = mlx_new_window(gnrl_ptr, HORIZ_RESOLUTION, RESOLUTION, "miniRT test");*/
+//! ~~~ Testing ended ~~~~~~~~~~~
+
+	c_matrix = malloc(sizeof(t_coords *) * HORIZ_RESOLUTION);
 	x = 0;
-	while (x < RESOLUTION * (16 / 9))
+	while (x < HORIZ_RESOLUTION)
 	{
 		c_matrix[x] = malloc(sizeof(t_coords) * RESOLUTION);
 		x++;
@@ -47,16 +55,29 @@ t_colors	**set_color_matrix(t_itemlist *items, t_coords **v_matrix)
 	while (y < RESOLUTION)
 	{
 		x = 0;
-		while (x < RESOLUTION * (16 / 9))
+		while (x < HORIZ_RESOLUTION)
 		{
 			if (check4collisions(v_matrix[x][y], items))
 			{
-				//	Calculate collision point & get its color.
-			}
 
+			//! ~~ Testing started ~~~~~~~~~~
+/*
+				mlx_pixel_put (gnrl_ptr, win_ptr, x, y, 16777215);
+*/
+			//! ~~~ Testing ended ~~~~~~~~~~~
+
+				//TODO	Here we'll calculate collision point & get its color.
+			}
 			x++;
 		}
 		y++;
 	}
+
+//! ~~ Testing started ~~~~~~~~~~
+/*
+	mlx_loop(gnrl_ptr);
+*/
+//! ~~~ Testing ended ~~~~~~~~~~~
+
 	return (c_matrix);
 }
