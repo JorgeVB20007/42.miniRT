@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/20 22:27:49 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:54:53 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,26 +66,34 @@ float		rad2deg(float rad);
  * * Returns vector's module
  * @param vector
 */
-float		getmodule(t_coords vector);
+float				getmodule(t_coords vector);
 
-t_colors	set_color(const char *rgb);
+t_colors			set_color(const char *rgb);
 
-t_coords	set_coords(const char *coords);
+t_coords			set_coords(const char *coords);
 
-t_coords	v_v_cross_product(t_coords a, t_coords b);
+t_coords			v_v_cross_product(t_coords a, t_coords b);
 
-t_coords	v_v_sub(t_coords a, t_coords b);
+t_coords			v_v_sub(t_coords a, t_coords b);
 
-t_coords	v_v_sum(t_coords a, t_coords b);
+t_coords			v_v_sum(t_coords a, t_coords b);
 
-t_coords	v_i_mult(t_coords v, int i);
+t_coords			v_i_mult(t_coords v, int i);
 
-int			rgb2int(t_colors rgb);
+int					rgb2int(t_colors rgb);
 
 t_plane_equation	plane_vector2equation(t_vectors norm_vector);
 
-int	line_plane_correlation(t_vectors ray, t_plane_equation equation);
+int					line_plane_correlation(t_vectors ray, t_plane_equation equation);
 
-float	get_the_t(t_vectors ray, t_plane_equation equation);
+float				get_the_t(t_vectors ray, t_plane_equation equation);
+
+t_coords			turn2unit(t_coords original);
+
+float				get_ray_sphere_distance(t_vectors ray, t_item sphere);
+
+int					line_sphere_collisionsnum(t_vectors ray, t_item sphere);
+
+float	dot_product(t_coords va, t_coords vb);
 
 #endif

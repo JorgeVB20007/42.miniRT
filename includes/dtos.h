@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/19 19:53:10 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:47:58 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ typedef struct s_colors
 	float	g;
 	float	b;
 }	t_colors;
+
+//?	To store a piont, a vector and a color. Used to indicate the collision 
+//?	point between a ray and a figure.
+typedef struct s_figure_point
+{
+	t_coords	loc;
+	t_coords	dir;
+	t_colors	color;
+}	t_figure_point;
 
 typedef struct s_corners
 {

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:17:25 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/20 22:27:20 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/21 23:22:10 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,12 @@
 */
 static int	touches_sphere(t_vectors ray, t_item sphere)
 {
-	t_coords	vector_point2point;
-	t_coords	vector_crossproduct;
-	float		distance;
-
-	vector_point2point = v_v_sub(ray.loc, sphere.loc);
-	vector_crossproduct = v_v_cross_product(vector_point2point, ray.dir);
-	distance = getmodule(vector_crossproduct) / getmodule(ray.dir);
-	if (distance <= sphere.diameter / 2)
-		return (1);
-	else
+	if (line_sphere_collisionsnum(ray, sphere) == 0)
 		return (0);
-
-	/*
-	*	For this one, we just need to check the distance between a line formed 
-	*	by the camera vector and the central point of the sphere. 
-	*	If the distance is smaller than the radius of the sphere, return 1. 
-	*	Otherwise, return 0.
-	*/
+	if (get_ray_sphere_distance(ray, sphere) < 0.0)
+		return (0);
+	else
+		return (1);
 }
 
 static int	touches_cylinder(t_vectors ray, t_item cylinder)
@@ -90,7 +78,9 @@ int	check4collisions(t_coords vector, t_itemlist *items)
 		if (items->content->type == SPHERE)
 		{
 			if (touches_sphere(ray, *(items->content)))
+			{
 				return(1);
+			}
 		}
 		else if (items->content->type == CYLINDER)
 		{

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 19:54:09 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/20 22:21:14 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:35:33 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ float	get_the_t(t_vectors ray, t_plane_equation equation)
 }
 
 /*
-*	Checks the correlation of the ray and the plane. ossible cases:
+*	Checks the correlation of the ray and the plane. Possible cases:
 ?	0:	Line collides with the plane in front of the camera.
 ?	1:	Line is parallel AND CONTAINED within the plane.
 ?	2:	Line is parallel but doesn't collide with the plane at any point.
