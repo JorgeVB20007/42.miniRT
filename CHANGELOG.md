@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2022-03-22 - Edu
+### Added
+- Added **render.c/render.h** to render pixels into mlx's screen
+
 ## 2022-03-18 - Jorge
 ### Added
 - We can now get the spot where a ray collides with a sphere and with a plane, along with the normal vector at that point.

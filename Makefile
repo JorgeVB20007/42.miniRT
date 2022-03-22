@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+         #
+#    By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/03/21 22:53:49 by jvacaris         ###   ########.fr        #
+#    Updated: 2022/03/22 21:15:25 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC_FILES	= 	main.c								\
 				parser/parser.c						\
 				parser/setting_corners.c			\
 				parser/setting_cam_vectors.c		\
+				render/render.c						\
 				utils/rt_lst_functs.c				\
 				utils/deg2rad.c						\
 				utils/getmodule.c					\
@@ -75,9 +76,10 @@ all: obj $(LIBFT) $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJ_DIR)parser/
-	@mkdir -p $(OBJ_DIR)utils/
 	@mkdir -p $(OBJ_DIR)coloring/
+	@mkdir -p $(OBJ_DIR)parser/
+	@mkdir -p $(OBJ_DIR)render/
+	@mkdir -p $(OBJ_DIR)utils/
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(INCLUDES)
 	@$(GCC) $(FLAGS) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
 $(LIBFT):
