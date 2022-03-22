@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:03:01 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/21 23:07:06 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/22 22:18:05 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static float	sphere_formula2(t_vectors ray, t_item sphere)
 	float	frst;
 	float	scnd;
 
-	frst = powf(dot_product(ray.dir, v_v_sub(ray.loc, sphere.loc)), 2);
+	frst = powf(dot_product(turn2unit(ray.dir), v_v_sub(ray.loc, sphere.loc)), 2);
 	scnd = powf(getmodule(v_v_sub(ray.loc, sphere.loc)), 2) - powf(sphere.diameter / 2, 2);
 	return (frst - scnd);
 }
@@ -56,7 +56,7 @@ float	get_ray_sphere_distance(t_vectors ray, t_item sphere)
 	first_part = - dot_product(ray.dir, v_v_sub(ray.loc, sphere.loc));
 	distance_one = first_part + sqrtf(sphere_formula2(ray, sphere));
 	distance_two = first_part - sqrtf(sphere_formula2(ray, sphere));
-	if (distance_one < distance_two)
+	if (distance_one < distance_two && distance_one > 0.0)
 		return (distance_one);
 	else
 		return (distance_two);

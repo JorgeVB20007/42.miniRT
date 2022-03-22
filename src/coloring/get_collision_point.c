@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/21 22:54:32 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/22 22:24:48 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_figure_point	get_plane_point(t_vectors ray, t_item plane)
 	t = get_the_t(ray, plane_vector2equation(plane_vectors));
 	result.loc = v_v_sum(v_i_mult(plane.orient, t), plane.loc);
 	result.dir = plane.orient;
+	result.color = plane.color;
 	return (result);
 }
 
@@ -38,5 +39,6 @@ t_figure_point	get_sphere_point(t_vectors ray, t_item sphere)
 	result.loc = v_v_sum(v_i_mult(ray.dir, get_ray_sphere_distance(ray, \
 	sphere)), ray.loc);
 	result.dir = v_v_sub(sphere.loc, result.loc);
+	result.color = sphere.color;
 	return (result);
 }

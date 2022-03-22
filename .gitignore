@@ -9,6 +9,7 @@ playground
 libft/*.o
 .DS_Store
 libft/.DS_Store
+*.dSym*
 *.a
 obj
 minishell

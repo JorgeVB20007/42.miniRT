@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 22022-03-22 - Jorge
+### Fixed
+- Sphere detection now works fine. The number of times a single ray collided with an object doesn't seem to work.
+
 ## 2022-03-22 - Edu
 ### Added
 - Added **render.c/render.h** to render pixels into mlx's screen

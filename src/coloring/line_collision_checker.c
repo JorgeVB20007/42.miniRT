@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:17:25 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/21 23:22:10 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/22 23:01:54 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,32 +69,23 @@ int	check4collisions(t_coords vector, t_itemlist *items)
 {
 	t_vectors	ray;
 	t_item		cam;
+	int			touches;
 
 	ray.dir = vector;
 	cam = get_item_by_type(&items, CAMERA);
 	ray.loc = cam.loc;
+	touches = 0;
 	while (items)
 	{
 		if (items->content->type == SPHERE)
-		{
-			if (touches_sphere(ray, *(items->content)))
-			{
-				return(1);
-			}
-		}
+			touches += touches_sphere(ray, *(items->content));
 		else if (items->content->type == CYLINDER)
-		{
-			if (touches_cylinder(ray, *(items->content)))
-				return(1);
-		}
+			touches += touches_cylinder(ray, *(items->content));
 		else if (items->content->type == PLANE)
-		{
-			if (touches_plane(ray, *(items->content)))
-				return(1);
-		}
+			touches += touches_plane(ray, *(items->content));
 		if (items->next == NULL)		// TODO Unsure if it's needed.
 			break;						// TODO Unsure if it's needed
 		items = items->next;
 	}
-	return (0);
+	return (touches);
 }
