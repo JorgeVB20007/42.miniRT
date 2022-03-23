@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/22 22:24:48 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/23 21:29:28 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,37 @@ t_figure_point	get_sphere_point(t_vectors ray, t_item sphere)
 	result.dir = v_v_sub(sphere.loc, result.loc);
 	result.color = sphere.color;
 	return (result);
+}
+
+/*
+*	This function gets the list of items and the ray being evaluated when
+*	there's at least one collision. It will return the closest collision
+*	point, along with the normal vector and the color of the figure involved.
+
+!		Warning:
+TODO	We're not checking if the closest figure to a vector is in front or behind the camera.
+*/
+t_figure_point	get_closest_fig_point(t_vectors ray, t_itemlist *items)
+{
+	t_figure_point	new_point;
+	t_figure_point	top_point;
+	int				ctrl;
+
+	ctrl = 0;
+	while (items)
+	{
+		if (items->content->type == SPHERE && touches_sphere(ray, *(items->content)))
+			new_point = get_sphere_point(ray, *(items->content));
+		else if (items->content->type == PLANE && touches_plane(ray, *(items->content)))
+			new_point = get_plane_point(ray, *(items->content));
+		if (!ctrl || getmodule(v_v_sub(new_point.loc, ray.loc)) < getmodule(v_v_sub(top_point.loc, ray.loc)))
+		{
+			top_point = new_point;
+			ctrl = 1;
+		}
+		if (items->next == NULL)
+			break ;
+		items = items->next;
+	}
+	return (top_point);
 }

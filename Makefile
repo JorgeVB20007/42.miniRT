@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+         #
+#    By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/03/22 21:15:25 by emadriga         ###   ########.fr        #
+#    Updated: 2022/03/23 19:55:00 by jvacaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,9 @@ SRC_FILES	= 	main.c								\
 				parser/setting_corners.c			\
 				parser/setting_cam_vectors.c		\
 				render/render.c						\
+				utils/dir_and_loc_2_vector.c		\
 				utils/rt_lst_functs.c				\
+				utils/rgb2int.c						\
 				utils/deg2rad.c						\
 				utils/getmodule.c					\
 				utils/plane_managing.c				\

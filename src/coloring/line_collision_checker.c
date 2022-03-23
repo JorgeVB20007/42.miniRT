@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:17:25 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/22 23:01:54 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:53:51 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 *	the shapes or not.
 !	We're not checking the point nor the angle of such collision yet.
 */
-static int	touches_sphere(t_vectors ray, t_item sphere)
+int	touches_sphere(t_vectors ray, t_item sphere)
 {
 	if (line_sphere_collisionsnum(ray, sphere) == 0)
 		return (0);
@@ -27,7 +27,7 @@ static int	touches_sphere(t_vectors ray, t_item sphere)
 		return (1);
 }
 
-static int	touches_cylinder(t_vectors ray, t_item cylinder)
+int	touches_cylinder(t_vectors ray, t_item cylinder)
 {
 	/*
 	TODO	No idea how to check this one yet, specially when the cylinder
@@ -42,7 +42,7 @@ static int	touches_cylinder(t_vectors ray, t_item cylinder)
 //! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }
 
-static int	touches_plane(t_vectors ray, t_item plane)
+int	touches_plane(t_vectors ray, t_item plane)
 {
 	t_vectors	plane_vectors;
 	int			result;

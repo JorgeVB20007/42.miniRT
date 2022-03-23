@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:04:24 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/22 23:03:29 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/23 20:00:12 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ TODO	the pixels.
 */
 int	**set_color_matrix(t_itemlist *items, t_coords **v_matrix)
 {
-	int			**c_matrix;
-	int			x;
-	int			y;
-	int			collisions;
+	int				**c_matrix;
+	int				x;
+	int				y;
+	int				collisions;
+	t_figure_point	closest_point;
 
 	c_matrix = malloc(sizeof(int *) * HORIZ_RESOLUTION);
 	x = 0;
@@ -54,7 +55,8 @@ int	**set_color_matrix(t_itemlist *items, t_coords **v_matrix)
 			collisions = check4collisions(v_matrix[x][y], items);
 			if (collisions)
 			{
-				c_matrix[x][y] = 0x00FFFFFF;
+				closest_point = get_closest_fig_point(dir_and_cam_2_vector(get_item_by_type(&items, CAMERA), v_matrix[x][y]), items);
+				c_matrix[x][y] = rgb2int(closest_point.color);
 				//TODO	Here we'll calculate collision point & get its color.
 			}
 			else
@@ -63,6 +65,7 @@ int	**set_color_matrix(t_itemlist *items, t_coords **v_matrix)
 		}
 		y++;
 	}
+	lst_rt_print(items);
 	return (c_matrix);
 }
 

@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   rt_lst_functs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/15 23:49:19 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/03/23 21:57:04 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-#define LIT_TYPES "ALIGHT,CAMERA,LIGHT,SPHERE,PLANE,CYLINDER"
-#define LIT_TYPE "\n\ntype: %s\n"
-#define LIT_BRIGHT "bright: %f\t"
-#define LIT_DIAMETER "diameter: %f\t"
-#define LIT_FOV "fov: %f\t"
-#define LIT_HEIGHT "height: %f\t"
-#define LIT_COLOR "\ncolor:\n\tR %f\tG %f\tB %f"
-#define LIT_POSITION "\nposition:\n\tX %f\tY %f\tZ %f"
-#define LIT_ORIENTATION "\norientantion:\n\tX %f\tY %f\tZ %f"
+#define LIT_TYPES "ALIGHT ☀️,CAMERA 🎥,LIGHT 💡,SPHERE ⚽️,PLANE ⬜️,CYLINDER 🥫"
+#define LIT_TYPE "\n\n\033[1mtype:\033[0m %s\n"
+#define LIT_BRIGHT "\033[1mbright:\033[0m %f\t"
+#define LIT_DIAMETER "\033[1mdiameter:\033[0m %f\t"
+#define LIT_FOV "\033[1mfov:\033[0m %f\t"
+#define LIT_HEIGHT "\033[1mheight:\033[0m %f\t"
+#define LIT_COLOR "\n\033[1mcolor:\n\t\033[1;31mR \033[0;31m%f\t\033[1;32mG\
+ \033[0;32m%f\t\033[1;34mB \033[0;36m%f\033[0m"
+#define LIT_POSITION "\n\033[1mposition:\033[0m\n\t\033[1mX\033[0m %f\t\033[1m\
+Y\033[0m %f\t\033[1mZ\033[0m %f"
+#define LIT_ORIENTATION "\n\033[1morientantion:\033[0m\n\t\033[1mX\033[0m \
+%f\t\033[1mY\033[0m %f\t\033[1mZ\033[0m %f"
 
 /**
  * * Returns malloced node
@@ -112,7 +115,6 @@ void	get_items_by_type(t_itemlist **filtered_list, t_itemlist *list, int type)
 	}
 }
 
-
 /**
  * * Print list
  * @param list
@@ -141,9 +143,11 @@ void	lst_rt_print(t_itemlist *list)
 			printf(LIT_POSITION, c->loc.x, c->loc.y, c->loc.z);
 		if (c->type != ALIGHT && c->type != CAMERA && c->type != CAMERA)
 			printf(LIT_ORIENTATION, c->orient.x, c->orient.y, c->orient.z);
+		printf("\n\n\033[0;33m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \033[0m");	//Plz don't kill me
 		list = list->next;
 	}
 	megafree(&type);
+	printf("\n");
 }
 
 /**
