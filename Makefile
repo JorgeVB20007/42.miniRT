@@ -6,7 +6,7 @@
 #    By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/03/23 19:55:00 by jvacaris         ###   ########.fr        #
+#    Updated: 2022/03/25 20:36:40 by jvacaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ INCLUDES_FILES =	constants.h				\
 
 # Source and object files
 SRC_FILES	= 	main.c								\
+				coloring/alight2fig.c				\
 				coloring/line_collision_checker.c	\
 				coloring/set_color_matrix.c			\
 				coloring/get_collision_point.c		\

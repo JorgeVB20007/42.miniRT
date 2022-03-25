@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 21:10:31 by emadriga          #+#    #+#             */
-/*   Updated: 2022/03/22 21:35:00 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/03/25 20:43:38 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	render_image_on_mlx(int	**matrix_colors)
 	int		endian;
 
 	v.mlx = mlx_init();
-	v.win = mlx_new_window(v.mlx, HORIZ_RESOLUTION, RESOLUTION, "miniRT test");
+	v.win = mlx_new_window(v.mlx, HORIZ_RESOLUTION, RESOLUTION, MLX_TITLE);
 	v.img.img = mlx_new_image(v.mlx, HORIZ_RESOLUTION, RESOLUTION);
 	v.img.addr = mlx_get_data_addr(v.img.img, &v.img.bits_per_pixel, \
 	&v.img.line_length, &endian);

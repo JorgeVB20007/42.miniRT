@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:13:48 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/23 20:01:52 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/25 21:29:46 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 /*
 *	Gets a color in its rgb form (struct t_colors) and returns the int value 
 *	of such color.
+!	Be careful with the precision of each float, as we're turning floats to 
+!	ints ≥ 0 and ≤ 255.
 */
 int	rgb2int(t_colors rgb)
 {
 	int	result;
 
-	result = rgb.b + rgb.g * 256 + rgb.r * 256 * 256;
+	result = (int)rgb.b + (int)rgb.g * 256 + (int)rgb.r * 256 * 256;
 	return (result);
 }
