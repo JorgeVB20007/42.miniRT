@@ -14,7 +14,9 @@
 
 /*
 *	Returns the cosine of the angle between two vectors.
+!	Unused for now.
 */
+/*
 static float	get_cos(t_coords va, t_coords vb)
 {
 	float	dividend;
@@ -24,6 +26,7 @@ static float	get_cos(t_coords va, t_coords vb)
 	divisor = getmodule(va) * getmodule(vb);
 	return (dividend / divisor);
 }
+*/
 
 /*
 *	Returns the dot product of two vectors by multiplying the module of both
@@ -31,5 +34,5 @@ static float	get_cos(t_coords va, t_coords vb)
 */
 float	dot_product(t_coords va, t_coords vb)
 {
-	return (getmodule(va) * getmodule(vb) * get_cos(va, vb));
+	return ((va.x * vb.x) + (va.y * vb.y) + (va.z * vb.z));
 }
