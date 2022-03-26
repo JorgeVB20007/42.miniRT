@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:26:26 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/15 18:15:29 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:03:17 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_corners	set_corners(t_item item)
 	unit_q = get_unit_q(unit_v);
 	a.x = -unit_q.z * unit_v.y;
 	a.y = +unit_v.x * unit_q.z - unit_q.x * unit_v.z;
-	a.z = -unit_q.x * unit_v.y;
+	a.z = unit_q.x * unit_v.y;
 	corn = corners_write2struct(unit_v, unit_q, a, item.fov);
 	return (corn);
 }
