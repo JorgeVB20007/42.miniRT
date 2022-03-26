@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:17:25 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/23 19:53:51 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/26 18:23:18 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	check4collisions(t_coords vector, t_itemlist *items)
 	t_item		cam;
 	int			touches;
 
-	ray.dir = vector;
+	ray.dir = turn2unit(vector);
 	cam = get_item_by_type(&items, CAMERA);
 	ray.loc = cam.loc;
 	touches = 0;

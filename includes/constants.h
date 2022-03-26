@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/25 20:44:55 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:50:39 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //* This should be temporary, as "RESOLUTION * (16/9)" doesnt work sometimes.
 # define HORIZ_RESOLUTION 1920
 //* We can change things here for reference when doing screenshots.
-# define MLX_TITLE "MiniRT Test | ALIGHT color mixing"
+# define MLX_TITLE "MiniRT Test | collisions  between figures"
 
 //?	All the types of object specified in the subject.
 enum e_type_of_object
