@@ -61,15 +61,11 @@ static t_coords	get_unit_q(t_coords unit_v)
 t_corners	set_corners(t_item item)
 {
 	t_coords	unit_v;
-	float		module;
 	t_coords	unit_q;
 	t_coords	a;
 	t_corners	corn;
 
-	module = getmodule(item.orient);
-	unit_v.x = item.orient.x / module;
-	unit_v.y = item.orient.y / module;
-	unit_v.z = item.orient.z / module;
+	unit_v = turn2unit(item.orient);
 	unit_q = get_unit_q(unit_v);
 	a.x = -unit_q.z * unit_v.y;
 	a.y = +unit_v.x * unit_q.z - unit_q.x * unit_v.z;
