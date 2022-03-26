@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/23 21:57:04 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/26 21:18:53 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,11 +137,11 @@ void	lst_rt_print(t_itemlist *list)
 			printf(LIT_FOV, c->fov);
 		if (c->type == CYLINDER)
 			printf(LIT_HEIGHT, c->height);
-		if (c->type != CAMERA)
+		if (c->type != CAMERA && c->type != LIGHT)	// Multidirectional lights can't have a color in the  mandatory part :(
 			printf(LIT_COLOR, c->color.r, c->color.g, c->color.b);
 		if (c->type != ALIGHT)
 			printf(LIT_POSITION, c->loc.x, c->loc.y, c->loc.z);
-		if (c->type != ALIGHT && c->type != CAMERA && c->type != CAMERA)
+		if (c->type != ALIGHT && c->type != SPHERE && c->type != LIGHT)
 			printf(LIT_ORIENTATION, c->orient.x, c->orient.y, c->orient.z);
 		printf("\n\n\033[0;33m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \033[0m");	//Plz don't kill me
 		list = list->next;

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 19:53:11 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/25 21:34:56 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/26 21:27:49 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,19 @@ float alight_brightness)
 	if (result.b > 255.0)
 		result.b = 255.0;
 	return (result);
+}
+
+t_colors	color_sum(t_colors color1, float bright1, t_colors color2, float bright2)
+{
+	t_colors	result;
+
+	result.r = color1.r * bright1 + color2.r * bright2;
+	result.g = color1.g * bright1 + color2.g * bright2;
+	result.b = color1.b * bright1 + color2.b * bright2;
+	if (result.r >= 255.0)
+		result.r = 255.0;
+	if (result.g >= 255.0)
+		result.g = 255.0;
+	if (result.b >= 255.0)
+		result.b = 255.0;
 }

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/23 19:35:29 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/26 20:52:08 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ t_coords			v_v_sub(t_coords a, t_coords b);
 t_coords			v_v_sum(t_coords a, t_coords b);
 
 t_coords			v_i_mult(t_coords v, int i);
+
+t_coords			v_f_mult(t_coords v, float i);
 
 int					rgb2int(t_colors rgb);
 

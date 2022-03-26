@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/26 18:12:20 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/26 21:28:57 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_figure_point	get_plane_point(t_vectors ray, t_item plane, t_item alight
 	plane_vectors.dir = plane.orient;
 	plane_vectors.loc = plane.loc;
 	t = get_the_t(ray, plane_vector2equation(plane_vectors));
-	result.loc = v_v_sum(v_i_mult(plane.orient, t), plane.loc);
+	result.loc = v_v_sum(v_f_mult(plane.orient, t), plane.loc);
 	result.dir = plane.orient;
 	result.color = alight2fig(plane.color, alight.color, alight.brightness);
 	return (result);
@@ -36,7 +36,7 @@ static t_figure_point	get_sphere_point(t_vectors ray, t_item sphere, t_item alig
 {
 	t_figure_point	result;
 
-	result.loc = v_v_sum(v_i_mult(ray.dir, get_ray_sphere_distance(ray, \
+	result.loc = v_v_sum(v_f_mult(ray.dir, get_ray_sphere_distance(ray, \
 	sphere)), ray.loc);
 	result.dir = v_v_sub(sphere.loc, result.loc);
 	result.color = alight2fig(sphere.color, alight.color, alight.brightness);
@@ -76,5 +76,6 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_itemlist *items)
 			break ;
 		items = items->next;
 	}
+	calculate_reflection(&top_point, ray, items);
 	return (top_point);
 }
