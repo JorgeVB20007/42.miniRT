@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_struct_by_type.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:11:58 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/15 23:45:03 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/03/27 19:40:55 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ t_item	*line2light(char **line)
 	item->type = LIGHT;
 	item->loc = set_coords(line[1]);
 	item->brightness = ft_atof(line[2]);
+	item->color.r = 255.0;
+	item->color.g = 255.0;
+	item->color.b = 255.0;
 	return (item);
 }
 

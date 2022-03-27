@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 19:53:11 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/26 21:27:49 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/27 17:51:35 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ t_colors	color_sum(t_colors color1, float bright1, t_colors color2, float bright
 		result.g = 255.0;
 	if (result.b >= 255.0)
 		result.b = 255.0;
+	return (result);
 }

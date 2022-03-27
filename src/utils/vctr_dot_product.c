@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:44:57 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/21 21:57:24 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/27 17:10:02 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 /*
 *	Returns the cosine of the angle between two vectors.
-!	Unused for now.
 */
-/*
-static float	get_cos(t_coords va, t_coords vb)
+float	get_cos(t_coords va, t_coords vb)
 {
 	float	dividend;
 	float	divisor;
@@ -26,7 +24,6 @@ static float	get_cos(t_coords va, t_coords vb)
 	divisor = getmodule(va) * getmodule(vb);
 	return (dividend / divisor);
 }
-*/
 
 /*
 *	Returns the dot product of two vectors by multiplying the module of both

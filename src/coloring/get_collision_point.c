@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/26 21:28:57 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/27 20:11:54 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ! 	The resulting color is not implemented yet.
 */
 
-static t_figure_point	get_plane_point(t_vectors ray, t_item plane, t_item alight)
+static t_figure_point	get_plane_point(t_vectors ray, t_item plane)
 {
 	t_vectors		plane_vectors;
 	t_figure_point	result;
@@ -28,18 +28,18 @@ static t_figure_point	get_plane_point(t_vectors ray, t_item plane, t_item alight
 	t = get_the_t(ray, plane_vector2equation(plane_vectors));
 	result.loc = v_v_sum(v_f_mult(plane.orient, t), plane.loc);
 	result.dir = plane.orient;
-	result.color = alight2fig(plane.color, alight.color, alight.brightness);
+	result.color = plane.color;
 	return (result);
 }
 
-static t_figure_point	get_sphere_point(t_vectors ray, t_item sphere, t_item alight)
+static t_figure_point	get_sphere_point(t_vectors ray, t_item sphere)
 {
 	t_figure_point	result;
 
 	result.loc = v_v_sum(v_f_mult(ray.dir, get_ray_sphere_distance(ray, \
 	sphere)), ray.loc);
 	result.dir = v_v_sub(sphere.loc, result.loc);
-	result.color = alight2fig(sphere.color, alight.color, alight.brightness);
+	result.color = sphere.color;
 	return (result);
 }
 
@@ -58,15 +58,17 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_itemlist *items)
 	t_figure_point	top_point;
 	t_item			item_alight;
 	int				ctrl;
+	t_itemlist		*items2;
 
 	ctrl = 0;
+	items2 = items;
 	item_alight = get_item_by_type(&items, ALIGHT);
 	while (items)
 	{
 		if (items->content->type == SPHERE && touches_sphere(ray, *(items->content)))
-			new_point = get_sphere_point(ray, *(items->content), item_alight);
+			new_point = get_sphere_point(ray, *(items->content));
 		else if (items->content->type == PLANE && touches_plane(ray, *(items->content)))
-			new_point = get_plane_point(ray, *(items->content), item_alight);
+			new_point = get_plane_point(ray, *(items->content));
 		if (!ctrl || getmodule(v_v_sub(new_point.loc, ray.loc)) < getmodule(v_v_sub(top_point.loc, ray.loc)))
 		{
 			top_point = new_point;
@@ -76,6 +78,6 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_itemlist *items)
 			break ;
 		items = items->next;
 	}
-	calculate_reflection(&top_point, ray, items);
+	calculate_reflection(&top_point, ray, items2, item_alight);
 	return (top_point);
 }

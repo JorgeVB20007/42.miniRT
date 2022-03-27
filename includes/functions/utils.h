@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/26 20:52:08 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/27 17:10:20 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ float				get_ray_sphere_distance(t_vectors ray, t_item sphere);
 int					line_sphere_collisionsnum(t_vectors ray, t_item sphere);
 
 float				dot_product(t_coords va, t_coords vb);
+
+float				get_cos(t_coords va, t_coords vb);
 
 t_vectors 			dir_and_loc_2_vector(t_coords loc, t_coords dir);
 
