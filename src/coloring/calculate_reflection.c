@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 21:22:08 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/27 21:06:34 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/27 21:47:37 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static float	single_light(t_figure_point point, t_item light, t_itemlist *items)
 
 	items = NULL;
 	incision_vector = v_v_sub(point.loc, light.loc);
-	vect_cos = - get_cos(incision_vector, point.dir);
+	vect_cos = get_cos(incision_vector, point.dir);
 	if (vect_cos < 0.0)
 		vect_cos = 0;
 	return (vect_cos);
