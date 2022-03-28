@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2022-03-22 - Edu
+### Added
+- Added **free_array_coords** & **free_array_colors**
+### Changed
+- Replaced malloc by ft_calloc to simplify leaks handling
+
 ## 2022-03-25 - Jorge
 ### Added
 - **Ambient lights** now affects every figure's color. The color modification gets applied when checking which is the closest point for each ray.

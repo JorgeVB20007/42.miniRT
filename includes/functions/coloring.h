@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coloring.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:01:43 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/27 18:33:21 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/28 22:23:25 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "dtos.h"
 
 int				**set_color_matrix(t_itemlist *items, t_coords **v_matrix);
+void			free_array_colors(int ***list);
 int				check4collisions(t_coords vector, t_itemlist *items);
 t_figure_point	get_closest_fig_point(t_vectors ray, t_itemlist *items);
 int				touches_sphere(t_vectors ray, t_item sphere);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_color_matrix.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:04:24 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/26 21:20:35 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/28 22:39:41 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int	**set_color_matrix(t_itemlist *items, t_coords **v_matrix)
 	int				collisions;
 	t_figure_point	closest_point;
 
-	c_matrix = malloc(sizeof(int *) * HORIZ_RESOLUTION);
+	c_matrix = ft_calloc(sizeof(int *), HORIZ_RESOLUTION + 1);
 	x = 0;
 	while (x < HORIZ_RESOLUTION)
 	{
-		c_matrix[x] = malloc(sizeof(int) * RESOLUTION);
+		c_matrix[x] = ft_calloc(sizeof(int), RESOLUTION + 1);
 		x++;
 	}
 	y = 0;
@@ -69,3 +69,16 @@ int	**set_color_matrix(t_itemlist *items, t_coords **v_matrix)
 	return (c_matrix);
 }
 
+void	free_array_colors(int ***list)
+{
+	int	a;
+
+	a = 0;
+	if (*list)
+	{
+		while ((*list)[a])
+			free((*list)[a++]);
+		free((*list)[a]);
+		free(*list);
+	}
+}
