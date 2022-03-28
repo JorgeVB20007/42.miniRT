@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 19:54:09 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/21 22:35:33 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:23:29 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_plane_equation	plane_vector2equation(t_vectors norm_vector)
 }
 
 /*
-*	Name's subject to change. Check out this video to understand:
+*	Calculating a constant needed to evaluate planes
+*	More info:
 	Intersection plane-line
 ?	https://www.youtube.com/watch?v=Is_wLo6yhxE
 */

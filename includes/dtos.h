@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/21 22:47:58 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:22:56 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ typedef struct s_corners
 	t_coords	br;
 }	t_corners;
 
-/*
-?	To store every item we're given:
-*	type:		type of object (see e_type_of_object).
-*	loc:		position of the object in xyz.
-*	color:		object's color in rgb.
-*	orient:		normal vector of the object.
-*	brightness:	the brightness of a light or ambient light.
-*	diameter:	the diameter of the object.
-*	height:		la height of the cylinder.
-*	fov:		the horizontal angle of vision of the camera.
+/**
+* @brief To store every item we're given:
+* @param type		type of object (see e_type_of_object).
+* @param loc		position of the object in xyz.
+* @param color		object's color in rgb.
+* @param orient		normal vector of the object.
+* @param brightness	the brightness of a light or ambient light.
+* @param diameter	the diameter of the object.
+* @param height		la height of the cylinder.
+* @param fov		the horizontal angle of vision of the camera.
 */
 typedef struct s_item
 {
@@ -83,9 +83,9 @@ typedef struct s_itemlist
 	struct s_itemlist	*next;
 }	t_itemlist;
 
-/*
+/**
 *	Structure to store a plane equation in the format:
-?	ax + by + cz + d = 0
+*	ax + by + cz + d = 0
 */
 typedef struct s_plane_equation
 {

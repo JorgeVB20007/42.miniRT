@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:01:43 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/27 18:33:21 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/28 20:29:42 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void			calculate_reflection(t_figure_point *point, t_vectors ray, \
 t_itemlist *items, t_item item_alight);
 t_colors	color_sum(t_colors color1, float bright1, t_colors color2, float \
 bright2);
+int	find_light_interruption(t_item light, t_coords target, t_itemlist *items);
 
 #endif

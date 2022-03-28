@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:04:24 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/26 21:20:35 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:25:23 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,9 @@ int	**set_color_matrix(t_itemlist *items, t_coords **v_matrix)
 	t_figure_point	closest_point;
 
 	c_matrix = malloc(sizeof(int *) * HORIZ_RESOLUTION);
-	x = 0;
-	while (x < HORIZ_RESOLUTION)
-	{
+	x = -1;
+	while (++x < HORIZ_RESOLUTION)
 		c_matrix[x] = malloc(sizeof(int) * RESOLUTION);
-		x++;
-	}
 	y = 0;
 	while (y < RESOLUTION)
 	{
@@ -57,7 +54,6 @@ int	**set_color_matrix(t_itemlist *items, t_coords **v_matrix)
 			{
 				closest_point = get_closest_fig_point(dir_and_cam_2_vector(get_item_by_type(&items, CAMERA), v_matrix[x][y]), items);
 				c_matrix[x][y] = rgb2int(closest_point.color);
-				//TODO	Here we'll calculate collision point & get its color.
 			}
 			else
 				c_matrix[x][y] = 0x0;

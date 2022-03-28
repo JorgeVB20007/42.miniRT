@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:17:25 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/26 20:07:13 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:25:13 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int	touches_sphere(t_vectors ray, t_item sphere)
 int	touches_cylinder(t_vectors ray, t_item cylinder)
 {
 	/*
-	TODO	No idea how to check this one yet, specially when the cylinder
-	TODO	is not parallel/perpendicular to the ray :(
+TODO		No idea how to check this one yet :(
 			- Jorge
 	*/
 
@@ -41,7 +40,11 @@ int	touches_cylinder(t_vectors ray, t_item cylinder)
 	return (0);										//!
 //! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }
-
+	
+/*
+*	Intersection plane-line
+?	https://www.youtube.com/watch?v=Is_wLo6yhxE
+*/
 int	touches_plane(t_vectors ray, t_item plane)
 {
 	t_vectors	plane_vectors;
@@ -54,15 +57,6 @@ int	touches_plane(t_vectors ray, t_item plane)
 		return (1);
 	else
 		return (0);
-	/*
-	//	Turn plane from vector and point form to equation
-	//	https://www.youtube.com/watch?v=M5JQvPGueMI
-
-	*	Intersection plane-line
-	?	https://www.youtube.com/watch?v=Is_wLo6yhxE
-	*/
-
-
 }
 
 int	check4collisions(t_coords vector, t_itemlist *items)
@@ -83,8 +77,6 @@ int	check4collisions(t_coords vector, t_itemlist *items)
 			touches += touches_cylinder(ray, *(items->content));
 		else if (items->content->type == PLANE)
 			touches += touches_plane(ray, *(items->content));
-		if (items->next == NULL)		// TODO Unsure if it's needed.
-			break;						// TODO Unsure if it's needed
 		items = items->next;
 	}
 	return (touches);

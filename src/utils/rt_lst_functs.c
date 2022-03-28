@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/26 21:18:53 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:45:14 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,23 @@ void	get_items_by_type(t_itemlist **filtered_list, t_itemlist *list, int type)
 	while (list != NULL)
 	{
 		if (list->content->type == type)
+		{
+			content = copy_rt_content(list->content);
+			lst_rt_add_front(filtered_list, lst_rt_new(content));
+		}
+		list = list->next;
+	}
+}
+
+void	get_object_items(t_itemlist **filtered_list, t_itemlist *list)
+{
+	t_item		*content;
+
+	content = NULL;
+	while (list != NULL)
+	{
+		if (list->content->type == SPHERE || list->content->type == PLANE \
+		|| list->content->type == CYLINDER)
 		{
 			content = copy_rt_content(list->content);
 			lst_rt_add_front(filtered_list, lst_rt_new(content));

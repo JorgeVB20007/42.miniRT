@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/27 20:11:54 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/28 20:34:24 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ static t_figure_point	get_sphere_point(t_vectors ray, t_item sphere)
 *	there's at least one collision. It will return the closest collision
 *	point, along with the normal vector and the color of the figure involved
 *	mixed with the color and brightness of the ALIGHT.
-
-!		Warning:
-TODO	We're not checking if the closest figure to a vector is in front or behind the camera.
 */
 t_figure_point	get_closest_fig_point(t_vectors ray, t_itemlist *items)
 {
@@ -80,4 +77,28 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_itemlist *items)
 	}
 	calculate_reflection(&top_point, ray, items2, item_alight);
 	return (top_point);
+}
+
+/**
+ * @retval 0 means that no interruptions were found.
+ * @retval 1 meand an interruption was found.
+ */
+int	find_light_interruption(t_item light, t_coords target, t_itemlist *items)
+{
+	t_figure_point	new_point;
+	t_vectors		ray;
+
+	ray.dir = turn2unit(v_v_sub(target, light.loc));
+	ray.loc = light.loc;
+	while (items)
+	{
+		if (items->content->type == SPHERE && touches_sphere(ray, *(items->content)))
+			new_point = get_sphere_point(ray, *(items->content));
+		else if (items->content->type == PLANE && touches_plane(ray, *(items->content)))
+			new_point = get_plane_point(ray, *(items->content));
+		if (getmodule(v_v_sub(new_point.loc, ray.loc)) + 0.01 < getmodule(v_v_sub(target, ray.loc))) //! The + 0.01 is a value to avoid float precision problems.
+			return (1);
+		items = items->next;
+	}
+	return (0);
 }

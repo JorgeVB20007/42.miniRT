@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:44:57 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/27 17:10:02 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:11:10 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ float	get_cos(t_coords va, t_coords vb)
 }
 
 /*
-*	Returns the dot product of two vectors by multiplying the module of both
-*	vectors times the cosine of the angle between them.
+*	Returns the dot product of two vectors.
 */
 float	dot_product(t_coords va, t_coords vb)
 {
