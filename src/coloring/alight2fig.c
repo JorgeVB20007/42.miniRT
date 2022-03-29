@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 19:53:11 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/27 17:51:35 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/29 21:02:30 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /*
 *	This function gets the color of a surface and the color and brightness of 
-*	the ambient light and returns the resulting color. 
-!	It does NOT take into account directional lights yet.
+*	the incident light and returns the resulting color. 
+////It does NOT take into account directional lights yet.
 */
 t_colors	alight2fig(t_colors fig_color, t_colors alight_color, \
 float alight_brightness)

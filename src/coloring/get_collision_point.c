@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/28 20:34:24 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/29 23:01:49 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@ static t_figure_point	get_plane_point(t_vectors ray, t_item plane)
 {
 	t_vectors		plane_vectors;
 	t_figure_point	result;
-	int			t;
+	float			t;
 
-	plane_vectors.dir = plane.orient;
+	plane_vectors.dir = rotate_plane_if_needed(dir_and_loc_2_vector(\
+	plane.loc, plane.orient), ray);
 	plane_vectors.loc = plane.loc;
 	t = get_the_t(ray, plane_vector2equation(plane_vectors));
 	result.loc = v_v_sum(v_f_mult(plane.orient, t), plane.loc);
-	result.dir = plane.orient;
+	result.dir = rotate_plane_if_needed(dir_and_loc_2_vector(plane.loc,\
+	plane.orient), ray);
 	result.color = plane.color;
 	return (result);
 }
@@ -75,7 +77,7 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_itemlist *items)
 			break ;
 		items = items->next;
 	}
-	calculate_reflection(&top_point, ray, items2, item_alight);
+	calculate_reflection(&top_point, items2, item_alight);
 	return (top_point);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/28 18:18:57 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/29 22:43:19 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,5 +184,11 @@ t_vectors 			dir_and_loc_2_vector(t_coords loc, t_coords dir);
  * The point is retrieved from the loc value in a t_item.
 */
 t_vectors			dir_and_cam_2_vector(t_item cam, t_coords dir);
+
+/**
+ * Will return an inverted normal vector depending on which side does 
+ * a ray collide with the plane.
+*/
+t_coords			rotate_plane_if_needed(t_vectors plane, t_vectors ray);
 
 #endif

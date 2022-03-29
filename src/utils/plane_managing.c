@@ -6,11 +6,24 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 19:54:09 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/28 19:23:29 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/29 23:05:55 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+t_coords	rotate_plane_if_needed(t_vectors plane, t_vectors ray)
+{
+	float	module1;
+	float	module2;
+
+	module1 = getmodule(v_v_sub(v_v_sum(plane.loc, plane.dir), ray.loc));
+	module2 = getmodule(v_v_sub(v_v_sub(plane.loc, plane.dir), ray.loc));
+	if (module1 < module2)
+		return (/*plane.dir*/v_f_mult(plane.dir, -1.0));
+	else
+		return (/*v_f_mult(plane.dir, -1.0)*/plane.dir);
+}
 
 t_plane_equation	plane_vector2equation(t_vectors norm_vector)
 {
