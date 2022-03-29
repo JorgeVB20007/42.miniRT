@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 2022-03-28 - Jorge
 - Attempted to create shadows created by objects. It kinda works, but it's not precise as we depend on the precision of floats (check src/coloring/get_collision_point.c line 99).
+
 ## 2022-03-25 - Jorge
 ### Added
 - **Ambient lights** now affects every figure's color. The color modification gets applied when checking which is the closest point for each ray.
+
+## 2022-03-22 - Edu
+### Added
+- Added **free_array_coords** & **free_array_colors**
+### Changed
+- Replaced malloc by ft_calloc to simplify leaks handling
+
 ## 2022-03-22 - Jorge
 ### Added
 - **change_color_matrix** now stores the color of the figure touched. There's a problem with collisions involving spheres (the transition isn't smooth).
