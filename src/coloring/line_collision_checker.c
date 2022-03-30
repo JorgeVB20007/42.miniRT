@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:17:25 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/29 23:03:00 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/30 20:43:35 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ int	touches_plane(t_vectors ray, t_item plane)
 	t_vectors	plane_vectors;
 	int			result;
 
-	plane_vectors.dir = rotate_plane_if_needed(dir_and_loc_2_vector(plane.loc,\
-	 turn2unit(plane.orient)), ray);
+	plane_vectors.dir = turn2unit(plane.orient);
 	plane_vectors.loc = plane.loc;
 	result = line_plane_correlation(ray, plane_vector2equation(plane_vectors));
 	if (!result)

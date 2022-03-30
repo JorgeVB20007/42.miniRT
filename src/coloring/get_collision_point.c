@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/29 23:01:49 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/30 22:06:11 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static t_figure_point	get_plane_point(t_vectors ray, t_item plane)
 	t_figure_point	result;
 	float			t;
 
-	plane_vectors.dir = rotate_plane_if_needed(dir_and_loc_2_vector(\
-	plane.loc, plane.orient), ray);
+	plane_vectors.dir = /*rotate_plane_if_needed(dir_and_loc_2_vector(\
+	plane.loc, */turn2unit(plane.orient)/*), ray)*/;
 	plane_vectors.loc = plane.loc;
 	t = get_the_t(ray, plane_vector2equation(plane_vectors));
-	result.loc = v_v_sum(v_f_mult(plane.orient, t), plane.loc);
-	result.dir = rotate_plane_if_needed(dir_and_loc_2_vector(plane.loc,\
-	plane.orient), ray);
+	result.loc = v_v_sum(v_f_mult(turn2unit(ray.dir), t), ray.loc);
+	result.dir = turn2unit(rotate_plane_if_needed(dir_and_loc_2_vector(plane.loc,\
+	plane.orient), ray));
 	result.color = plane.color;
 	return (result);
 }
@@ -40,7 +40,7 @@ static t_figure_point	get_sphere_point(t_vectors ray, t_item sphere)
 
 	result.loc = v_v_sum(v_f_mult(ray.dir, get_ray_sphere_distance(ray, \
 	sphere)), ray.loc);
-	result.dir = v_v_sub(sphere.loc, result.loc);
+	result.dir = v_v_sub(result.loc, sphere.loc);
 	result.color = sphere.color;
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 19:54:09 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/29 23:05:55 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/30 21:52:01 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ t_coords	rotate_plane_if_needed(t_vectors plane, t_vectors ray)
 
 	module1 = getmodule(v_v_sub(v_v_sum(plane.loc, plane.dir), ray.loc));
 	module2 = getmodule(v_v_sub(v_v_sub(plane.loc, plane.dir), ray.loc));
-	if (module1 < module2)
-		return (/*plane.dir*/v_f_mult(plane.dir, -1.0));
+	if (module1 <= module2)
+		return (plane.dir);
 	else
-		return (/*v_f_mult(plane.dir, -1.0)*/plane.dir);
+		return (v_f_mult(plane.dir, -1.0));
 }
 
+/*
+?	https://tutorial.math.lamar.edu/classes/calciii/eqnsofplanes.aspx
+*/
 t_plane_equation	plane_vector2equation(t_vectors norm_vector)
 {
 	t_plane_equation	result;
