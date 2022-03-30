@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/30 22:06:11 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/30 22:10:13 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static t_figure_point	get_plane_point(t_vectors ray, t_item plane)
 	t_figure_point	result;
 	float			t;
 
-	plane_vectors.dir = /*rotate_plane_if_needed(dir_and_loc_2_vector(\
-	plane.loc, */turn2unit(plane.orient)/*), ray)*/;
+	plane_vectors.dir = turn2unit(plane.orient);
 	plane_vectors.loc = plane.loc;
 	t = get_the_t(ray, plane_vector2equation(plane_vectors));
 	result.loc = v_v_sum(v_f_mult(turn2unit(ray.dir), t), ray.loc);
