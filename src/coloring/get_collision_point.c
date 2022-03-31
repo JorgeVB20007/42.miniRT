@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/30 22:10:13 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/31 23:42:30 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,25 +81,41 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_itemlist *items)
 }
 
 /**
- * @retval 0 means that no interruptions were found.
- * @retval 1 meand an interruption was found.
+ * Here we're checking if there's an object between the light and the point
+ * being evaluated. To know if there's objects in between, we check the
+ * distance from the light to the first point touched. 
+ * If the object we touch is closer to the light than the point evaluated, we
+ * consider it an obstacle. The problem is that a slight inconsistency with
+ * floats can make the beam collide decimals before it's supposed to. 
+ * 
+ * 
+ * @retval 1 means that no interruptions were found.
+ * @retval 0 means an interruption was found.
  */
 int	find_light_interruption(t_item light, t_coords target, t_itemlist *items)
 {
 	t_figure_point	new_point;
 	t_vectors		ray;
+	int				a;
 
 	ray.dir = turn2unit(v_v_sub(target, light.loc));
 	ray.loc = light.loc;
+	a = 0;
 	while (items)
 	{
 		if (items->content->type == SPHERE && touches_sphere(ray, *(items->content)))
+		{
+			a = 1;
 			new_point = get_sphere_point(ray, *(items->content));
+		}
 		else if (items->content->type == PLANE && touches_plane(ray, *(items->content)))
+		{
+			a = 1;
 			new_point = get_plane_point(ray, *(items->content));
-		if (getmodule(v_v_sub(new_point.loc, ray.loc)) + 0.01 < getmodule(v_v_sub(target, ray.loc))) //! The + 0.01 is a value to avoid float precision problems.
-			return (1);
+		}
+		if (a && getmodule(v_v_sub(new_point.loc, light.loc)) + 0.01 < getmodule(v_v_sub(target, light.loc))) //! The + 0.01 is a value to avoid float precision problems.
+			return (0);
 		items = items->next;
 	}
-	return (0);
+	return (1);
 }

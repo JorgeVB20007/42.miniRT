@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/27 17:12:55 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/01 00:02:01 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //* This should be temporary, as "RESOLUTION * (16/9)" doesnt work sometimes.
 # define HORIZ_RESOLUTION 1920
 //* We can change things here for reference when doing screenshots.
-# define MLX_TITLE "MiniRT Test | LIGHT reflection"
+# define MLX_TITLE "MiniRT Test | Shadows"
 
 //?	All the types of object specified in the subject.
 enum e_type_of_object

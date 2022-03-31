@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2022-04-01 - Jorge
+- Shadows work fine, and all bugs related to collisions have been fixed.
 ## 2022-03-28 - Jorge
 - Attempted to create shadows created by objects. It kinda works, but it's not precise as we depend on the precision of floats (check src/coloring/get_collision_point.c line 99).
 

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 21:22:08 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/29 21:03:34 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/03/31 23:12:30 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static float	single_light(t_figure_point point, t_item light, t_itemlist *items)
 	float		vect_cos;
 
 	items = NULL;
-	incision_vector = v_v_sub(point.loc, light.loc);
+	incision_vector = v_v_sub(light.loc, point.loc);
 	vect_cos = get_cos(incision_vector, point.dir);
 	if (vect_cos < 0.0)
-		vect_cos = 0;
+		vect_cos = 0.0;
 	return (vect_cos);
 }
 
@@ -41,7 +41,7 @@ t_item item_alight)
 	{
 		if (lights->content->type == LIGHT)
 		{
-			bness = single_light(*point, *(lights->content), items) * (float)!find_light_interruption(*(lights->content), point->loc, items);
+			bness = single_light(*point, *(lights->content), items) * find_light_interruption(*(lights->content), point->loc, items);
 			tot_light_color = color_sum(tot_light_color, 1.0, lights->content->color, bness * lights->content->brightness);
 		}
 		lights = lights->next;
