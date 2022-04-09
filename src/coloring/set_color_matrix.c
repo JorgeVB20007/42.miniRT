@@ -39,7 +39,7 @@ static int	**create_color_matrix(void)
  * @param cam		cam
  * @param pixel		matrix's pixel to set color
 */
-static int	set_color_pixel(t_itemlist *items, t_item cam, t_coords *pixel)
+static int	set_color_pixel(t_item *items, t_item cam, t_coords *pixel)
 {
 	t_figure_point	cp;
 
@@ -65,7 +65,7 @@ TODO	the pixels.
 *		*	Get a normal vector of the collision point so ve can calculate ray angles.
 *		*	Apply the color mixing (color of the figure + color of the lights).
 */
-int	**set_color_matrix(t_itemlist *items, t_coords **v_matrix)
+int	**set_color_matrix(t_item *items, t_coords **v_matrix)
 {
 	int				x;
 	int				y;

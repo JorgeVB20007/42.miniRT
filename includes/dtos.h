@@ -54,6 +54,7 @@ typedef struct s_corners
 }	t_corners;
 
 /**
+//? Linked list where content points to a t_item structure.
 * @brief To store every item we're given:
 * @param type		type of object (see e_type_of_object).
 * @param loc		position of the object in xyz.
@@ -66,22 +67,16 @@ typedef struct s_corners
 */
 typedef struct s_item
 {
-	int			type;
-	t_coords	loc;		//  Doesn't apply to ALIGHT.
-	t_colors	color;		//  Doesn't apply to CAMERA and LIGHT.
-	t_coords	orient;		//  Doesn't apply to ALIGHT, LIGHT and SPHERE.
-	float		brightness;	//* Applies only to ALIGHT and LIGHT.
-	float		diameter;	//* Applies only to SPHERE and CYLINDER.
-	float		height;		//* Applies only to CYLINDER;
-	float		fov;		//* Applies only to CAMERA.
+	int				type;
+	t_coords		loc;		//  Doesn't apply to ALIGHT.
+	t_colors		color;		//  Doesn't apply to CAMERA and LIGHT.
+	t_coords		orient;		//  Doesn't apply to ALIGHT, LIGHT and SPHERE.
+	float			brightness;	//* Applies only to ALIGHT and LIGHT.
+	float			diameter;	//* Applies only to SPHERE and CYLINDER.
+	float			height;		//* Applies only to CYLINDER;
+	float			fov;		//* Applies only to CAMERA.
+	struct s_item	*next;
 }	t_item;
-
-//? Linked list where content points to a t_item structure.
-typedef struct s_itemlist
-{
-	t_item				*content;
-	struct s_itemlist	*next;
-}	t_itemlist;
 
 /**
 *	Structure to store a plane equation in the format:

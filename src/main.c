@@ -2,8 +2,8 @@
 
 static void	doing_calculations(char **argv)
 {
-	t_itemlist	*items;
-	t_itemlist	*items2;
+	t_item		*items;
+	t_item		*items2;
 	t_coords	**v_matrix;
 	int			**c_matrix;
 
@@ -15,18 +15,15 @@ static void	doing_calculations(char **argv)
 	render_image_on_mlx(c_matrix);
 	free_array_coords(&v_matrix);
 	free_array_colors(&c_matrix);
-
-//	lst_rt_print(items);
-//	get_items_by_type(&items2, items, SPHERE);
-//	lst_rt_print(items2);
+	// lst_rt_print(items);
+	// get_items_by_type(&items2, items, SPHERE);
+	// lst_rt_print(items2);
 	lst_rt_free(&items);
 	lst_rt_free(&items2);
-
 }
 
 int	main(int argc, char **argv)
 {
-
 	if (argc != 2)
 		return (1);
 	doing_calculations(argv);

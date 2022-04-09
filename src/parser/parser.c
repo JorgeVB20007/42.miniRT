@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-void	get_items(t_itemlist **list, char *argv)
+void	get_items(t_item **list, char *argv)
 {
 	int			fd;
 	char		*line;
@@ -25,17 +25,17 @@ void	get_items(t_itemlist **list, char *argv)
 		{
 			sep_line = ft_split(line, ' ');
 			if (!ft_strcmp(sep_line[0], "A"))
-				lst_rt_add_front(list, lst_rt_new(line2alight(sep_line)));
+				lst_rt_add_front(list, line2alight(sep_line));
 			else if (!ft_strcmp(sep_line[0], "C"))
-				lst_rt_add_front(list, lst_rt_new(line2camera(sep_line)));
+				lst_rt_add_front(list, line2camera(sep_line));
 			else if (!ft_strcmp(sep_line[0], "L"))
-				lst_rt_add_front(list, lst_rt_new(line2light(sep_line)));
+				lst_rt_add_front(list, line2light(sep_line));
 			else if (!ft_strcmp(sep_line[0], "sp"))
-				lst_rt_add_front(list, lst_rt_new(line2sphere(sep_line)));
+				lst_rt_add_front(list, line2sphere(sep_line));
 			else if (!ft_strcmp(sep_line[0], "pl"))
-				lst_rt_add_front(list, lst_rt_new(line2plane(sep_line)));
+				lst_rt_add_front(list, line2plane(sep_line));
 			else if (!ft_strcmp(sep_line[0], "cy"))
-				lst_rt_add_front(list, lst_rt_new(line2cylinder(sep_line)));
+				lst_rt_add_front(list, line2cylinder(sep_line));
 			megafree(&sep_line);
 			free(line);
 		}

@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-static float	single_light(t_figure_point point, t_item light, t_itemlist *items)
+static float	single_light(t_figure_point point, t_item light, t_item *items)
 {
 	t_coords	incision_vector;
 	float		vect_cos;
@@ -25,11 +25,10 @@ static float	single_light(t_figure_point point, t_item light, t_itemlist *items)
 	return (vect_cos);
 }
 
-
-void	calculate_reflection(t_figure_point *point, t_itemlist *items, \
+void	calculate_reflection(t_figure_point *point, t_item *items, \
 t_item item_alight)
 {
-	t_itemlist	*lights;
+	t_item		*lights;
 	t_colors	tot_light_color;
 	float		bness;
 
@@ -39,10 +38,12 @@ t_item item_alight)
 	lights = items;
 	while (lights)
 	{
-		if (lights->content->type == LIGHT)
+		if (lights->type == LIGHT)
 		{
-			bness = single_light(*point, *(lights->content), items) * find_light_interruption(*(lights->content), point->loc, items);
-			tot_light_color = color_sum(tot_light_color, 1.0, lights->content->color, bness * lights->content->brightness);
+			bness = single_light(*point, *(lights), items) * \
+					find_light_interruption(*(lights), point->loc, items);
+			tot_light_color = color_sum(tot_light_color, 1.0, lights->color, \
+					bness * lights->brightness);
 		}
 		lights = lights->next;
 	}

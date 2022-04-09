@@ -59,7 +59,7 @@ int	touches_plane(t_vectors ray, t_item plane)
 		return (0);
 }
 
-int	check4collisions(t_coords vector, t_itemlist *items, t_item	cam)
+int	check4collisions(t_coords vector, t_item *items, t_item	cam)
 {
 	t_vectors	ray;
 	int			touches;
@@ -69,12 +69,12 @@ int	check4collisions(t_coords vector, t_itemlist *items, t_item	cam)
 	touches = 0;
 	while (items)
 	{
-		if (items->content->type == SPHERE)
-			touches += touches_sphere(ray, *(items->content));
-		else if (items->content->type == CYLINDER)
-			touches += touches_cylinder(ray, *(items->content));
-		else if (items->content->type == PLANE)
-			touches += touches_plane(ray, *(items->content));
+		if (items->type == SPHERE)
+			touches += touches_sphere(ray, *(items));
+		else if (items->type == CYLINDER)
+			touches += touches_cylinder(ray, *(items));
+		else if (items->type == PLANE)
+			touches += touches_plane(ray, *(items));
 		items = items->next;
 	}
 	return (touches);

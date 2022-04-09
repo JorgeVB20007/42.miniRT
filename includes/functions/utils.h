@@ -19,53 +19,49 @@
  * @param list		list
  * @param new_node	new node to link
 */
-void		lst_rt_add_front(t_itemlist **alst, t_itemlist *new_node);
+void				lst_rt_add_front(t_item **alst, t_item *new_node);
 
 /**
  * * Free list
  * @param list	list
 */
-void	lst_rt_free(t_itemlist **list);
-
-/**
- * * Returns malloced node
-*/
-t_itemlist	*lst_rt_new(t_item *content);
+void				lst_rt_free(t_item **list);
 
 /**
  * * Print list
  * @param list
 */
-void	lst_rt_print(t_itemlist *list);
+void				lst_rt_print(t_item *list);
 
 /**
- * * Returns an item_list of t_itemlist that has the type given.
+ * * Returns an item_list of t_item that has the type given.
  * @param item_list	list of items
  * @param type		type of item_list to get
 */
-t_item		get_item_by_type(t_itemlist **item_list, int type);
+t_item				get_item_by_type(t_item **item_list, int type);
 
 /**
- * * Returns an item_list of t_itemlist that has the type given.
+ * * Returns an item_list of t_item that has the type given.
  * @param item_list	list of items
  * @param type		type of item_list to get
 */
-void	get_items_by_type(t_itemlist **filtered_list, t_itemlist *list, int type);
+void				get_items_by_type(t_item **filtered_list, t_item *list, \
+						int type);
 
 /**
- * * Returns a t_itemlist with all visible items (cylinders, spheres & planes).
+ * * Returns a t_item with all visible items (cylinders, spheres & planes).
 */
-void	get_object_items(t_itemlist **filtered_list, t_itemlist *list);
+void				get_object_items(t_item **filtered_list, t_item *list);
 
 /**
  * * Turns degrees into radians.
 */
-float		deg2rad(float deg);
+float				deg2rad(float deg);
 
 /**
  * * Turns radians into degrees.
 */
-float		rad2deg(float rad);
+float				rad2deg(float rad);
 
 /**
  * * Returns vector's module
@@ -136,7 +132,8 @@ t_plane_equation	plane_vector2equation(t_vectors norm_vector);
 * @retval 2:	Line is parallel but doesn't collide with the plane at any point.
 * @retval 3:	Line colllides with the plane but behind the camera.
 */
-int					line_plane_correlation(t_vectors ray, t_plane_equation equation);
+int					line_plane_correlation(t_vectors ray, \
+						t_plane_equation equation);
 
 /**
 *	Calculating a constant needed to evaluate planes
@@ -176,7 +173,7 @@ float				get_cos(t_coords va, t_coords vb);
  * Returns a vector formed by a direction and a point. This is just to
  * be able to pass two t_coords in one (struct t_vectors).
 */
-t_vectors 			dir_and_loc_2_vector(t_coords loc, t_coords dir);
+t_vectors			dir_and_loc_2_vector(t_coords loc, t_coords dir);
 
 /**
  * Returns a vector formed by a direction and a point. This is just to

@@ -25,27 +25,13 @@ Y\033[0m %f\t\033[1mZ\033[0m %f"
 #define LIT_ORIENTATION "\n\033[1morientantion:\033[0m\n\t\033[1mX\033[0m \
 %f\t\033[1mY\033[0m %f\t\033[1mZ\033[0m %f"
 
-/**
- * * Returns malloced node
-*/
-t_itemlist	*lst_rt_new(t_item *content)
-{
-	t_itemlist	*result;
-
-	result = malloc(sizeof(t_item));
-	if (result == 0)
-		return (NULL);
-	result -> content = content;
-	result -> next = NULL;
-	return (result);
-}
 
 /**
  * * Add new node into list at begining
  * @param list		list
  * @param new_node	new node to link
 */
-void	lst_rt_add_front(t_itemlist **alst, t_itemlist *new)
+void	lst_rt_add_front(t_item **alst, t_item *new)
 {
 	if (!alst || !new)
 		return ;
@@ -58,18 +44,18 @@ void	lst_rt_add_front(t_itemlist **alst, t_itemlist *new)
  * @param item_list	list of items
  * @param type		type of item_list to get
 */
-t_item	get_item_by_type(t_itemlist **item_list, int type)
+t_item	get_item_by_type(t_item **item_list, int type)
 {
-	t_itemlist	*item;
+	t_item		*item;
 	t_item		returning;
 
 	returning.type = -1;
 	item = *item_list;
 	while (item)
 	{
-		if (item->content->type == type)
+		if (item->type == type)
 		{
-			returning = *item->content;
+			returning = *item;
 			return (returning);
 		}
 		item = item -> next;
@@ -99,34 +85,34 @@ static t_item	*copy_rt_content(t_item *content)
  * @param item_list	list of items
  * @param type		type of item_list to get
 */
-void	get_items_by_type(t_itemlist **filtered_list, t_itemlist *list, int type)
+void	get_items_by_type(t_item **filtered_list, t_item *list, int type)
 {
 	t_item		*content;
 
 	content = NULL;
 	while (list != NULL)
 	{
-		if (list->content->type == type)
+		if (list->type == type)
 		{
-			content = copy_rt_content(list->content);
-			lst_rt_add_front(filtered_list, lst_rt_new(content));
+			content = copy_rt_content(list);
+			lst_rt_add_front(filtered_list, content);
 		}
 		list = list->next;
 	}
 }
 
-void	get_object_items(t_itemlist **filtered_list, t_itemlist *list)
+void	get_object_items(t_item **filtered_list, t_item *list)
 {
 	t_item		*content;
 
 	content = NULL;
 	while (list != NULL)
 	{
-		if (list->content->type == SPHERE || list->content->type == PLANE \
-		|| list->content->type == CYLINDER)
+		if (list->type == SPHERE || list->type == PLANE \
+		|| list->type == CYLINDER)
 		{
-			content = copy_rt_content(list->content);
-			lst_rt_add_front(filtered_list, lst_rt_new(content));
+			content = copy_rt_content(list);
+			lst_rt_add_front(filtered_list, content);
 		}
 		list = list->next;
 	}
@@ -136,32 +122,30 @@ void	get_object_items(t_itemlist **filtered_list, t_itemlist *list)
  * * Print list
  * @param list
 */
-void	lst_rt_print(t_itemlist *list)
+void	lst_rt_print(t_item *i)
 {
-	t_item	*c;
 	char	**type;
 
 	type = ft_split(LIT_TYPES, ',');
-	while (list != NULL)
+	while (i != NULL)
 	{
-		c = list->content;
-		printf(LIT_TYPE, type[c->type]);
-		if (c->type == ALIGHT || c->type == LIGHT)
-			printf(LIT_BRIGHT, c->brightness);
-		if (c->type == CYLINDER || c->type == SPHERE)
-			printf(LIT_DIAMETER, c->diameter);
-		if (c->type == CAMERA)
-			printf(LIT_FOV, c->fov);
-		if (c->type == CYLINDER)
-			printf(LIT_HEIGHT, c->height);
-		if (c->type != CAMERA && c->type != LIGHT)	// Multidirectional lights can't have a color in the  mandatory part :(
-			printf(LIT_COLOR, c->color.r, c->color.g, c->color.b);
-		if (c->type != ALIGHT)
-			printf(LIT_POSITION, c->loc.x, c->loc.y, c->loc.z);
-		if (c->type != ALIGHT && c->type != SPHERE && c->type != LIGHT)
-			printf(LIT_ORIENTATION, c->orient.x, c->orient.y, c->orient.z);
+		printf(LIT_TYPE, type[i->type]);
+		if (i->type == ALIGHT || i->type == LIGHT)
+			printf(LIT_BRIGHT, i->brightness);
+		if (i->type == CYLINDER || i->type == SPHERE)
+			printf(LIT_DIAMETER, i->diameter);
+		if (i->type == CAMERA)
+			printf(LIT_FOV, i->fov);
+		if (i->type == CYLINDER)
+			printf(LIT_HEIGHT, i->height);
+		if (i->type != CAMERA && i->type != LIGHT)	// Multidirectional lights can't have a color in the  mandatory part :(
+			printf(LIT_COLOR, i->color.r, i->color.g, i->color.b);
+		if (i->type != ALIGHT)
+			printf(LIT_POSITION, i->loc.x, i->loc.y, i->loc.z);
+		if (i->type != ALIGHT && i->type != SPHERE && i->type != LIGHT)
+			printf(LIT_ORIENTATION, i->orient.x, i->orient.y, i->orient.z);
 		printf("\n\n\033[0;33m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \033[0m");	//Plz don't kill me
-		list = list->next;
+		i = i->next;
 	}
 	megafree(&type);
 	printf("\n");
@@ -171,18 +155,16 @@ void	lst_rt_print(t_itemlist *list)
  * * Free list
  * @param list	list
 */
-void	lst_rt_free(t_itemlist **list)
+void	lst_rt_free(t_item **list)
 {
-	t_itemlist	*next;
-	t_itemlist	*item;
+	t_item	*next;
+	t_item	*item;
 
 	next = *list;
 	item = *list;
 	while (next != NULL)
 	{
 		next = next->next;
-		if (item->content != NULL)
-			free(item->content);
 		free(item);
 		item = next;
 	}

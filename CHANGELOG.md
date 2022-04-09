@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2022-04-09 - Edu
 ### Changed
 - Refactor **set_color_matrix** to reduce complexity, including reduce RESOLUTION x HORIZ_RESOLUTION x 1 o 2 operations to one.
+- Refactor **t_item_list->next/content** into **t_item->next** to reduce complexity
 ## 2022-04-01 - Jorge
 - Shadows work fine, and all bugs related to collisions have been fixed.
 ## 2022-03-28 - Jorge
