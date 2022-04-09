@@ -11,7 +11,41 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#define BACKGROUND_COLOR 0x0
 
+/**
+ * * Returns color matrix malloced with a background color set
+*/
+static int	**create_color_matrix(void)
+{
+	int	i;
+	int	**c_matrix;
+
+	c_matrix = malloc(sizeof(int *) * (HORIZ_RESOLUTION + 1));
+	c_matrix[HORIZ_RESOLUTION] = NULL;
+	i = -1;
+	while (++i < HORIZ_RESOLUTION)
+	{
+		c_matrix[i] = malloc(sizeof(int) * (RESOLUTION + 1));
+		ft_memset(c_matrix[i], BACKGROUND_COLOR, RESOLUTION);
+		c_matrix[i][RESOLUTION] = 0;
+	}
+	return (c_matrix);
+}
+
+/**
+ * * Set color of a matrix's pixel
+ * @param items		items  
+ * @param cam		cam
+ * @param pixel		matrix's pixel to set color
+*/
+static int	set_color_pixel(t_itemlist *items, t_item cam, t_coords *pixel)
+{
+	t_figure_point	cp;
+
+	cp = get_closest_fig_point(dir_and_cam_2_vector(cam, *pixel), items);
+	return (rgb2int(cp.color));
+}
 
 /*
 ?		In this file, we'll fill each matrix pixel with its color.
@@ -33,33 +67,20 @@ TODO	the pixels.
 */
 int	**set_color_matrix(t_itemlist *items, t_coords **v_matrix)
 {
-	int				**c_matrix;
 	int				x;
 	int				y;
-	int				collisions;
-	t_figure_point	closest_point;
+	int				**c_matrix;
+	t_item			cam;
 
-	c_matrix = ft_calloc(sizeof(int *), HORIZ_RESOLUTION + 1);
-	x = -1;
-	while (++x < HORIZ_RESOLUTION)
-		c_matrix[x] = ft_calloc(sizeof(int), RESOLUTION + 1);
-	y = 0;
-	while (y < RESOLUTION)
+	y = -1;
+	c_matrix = create_color_matrix();
+	cam = get_item_by_type(&items, CAMERA);
+	while (++y < RESOLUTION)
 	{
-		x = 0;
-		while (x < HORIZ_RESOLUTION)
-		{
-			collisions = check4collisions(v_matrix[x][y], items);
-			if (collisions)
-			{
-				closest_point = get_closest_fig_point(dir_and_cam_2_vector(get_item_by_type(&items, CAMERA), v_matrix[x][y]), items);
-				c_matrix[x][y] = rgb2int(closest_point.color);
-			}
-			else
-				c_matrix[x][y] = 0x0;
-			x++;
-		}
-		y++;
+		x = -1;
+		while (++x < HORIZ_RESOLUTION)
+			if (check4collisions(v_matrix[x][y], items, cam))
+				c_matrix[x][y] = set_color_pixel(items, cam, &v_matrix[x][y]);
 	}
 	lst_rt_print(items);
 	return (c_matrix);

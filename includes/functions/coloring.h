@@ -16,7 +16,8 @@
 
 int				**set_color_matrix(t_itemlist *items, t_coords **v_matrix);
 void			free_array_colors(int ***list);
-int				check4collisions(t_coords vector, t_itemlist *items);
+int				check4collisions(t_coords vector, t_itemlist *items, \
+				t_item cam);
 t_figure_point	get_closest_fig_point(t_vectors ray, t_itemlist *items);
 int				touches_sphere(t_vectors ray, t_item sphere);
 int				touches_cylinder(t_vectors ray, t_item cylinder);

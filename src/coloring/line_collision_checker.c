@@ -59,14 +59,12 @@ int	touches_plane(t_vectors ray, t_item plane)
 		return (0);
 }
 
-int	check4collisions(t_coords vector, t_itemlist *items)
+int	check4collisions(t_coords vector, t_itemlist *items, t_item	cam)
 {
 	t_vectors	ray;
-	t_item		cam;
 	int			touches;
 
 	ray.dir = turn2unit(vector);
-	cam = get_item_by_type(&items, CAMERA);
 	ray.loc = cam.loc;
 	touches = 0;
 	while (items)
