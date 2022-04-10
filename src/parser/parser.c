@@ -12,6 +12,22 @@
 
 #include "minirt.h"
 
+static	void	get_item(t_item **list, char	**sep_line)
+{
+	if (!ft_strcmp(sep_line[0], "A"))
+		lst_rt_add_front(list, line2alight(sep_line));
+	else if (!ft_strcmp(sep_line[0], "C"))
+		lst_rt_add_front(list, line2camera(sep_line));
+	else if (!ft_strcmp(sep_line[0], "L"))
+		lst_rt_add_front(list, line2light(sep_line));
+	else if (!ft_strcmp(sep_line[0], "sp"))
+		lst_rt_add_front(list, line2sphere(sep_line));
+	else if (!ft_strcmp(sep_line[0], "pl"))
+		lst_rt_add_front(list, line2plane(sep_line));
+	else if (!ft_strcmp(sep_line[0], "cy"))
+		lst_rt_add_front(list, line2cylinder(sep_line));
+}
+
 void	get_items(t_item **list, char *argv)
 {
 	int			fd;
@@ -24,18 +40,7 @@ void	get_items(t_item **list, char *argv)
 		if (ft_strlen(line) > 2)
 		{
 			sep_line = ft_split(line, ' ');
-			if (!ft_strcmp(sep_line[0], "A"))
-				lst_rt_add_front(list, line2alight(sep_line));
-			else if (!ft_strcmp(sep_line[0], "C"))
-				lst_rt_add_front(list, line2camera(sep_line));
-			else if (!ft_strcmp(sep_line[0], "L"))
-				lst_rt_add_front(list, line2light(sep_line));
-			else if (!ft_strcmp(sep_line[0], "sp"))
-				lst_rt_add_front(list, line2sphere(sep_line));
-			else if (!ft_strcmp(sep_line[0], "pl"))
-				lst_rt_add_front(list, line2plane(sep_line));
-			else if (!ft_strcmp(sep_line[0], "cy"))
-				lst_rt_add_front(list, line2cylinder(sep_line));
+			get_item(list, sep_line);
 			megafree(&sep_line);
 			free(line);
 		}
