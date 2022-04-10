@@ -21,9 +21,11 @@ int	touches_sphere(t_vectors ray, t_item sphere)
 {
 	if (line_sphere_collisionsnum(ray, sphere) == 0)
 		return (0);
+			//? ¿Estas 3 líneas de aqui no son necesarias?
 	if (get_ray_sphere_distance(ray, sphere) < 0.0)
 		return (0);
 	else
+			//?
 		return (1);
 }
 
