@@ -26,21 +26,36 @@ typedef struct s_vars{
 	t_data	img;
 }	t_vars;
 
+/**
+ * * Close mlx windows
+ * @param vars	mlx vars	 
+*/
 static	int	close_window(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
 	exit (0);
 }
 
-static void	render_pixel(t_data *data, int x, int y, int color)
+/**
+ * * Render a pixel of the image form a color given
+ * @param img	image to render
+ * @param x		x coordinate
+ * @param y		y coordinate
+ * @param color	color to draw pixel
+*/
+static void	render_pixel(t_data *img, int x, int y, int color)
 {
-	char	*dst;
+	char	*pixel;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	pixel = (y * img->line_length + x * (img->bits_per_pixel / 8)) + img->addr;
+	*(unsigned int *)pixel = color;
 }
 
-
+/**
+ * * Render every element of matrix into image pixels
+ * @param matrix_colors		matrix of colors to render
+ * @param img				image to render
+*/
 static void	render_pixels(t_data	*img, int **matrix_colors)
 {
 	int			x;
@@ -59,6 +74,11 @@ static void	render_pixels(t_data	*img, int **matrix_colors)
 	}
 }
 
+/**
+ * * Hook to handle heys
+ * @param keycode	key pressed 
+ * @param vars		mlx vars	 
+*/
 static int	key_hook(int keycode, t_vars *vars)
 {
 	if (keycode == KEY_ESC)
@@ -66,6 +86,12 @@ static int	key_hook(int keycode, t_vars *vars)
 	return (0);
 }
 
+/**
+ * * Init mlx to render image following 
+ * https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
+ * (writing-pixels-to-a-image)
+ * @param matrix_colors	matrix of colors to render 
+*/
 void	render_image_on_mlx(int	**matrix_colors)
 {
 	t_vars	v;
