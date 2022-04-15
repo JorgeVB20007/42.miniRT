@@ -11,40 +11,76 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#define ERROR_SCENE "Error: invadid scene\n"
 
-static	void	get_item(t_item **list, char	**sep_line)
+typedef struct s_mandatory_items
 {
+	int	ambient;
+	int	camera;
+	int	light;
+}t_mandatory_items;
+
+static	t_item	*get_item(char	*line)
+{
+	t_item	*item;
+	char	**sep_line;
+
+	item = NULL;
+	sep_line = ft_split(line, ' ');
 	if (!ft_strcmp(sep_line[0], "A"))
-		lst_rt_add_front(list, line2alight(sep_line));
+		item = line2alight(sep_line);
 	else if (!ft_strcmp(sep_line[0], "C"))
-		lst_rt_add_front(list, line2camera(sep_line));
+		item = line2camera(sep_line);
 	else if (!ft_strcmp(sep_line[0], "L"))
-		lst_rt_add_front(list, line2light(sep_line));
+		item = line2light(sep_line);
 	else if (!ft_strcmp(sep_line[0], "sp"))
-		lst_rt_add_front(list, line2sphere(sep_line));
+		item = line2sphere(sep_line);
 	else if (!ft_strcmp(sep_line[0], "pl"))
-		lst_rt_add_front(list, line2plane(sep_line));
+		item = line2plane(sep_line);
 	else if (!ft_strcmp(sep_line[0], "cy"))
-		lst_rt_add_front(list, line2cylinder(sep_line));
+		item = line2cylinder(sep_line);
+	megafree(&sep_line);
+	return (item);
+}
+
+static int	try_get_item(t_item **list, char	*line, t_mandatory_items *m)
+{
+	t_item	*item;
+
+	item = get_item(line);
+	if (item == NULL)
+		return (TRUE);
+	m->ambient += (item->type == ALIGHT);
+	m->camera += (item->type == CAMERA);
+	m->light += (item->type == LIGHT);
+	if (m->ambient > 1 || m->camera > 1 || m->light > 1)
+		return (TRUE);
+	lst_rt_add_front(list, item);
+	return (FALSE);
 }
 
 void	get_items(t_item **list, char *argv)
 {
-	int			fd;
-	char		*line;
-	char		**sep_line;
+	int					fd;
+	int					error;
+	char				*line;
+	t_mandatory_items	m;
 
+	error = FALSE;
+	m.ambient = 0;
+	m.camera = 0;
+	m.light = 0;
 	fd = open(argv, O_RDONLY);
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line(fd, &line) > 0 && !error)
 	{
 		if (ft_strlen(line) > 2)
-		{
-			sep_line = ft_split(line, ' ');
-			get_item(list, sep_line);
-			megafree(&sep_line);
-			free(line);
-		}
+			error = try_get_item(list, line, &m);
+		free(line);
 	}
-	free(line);
+	if (error || m.ambient != 1 || m.camera != 1 || m.light != 1)
+	{
+		lst_rt_free(list);
+		ft_putstr_fd(ERROR_SCENE, STDERR_FILENO);
+	}
 	close(fd);
 }

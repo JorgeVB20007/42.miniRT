@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getmodule.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:57:34 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/21 17:43:50 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:51:52 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ float	getmodule(t_coords vector)
 	return (fabs(result));
 }
 
-t_colors set_color(const char *rgb)
+t_colors	set_color(const char *rgb)
 {
 	t_colors	color;
 	char		**split;
@@ -37,7 +37,7 @@ t_colors set_color(const char *rgb)
 	return (color);
 }
 
-t_coords set_coords(const char *coords)
+t_coords	set_coords(const char *coords)
 {
 	t_coords	coordinates;
 	char		**split;

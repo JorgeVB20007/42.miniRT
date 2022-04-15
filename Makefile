@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+         #
+#    By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/03/26 21:23:55 by jvacaris         ###   ########.fr        #
+#    Updated: 2022/04/15 17:06:10 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC_FILES	= 	main.c								\
 				coloring/get_collision_point.c		\
 				parser/fill_struct_by_type.c		\
 				parser/parser.c						\
+				parser/try_parse.c						\
 				parser/setting_corners.c			\
 				parser/setting_cam_vectors.c		\
 				render/render.c						\

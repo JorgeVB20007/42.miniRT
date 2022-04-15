@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/01 00:02:01 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:10:06 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # define HORIZ_RESOLUTION 1920
 //* We can change things here for reference when doing screenshots.
 # define MLX_TITLE "MiniRT Test | Shadows"
+# define NONE 0
+# define MAX_PARSED_SIZE 2147483647
+# define MIN_PARSED_SIZE -2147483648
 
 //?	All the types of object specified in the subject.
 enum e_type_of_object
@@ -28,5 +31,11 @@ enum e_type_of_object
 	SPHERE,
 	PLANE,
 	CYLINDER
+};
+
+enum e_bool
+{
+	FALSE,
+	TRUE
 };
 #endif
