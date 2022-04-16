@@ -6,7 +6,7 @@
 #    By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/04/16 11:26:27 by emadriga         ###   ########.fr        #
+#    Updated: 2022/04/16 13:47:52 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,28 +34,29 @@ INCLUDES_FILES =	constants.h				\
 					functions/utils.h
 
 # Source and object files
-SRC_FILES	= 	main.c								\
-				coloring/alight2fig.c				\
-				coloring/calculate_reflection.c		\
-				coloring/line_collision_checker.c	\
-				coloring/set_color_matrix.c			\
-				coloring/get_collision_point.c		\
-				parser/fill_struct_by_type.c		\
-				parser/parser.c						\
+SRC_FILES	= 	main.c									\
+				coloring/alight2fig.c					\
+				coloring/calculate_reflection.c			\
+				coloring/line_collision_checker.c		\
+				coloring/set_color_matrix.c				\
+				coloring/get_collision_point.c			\
+				parser/fill_struct_by_type.c			\
+				parser/fill_struct_by_type_figures.c	\
+				parser/parser.c							\
 				parser/try_parse.c						\
-				parser/setting_corners.c			\
-				parser/setting_cam_vectors.c		\
-				render/render.c						\
-				utils/dir_and_loc_2_vector.c		\
-				utils/rt_lst_functs.c				\
-				utils/rgb2int.c						\
-				utils/deg2rad.c						\
-				utils/getmodule.c					\
-				utils/plane_managing.c				\
-				utils/vctr_int_operations.c			\
-				utils/vctr_vctr_operations.c		\
-				utils/sphere_managing.c				\
-				utils/vctr_dot_product.c			\
+				parser/setting_corners.c				\
+				parser/setting_cam_vectors.c			\
+				render/render.c							\
+				utils/dir_and_loc_2_vector.c			\
+				utils/rt_lst_functs.c					\
+				utils/rgb2int.c							\
+				utils/deg2rad.c							\
+				utils/getmodule.c						\
+				utils/plane_managing.c					\
+				utils/vctr_int_operations.c				\
+				utils/vctr_vctr_operations.c			\
+				utils/sphere_managing.c					\
+				utils/vctr_dot_product.c				\
 				utils/vctr_turn2unit.c
 
 OBJ_FILES	= $(SRC_FILES:.c=.o)
