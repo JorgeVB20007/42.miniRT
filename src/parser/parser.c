@@ -6,13 +6,14 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 21:16:37 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/16 10:41:52 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/16 11:56:12 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #define ERROR_SCENE "Error: invadid scene\n"
 
+//* Element type counters to handle errors
 typedef struct s_mandatory_items
 {
 	int	ambient;
@@ -20,6 +21,10 @@ typedef struct s_mandatory_items
 	int	light;
 }t_mandatory_items;
 
+/**
+ * * Get item from a line read of a scene file regarding element's type
+ * @param line	line to process from scene file
+ */
 static	t_item	*get_item(char	*line)
 {
 	t_item	*item;
@@ -43,6 +48,12 @@ static	t_item	*get_item(char	*line)
 	return (item);
 }
 
+/**
+ * * Get item from a line read of a scene file
+ * @param list	list of items to populate
+ * @param line	line to process from scene file
+ * @param m		element type counters to handle errors
+ */
 static int	try_get_item(t_item **list, char	*line, t_mandatory_items *m)
 {
 	t_item	*item;
@@ -55,12 +66,16 @@ static int	try_get_item(t_item **list, char	*line, t_mandatory_items *m)
 	m->light += (item->type == LIGHT);
 	if (m->ambient > 1 || m->camera > 1 || (m->light > 1 && !MULTIPLE_LIGHTS))
 		return (TRUE);
-	printf("%s\tPARSED\t\n", line);
 	lst_rt_add_front(list, item);
 	return (FALSE);
 }
 
-void	get_items(t_item **list, char *argv)
+/**
+ * * Get items from a given scene file
+ * @param list			returned list of items
+ * @param scene_file	scene file to process
+*/
+void	get_items(t_item **list, char *scene_file)
 {
 	int					fd;
 	int					error;
@@ -71,7 +86,7 @@ void	get_items(t_item **list, char *argv)
 	m.ambient = 0;
 	m.camera = 0;
 	m.light = 0;
-	fd = open(argv, O_RDONLY);
+	fd = open(scene_file, O_RDONLY);
 	while (get_next_line(fd, &line) > 0 && !error)
 	{
 		if (ft_strlen(line) > 2)

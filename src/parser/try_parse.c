@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:37:23 by emadriga          #+#    #+#             */
-/*   Updated: 2022/04/15 20:49:20 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/16 14:43:38 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 #define NON_ZERO_NUMBERS "123456789"
 
 /**
- * * Validates string contents within range
-* @param s_nbr  string to process
+ * * Validates string nbr contents within range
+* @param s_nbr	string nbr to process
+* @param min	min range
+* @param max	max range
+* @return 		FALSE/TRUE as ok/error
 */
-static int	valid_range(const char *s_nbr, long min, long max)
+static int	not_valid_range(const char *s_nbr, long min, long max)
 {
 	double	d;
 	size_t	i;
@@ -40,22 +43,21 @@ static int	valid_range(const char *s_nbr, long min, long max)
 	d += (ft_isdigit(s_nbr[i]) && s_nbr[0] != '-');
 	d -= (ft_isdigit(s_nbr[i]) && s_nbr[0] == '-');
 	if (d > max || d < min)
-		return (FALSE);
-	return (TRUE);
+		return (TRUE);
+	return (FALSE);
 }
 
 /**
- * * Validates allowed characters(FLOAT)
- * * Acept just one char as sign
-* @param s_nbr  string to process
+ * * Validates allowed characters(decimal)
+ * * Acept just one char as sign and one dot as decimal separator
+* @param s_nbr	string nbr to process
+* @return 		FALSE/TRUE as ok/error
 */
-static int	check_nbr(char *const_s_nbr)
+static int	not_valid_nbr_characters(char *s_nbr)
 {
-	char	*s_nbr;
 	int		dot_used;
 
 	dot_used = FALSE;
-	s_nbr = (char *)const_s_nbr;
 	if (!(ft_isdigit(s_nbr[0])) && \
 	!(ft_isdigit(s_nbr[1]) && (s_nbr[0] == '-' || s_nbr[0] == '+')))
 		return (0);
@@ -64,24 +66,38 @@ static int	check_nbr(char *const_s_nbr)
 	while (*s_nbr != '\0' && !ft_isspace(*s_nbr))
 	{
 		if (!ft_isdigit(*s_nbr) && (*s_nbr != '.' && !dot_used))
-			return (FALSE);
+			return (TRUE);
 		if (*s_nbr == '.')
 			dot_used = TRUE;
 		s_nbr++;
 	}
-	return (TRUE);
+	return (FALSE);
 }
 
+/**
+ * * Try to set a decimal nbr from str given
+* @param out	returned decimal number
+* @param nbr	string nbr to process
+* @param min	min range
+* @param max	max range
+* @return 		0/1 as ok/error
+*/
 int	try_set_atof(float *out, char *nbr, long min, long max)
 {
-	if (!check_nbr(nbr))
+	if (not_valid_nbr_characters(nbr))
 		return (1);
-	if (!valid_range(nbr, min, max))
+	if (not_valid_range(nbr, min, max))
 		return (1);
 	*out = ft_atof(nbr);
 	return (0);
 }
 
+/**
+ * * Try to set a color from str given
+* @param out	returned color
+* @param rgb	string color to process
+* @return 		0/1 as ok/error
+*/
 int	try_set_color(t_colors *out, const char *rgb)
 {
 	char		**split;
@@ -96,9 +112,17 @@ int	try_set_color(t_colors *out, const char *rgb)
 	if (!error)
 		error += try_set_atof(&out->b, split[2], 0.0, 255.0);
 	megafree(&split);
-	return (error != FALSE);
+	return (error);
 }
 
+/**
+ * * Try to set a coordinates from str given
+* @param out	returned coordinates
+* @param coords	string coordinates to process
+* @param min	min range
+* @param max	max range
+* @return 		0/1 as ok/error
+*/
 int	try_set_coords(t_coords *out, const char *coords, long min, long max)
 {
 	char		**split;
@@ -113,5 +137,5 @@ int	try_set_coords(t_coords *out, const char *coords, long min, long max)
 	if (!error)
 		error += try_set_atof(&out->z, split[2], min, max);
 	megafree(&split);
-	return (error != FALSE);
+	return (error);
 }

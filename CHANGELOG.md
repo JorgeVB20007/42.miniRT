@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2022-04-16 - Edu
 ### Added
 - Include option to allow multiple lights bonus
+- Document **parser.c** & **try_parse.c**
 ### Fixed
 - Handle **miniLibX** properly on makefile
 
