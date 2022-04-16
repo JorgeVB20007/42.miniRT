@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:11:58 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/16 17:27:55 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/16 22:01:59 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_item	*line2cylinder(char **line)
 	t_item	*item;
 	int		error;
 
-	if (line[4] != NULL)
+	if (line[6] != NULL)
 		return (NULL);
 	error = NONE;
 	item = malloc(sizeof(t_item));
