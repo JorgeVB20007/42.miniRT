@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coloring.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:01:43 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/31 21:18:23 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/16 17:31:39 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define COLORING_H
 # include "dtos.h"
 
-int				**set_color_matrix(t_item *items, t_coords **v_matrix);
+int				**set_color_matrix(t_item *items, t_coords **v_matrix, \
+						t_item cam);
 void			free_array_colors(int ***list);
 int				check4collisions(t_coords vector, t_item *items, \
 				t_item cam);

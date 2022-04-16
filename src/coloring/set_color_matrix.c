@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_color_matrix.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:04:24 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/29 17:11:26 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/16 17:30:13 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,14 @@ TODO	the pixels.
 *		*	Get a normal vector of the collision point so ve can calculate ray angles.
 *		*	Apply the color mixing (color of the figure + color of the lights).
 */
-int	**set_color_matrix(t_item *items, t_coords **v_matrix)
+int	**set_color_matrix(t_item *items, t_coords **v_matrix, t_item cam)
 {
 	int				x;
 	int				y;
 	int				**c_matrix;
-	t_item			cam;
 
 	y = -1;
 	c_matrix = create_color_matrix();
-	cam = get_item_by_type(&items, CAMERA);
 	while (++y < RESOLUTION)
 	{
 		x = -1;
