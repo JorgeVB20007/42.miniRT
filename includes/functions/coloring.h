@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coloring.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:01:43 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/16 17:31:39 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/16 19:47:37 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void			calculate_reflection(t_figure_point *point, t_item *items, \
 t_item item_alight);
 t_colors		color_sum(t_colors color1, float bright1, t_colors color2, \
 						float bright2);
-int				find_light_interruption(t_item light, t_coords target, \
+int				find_light_interruption(t_item light, t_figure_point target, \
 						t_item *items);
 #endif

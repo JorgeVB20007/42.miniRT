@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 21:16:37 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/16 17:23:35 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/16 19:36:54 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static	t_item	*get_item(char	*line)
  * @param m		element type counters to handle errors
  * @return 		FALSE/TRUE as ok/error
  */
-static int	try_get_item(t_item **list, char	*line, t_mandatory_items *m)
+static int	try_get_item(t_item **list, char	*line, t_mandatory_items *m, int id)
 {
 	t_item	*item;
 
@@ -66,6 +66,7 @@ static int	try_get_item(t_item **list, char	*line, t_mandatory_items *m)
 	m->ambient += (item->type == ALIGHT);
 	m->camera += (item->type == CAMERA);
 	m->light += (item->type == LIGHT);
+	item->id = id;
 	if (m->ambient > 1 || m->camera > 1 || (m->light > 1 && !MULTIPLE_LIGHTS))
 		return (TRUE);
 	lst_rt_add_front(list, item);
@@ -83,16 +84,18 @@ void	get_items(t_item **list, char *scene_file)
 	int					error;
 	char				*line;
 	t_mandatory_items	m;
+	int					id;
 
 	error = FALSE;
 	m.ambient = 0;
 	m.camera = 0;
 	m.light = 0;
 	fd = open(scene_file, O_RDONLY);
+	id = 0;
 	while (get_next_line(fd, &line) > 0 && !error)
 	{
 		if (ft_strlen(line) > 2)
-			error = try_get_item(list, line, &m);
+			error = try_get_item(list, line, &m, id++);
 		free(line);
 	}
 	if (error || m.ambient != 1 || m.camera != 1 || \

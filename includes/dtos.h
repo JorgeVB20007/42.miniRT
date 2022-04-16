@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/28 18:22:56 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/16 19:36:44 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_colors
 //?	point between a ray and a figure.
 typedef struct s_figure_point
 {
+	int			id;
 	t_coords	loc;
 	t_coords	dir;
 	t_colors	color;
@@ -67,6 +68,7 @@ typedef struct s_corners
 */
 typedef struct s_item
 {
+	int				id;
 	int				type;
 	t_coords		loc;		//  Doesn't apply to ALIGHT.
 	t_colors		color;		//  Doesn't apply to CAMERA and LIGHT.
