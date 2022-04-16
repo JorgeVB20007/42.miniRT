@@ -6,7 +6,7 @@
 #    By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/04/15 17:06:10 by emadriga         ###   ########.fr        #
+#    Updated: 2022/04/16 11:26:27 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SANITIZE = -Ofast -fsanitize=address
 INCLUDES_FILES =	constants.h				\
 					minirt.h				\
 					dtos.h					\
+					options.h				\
 					functions/coloring.h	\
 					functions/parser.h		\
 					functions/utils.h
@@ -71,13 +72,14 @@ INCLUDES = $(addprefix $(INC_DIR), $(INCLUDES_FILES))
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
+MINLBX  = $(addprefix $(MINLBX_DIR), libmlx.dylib)
 
 # Libft and Minilibx linkers
 LNK  = -L $(LIBFT_DIR) -lft $(SANITIZE) -L $(MINLBX_DIR) \
 	   -lmlx -framework OpenGL -framework AppKit
 
 # all rule
-all: obj $(LIBFT) $(NAME)
+all: obj $(LIBFT) $(MINLBX) $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
@@ -86,9 +88,11 @@ obj:
 	@mkdir -p $(OBJ_DIR)render/
 	@mkdir -p $(OBJ_DIR)utils/
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(INCLUDES)
-	@$(GCC) $(FLAGS) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
+	@$(GCC) $(FLAGS) -I $(MINLBX_DIR) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
+$(MINLBX):
+	@make -C $(MINLBX_DIR)
 
 # Compiling
 $(NAME): $(OBJ)
@@ -102,12 +106,14 @@ bonus:	all
 clean:
 			@rm -Rf $(OBJ_DIR)
 			@make -C $(LIBFT_DIR) clean
+			@make -C $(MINLBX_DIR) clean
 			@echo "\033[1;34m[INFO]\033[0m Objects removed!"
 
 # fclean rule
 fclean:		clean
-			@rm -f $(NAME)
 			@make -C $(LIBFT_DIR) fclean
+			@rm -f libmlx.dylib
+			@rm -f $(NAME)
 			@echo "$(NAME) removed!"
 			
 # mynorm rule

@@ -18,6 +18,9 @@ test*
 gnl/*.gch
 libft/*.gch
 gnl/*.o
+*.swiftdoc
+*.swiftmodule
+*.dylib
 miniRT
 a
 b
