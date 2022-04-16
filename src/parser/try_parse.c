@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:37:23 by emadriga          #+#    #+#             */
-/*   Updated: 2022/04/16 14:43:38 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/16 20:30:10 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,25 @@ static int	not_valid_range(const char *s_nbr, long min, long max)
 */
 static int	not_valid_nbr_characters(char *s_nbr)
 {
-	int		dot_used;
+	int		dots_used;
 
-	dot_used = FALSE;
+	dots_used = NONE;
 	if (!(ft_isdigit(s_nbr[0])) && \
 	!(ft_isdigit(s_nbr[1]) && (s_nbr[0] == '-' || s_nbr[0] == '+')))
-		return (0);
+		return (TRUE);
 	if (*s_nbr == '-' || *s_nbr == '+')
 		s_nbr++;
 	while (*s_nbr != '\0' && !ft_isspace(*s_nbr))
 	{
-		if (!ft_isdigit(*s_nbr) && (*s_nbr != '.' && !dot_used))
+		if (!ft_isdigit(*s_nbr) && *s_nbr != '.')
 			return (TRUE);
-		if (*s_nbr == '.')
-			dot_used = TRUE;
+		dots_used += (*s_nbr == '.');
+		if (dots_used > 1)
+			break ;
 		s_nbr++;
 	}
+	if (*s_nbr != '\0')
+		return (TRUE);
 	return (FALSE);
 }
 

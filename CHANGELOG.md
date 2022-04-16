@@ -9,9 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Include option to allow multiple lights bonus
 - Document **parser.c** & **try_parse.c**
+### Changed
+- Improve error handling
 ### Fixed
 - Handle **miniLibX** properly on makefile
-
 ## 2022-04-15 - Edu
 ### Added
 - Added **try_parse** to handle parser for mandatory items.
