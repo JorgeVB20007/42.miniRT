@@ -6,13 +6,13 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 21:16:37 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/16 21:47:55 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/16 21:52:54 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #define ERROR_SCENE "Error: invadid scene\n"
-#define ERROR_EXTENSION_SCENE "Error: Introduce valid scene (.rt file)\n"
+#define ERROR_EXTENSION_SCENE "Error: Introduce a valid scene (.rt file)\n"
 
 //* Element type counters to handle errors
 typedef struct s_mandatory_items
