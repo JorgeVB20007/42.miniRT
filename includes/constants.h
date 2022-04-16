@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/15 20:10:06 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/16 11:41:56 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 //* We can change things here for reference when doing screenshots.
 # define MLX_TITLE "MiniRT Test | Shadows"
 # define NONE 0
-# define MAX_PARSED_SIZE 2147483647
-# define MIN_PARSED_SIZE -2147483648
 
 //?	All the types of object specified in the subject.
 enum e_type_of_object
