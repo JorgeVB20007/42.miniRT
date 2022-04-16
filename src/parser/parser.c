@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 21:16:37 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/16 11:56:12 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/16 17:23:35 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_mandatory_items
 /**
  * * Get item from a line read of a scene file regarding element's type
  * @param line	line to process from scene file
+ * @return 		*t_item/NULL as ok/error
  */
 static	t_item	*get_item(char	*line)
 {
@@ -53,6 +54,7 @@ static	t_item	*get_item(char	*line)
  * @param list	list of items to populate
  * @param line	line to process from scene file
  * @param m		element type counters to handle errors
+ * @return 		FALSE/TRUE as ok/error
  */
 static int	try_get_item(t_item **list, char	*line, t_mandatory_items *m)
 {
