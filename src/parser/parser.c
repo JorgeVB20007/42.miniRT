@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 21:16:37 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/18 21:06:17 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/16 10:41:52 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ static int	try_get_item(t_item **list, char	*line, t_mandatory_items *m)
 	m->ambient += (item->type == ALIGHT);
 	m->camera += (item->type == CAMERA);
 	m->light += (item->type == LIGHT);
-	if (m->ambient > 1 || m->camera > 1 || m->light > 1)
+	if (m->ambient > 1 || m->camera > 1 || (m->light > 1 && !MULTIPLE_LIGHTS))
 		return (TRUE);
+	printf("%s\tPARSED\t\n", line);
 	lst_rt_add_front(list, item);
 	return (FALSE);
 }
@@ -77,7 +78,8 @@ void	get_items(t_item **list, char *argv)
 			error = try_get_item(list, line, &m);
 		free(line);
 	}
-	if (error || m.ambient != 1 || m.camera != 1 || m.light != 1)
+	if (error || m.ambient != 1 || m.camera != 1 || \
+		(m.light != 1 && !MULTIPLE_LIGHTS))
 	{
 		lst_rt_free(list);
 		ft_putstr_fd(ERROR_SCENE, STDERR_FILENO);
