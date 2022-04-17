@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 21:16:37 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/16 21:52:54 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:18:31 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,12 @@ static	t_item	*get_item(char	*line)
 
 	item = NULL;
 	sep_line = ft_split(line, ' ');
-	if (!ft_strcmp(sep_line[0], "A"))
-		item = line2alight(sep_line);
-	else if (!ft_strcmp(sep_line[0], "C"))
-		item = line2camera(sep_line);
-	else if (!ft_strcmp(sep_line[0], "L"))
-		item = line2light(sep_line);
-	else if (!ft_strcmp(sep_line[0], "sp"))
-		item = line2sphere(sep_line);
-	else if (!ft_strcmp(sep_line[0], "pl"))
-		item = line2plane(sep_line);
-	else if (!ft_strcmp(sep_line[0], "cy"))
-		item = line2cylinder(sep_line);
+	if (!ft_strcmp(sep_line[0], "A") || !ft_strcmp(sep_line[0], "C") || \
+		!ft_strcmp(sep_line[0], "L"))
+		item = fill_struct_by_type(sep_line);
+	else if (!ft_strcmp(sep_line[0], "sp") || !ft_strcmp(sep_line[0], "pl") || \
+		!ft_strcmp(sep_line[0], "cy"))
+		item = fill_struct_by_type_figures(sep_line);
 	megafree(&sep_line);
 	return (item);
 }
@@ -73,9 +67,9 @@ static int	try_get_item(t_item **list, char *line, t_mandatory_items *m, \
 	m->camera += (item->type == CAMERA);
 	m->light += (item->type == LIGHT);
 	item->id = id;
+	lst_rt_add_front(list, item);
 	if (m->ambient > 1 || m->camera > 1 || (m->light > 1 && !MULTIPLE_LIGHTS))
 		return (TRUE);
-	lst_rt_add_front(list, item);
 	return (FALSE);
 }
 
@@ -99,6 +93,7 @@ static void	try_get_items(t_item **list, int fd, t_mandatory_items	*m)
 			error = try_get_item(list, line, m, id++);
 		free(line);
 	}
+	free(line);
 	if (error || m->ambient != 1 || m->camera != 1 || \
 	(m->light != 1 && !MULTIPLE_LIGHTS))
 	{

@@ -6,7 +6,7 @@
 #    By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/04/17 14:35:21 by emadriga         ###   ########.fr        #
+#    Updated: 2022/04/17 23:21:34 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ INCLUDES_FILES =	constants.h				\
 					resolution.h			\
 					functions/coloring.h	\
 					functions/parser.h		\
+					functions/render.h		\
 					functions/utils.h
 
 # Source and object files
@@ -117,7 +118,7 @@ fclean:		clean
 			@rm -f libmlx.dylib
 			@rm -f $(NAME)
 			@echo "$(NAME) removed!"
-			
+
 # mynorm rule
 mynorm:
 	norminette $(SRC_DIR) $(INC_DIR) $(LIBFT_DIR)

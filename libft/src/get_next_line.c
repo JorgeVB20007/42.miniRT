@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 18:55:38 by emadriga          #+#    #+#             */
-/*   Updated: 2021/10/03 19:49:23 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/17 22:04:35 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	get_next_line(int fd, char **line)
 	if (!line || fd < 0 || fd > FD_SETSIZE)
 		return (-1);
 	buff = malloc(sizeof(char));
+	if (!buff)
+		return (-1);
 	readable = read(fd, buff, 1);
 	while (readable >= 0)
 	{
