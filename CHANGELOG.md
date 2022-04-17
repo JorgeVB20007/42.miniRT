@@ -8,8 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2022-04-17 - Edu
 ### Added
 - Added **resolution.h** to handle different resolutions
+### Changed
+- Include malloc's error handling on **parse**
 ### Fixed
 - Fixed init color matrix with background color
+- Remove leaks
 
 ## 2022-04-16 - Edu
 ### Added

@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/15 20:18:57 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:20:24 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 # define PARSER_H
 # include "dtos.h"
 
-t_item		*line2alight(char **line);
-t_item		*line2camera(char **line);
-t_item		*line2light(char **line);
-t_item		*line2sphere(char **line);
-t_item		*line2plane(char **line);
-t_item		*line2cylinder(char **line);
+t_item		*fill_struct_by_type(char **line);
+t_item		*init_new_item(t_item	*item);
+t_item		*fill_struct_by_type_figures(char **line);
 
 void		get_items(t_item **list, char *argv);
 t_corners	set_corners(t_item item);
