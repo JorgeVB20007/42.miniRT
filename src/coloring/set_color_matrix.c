@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:04:24 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/16 17:30:13 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/17 14:21:28 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ static int	**create_color_matrix(void)
 	i = -1;
 	while (++i < HORIZ_RESOLUTION)
 	{
-		c_matrix[i] = malloc(sizeof(int) * (RESOLUTION + 1));
-		ft_memset(c_matrix[i], BACKGROUND_COLOR, RESOLUTION);
-		c_matrix[i][RESOLUTION] = 0;
+		c_matrix[i] = malloc(sizeof(int) * (VERT_RESOLUTION + 1));
+		c_matrix[i][VERT_RESOLUTION] = 0;
 	}
 	return (c_matrix);
 }
@@ -73,12 +72,16 @@ int	**set_color_matrix(t_item *items, t_coords **v_matrix, t_item cam)
 
 	y = -1;
 	c_matrix = create_color_matrix();
-	while (++y < RESOLUTION)
+	while (++y < VERT_RESOLUTION)
 	{
 		x = -1;
 		while (++x < HORIZ_RESOLUTION)
+		{
 			if (check4collisions(v_matrix[x][y], items, cam))
 				c_matrix[x][y] = set_color_pixel(items, cam, &v_matrix[x][y]);
+			else
+				c_matrix[x][y] = BACKGROUND_COLOR;
+		}
 	}
 	lst_rt_print(items);
 	return (c_matrix);

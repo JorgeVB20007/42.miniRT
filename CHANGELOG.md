@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added **resolution.h** to handle different resolutions
 ### Fixed
-- Fixed color matrix with background color
+- Fixed init color matrix with background color
 
 ## 2022-04-16 - Edu
 ### Added
