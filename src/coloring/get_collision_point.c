@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/17 20:05:25 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:37:48 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,38 +57,25 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_item *items)
 	t_figure_point	new_point;
 	t_figure_point	top_point;
 	t_item			item_alight;
-	int				ctrl;
-	int				ctrl2;
 	t_item			*items2;
 
-	ctrl = 0;
-	ctrl2 = 0;
+	top_point.id = -42;
 	items2 = items;
 	item_alight = get_item_by_type(&items, ALIGHT);
 	while (items)
 	{
+		new_point.id = -21;
 		if (items->type == SPHERE && touches_sphere(ray, *(items)))
-		{
 			new_point = get_sphere_point(ray, *(items));
-			ctrl2 = 1;
-		}
 		else if (items->type == PLANE && touches_plane(ray, *(items)))
-		{
 			new_point = get_plane_point(ray, *(items));
-			ctrl2 = 1;
-		}
-		if (ctrl2 && (!ctrl || getmodule(v_v_sub(new_point.loc, ray.loc)) < \
-			getmodule(v_v_sub(top_point.loc, ray.loc))))
-		{
+		if (new_point.id != -21 && (top_point.id == -42 || getmodule(v_v_sub(\
+		new_point.loc, ray.loc)) < getmodule(v_v_sub(top_point.loc, ray.loc))))
 			top_point = new_point;
-			ctrl = 1;
-			ctrl2 = 0;
-		}
 		if (items->next == NULL)
 			break ;
 		items = items->next;
 	}
-//	printf("Loc: %.2f %.2f %.2f    id: %d\n", top_point.loc.x, top_point.loc.y, top_point.loc.z, top_point.id);
 	calculate_reflection(&top_point, items2, item_alight);
 	return (top_point);
 }
@@ -109,26 +96,19 @@ int	find_light_interruption(t_item light, t_figure_point target, t_item *items)
 {
 	t_figure_point	new_point;
 	t_vectors		ray;
-	int				a;
 
 	ray.dir = turn2unit(v_v_sub(target.loc, light.loc));
 	ray.loc = light.loc;
-	a = 0;
+	new_point.id = -42;
 	while (items)
 	{
 		if (items->id != target.id)
 		{
 			if (items->type == SPHERE && touches_sphere(ray, *(items)))
-			{
-				a = 1;
 				new_point = get_sphere_point(ray, *(items));
-			}
 			else if (items->type == PLANE && touches_plane(ray, *(items)))
-			{
-				a = 1;
 				new_point = get_plane_point(ray, *(items));
-			}
-			if (a && getmodule(v_v_sub(new_point.loc, light.loc)) < getmodule(v_v_sub(target.loc, light.loc))) //! The + 0.01 is a value to avoid float precision problems.
+			if (new_point.id != -42 && getmodule(v_v_sub(new_point.loc, light.loc)) < getmodule(v_v_sub(target.loc, light.loc)))
 				return (0);
 		}
 		items = items->next;
