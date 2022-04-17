@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:57:46 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/15 20:49:50 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/17 14:35:40 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "constants.h"
 # include "dtos.h"
 # include "options.h"
+# include "resolution.h"
 # include "functions/coloring.h"
 # include "functions/parser.h"
 # include "functions/render.h"

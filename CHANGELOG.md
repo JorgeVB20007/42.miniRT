@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2022-04-17 - Edu
+### Added
+- Added **resolution.h** to handle different resolutions
+### Fixed
+- Fixed color matrix with background color
+
 ## 2022-04-16 - Edu
 ### Added
 - Include option to allow multiple lights bonus
@@ -22,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 2022-04-09 - Edu
 ### Changed
-- Refactor **set_color_matrix** to reduce complexity, including reduce RESOLUTION x HORIZ_RESOLUTION x 1 o 2 operations to one.
+- Refactor **set_color_matrix** to reduce complexity, including reduce VERT_RESOLUTION x HORIZ_RESOLUTION x 1 o 2 operations to one.
 - Refactor **t_item_list->next/content** into **t_item->next** to reduce complexity
 
 ## 2022-04-01 - Jorge

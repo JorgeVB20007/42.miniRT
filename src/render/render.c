@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 21:10:31 by emadriga          #+#    #+#             */
-/*   Updated: 2022/03/25 20:43:38 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/17 14:21:57 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	render_pixels(t_data	*img, int **matrix_colors)
 	int			y;
 
 	y = 0;
-	while (y < RESOLUTION)
+	while (y < VERT_RESOLUTION)
 	{
 		x = 0;
 		while (x < HORIZ_RESOLUTION)
@@ -98,8 +98,8 @@ void	render_image_on_mlx(int	**matrix_colors)
 	int		endian;
 
 	v.mlx = mlx_init();
-	v.win = mlx_new_window(v.mlx, HORIZ_RESOLUTION, RESOLUTION, MLX_TITLE);
-	v.img.img = mlx_new_image(v.mlx, HORIZ_RESOLUTION, RESOLUTION);
+	v.win = mlx_new_window(v.mlx, HORIZ_RESOLUTION, VERT_RESOLUTION, MLX_TITLE);
+	v.img.img = mlx_new_image(v.mlx, HORIZ_RESOLUTION, VERT_RESOLUTION);
 	v.img.addr = mlx_get_data_addr(v.img.img, &v.img.bits_per_pixel, \
 	&v.img.line_length, &endian);
 	render_pixels(&v.img, matrix_colors);

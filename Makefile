@@ -6,7 +6,7 @@
 #    By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/04/16 13:47:52 by emadriga         ###   ########.fr        #
+#    Updated: 2022/04/17 14:35:21 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ INCLUDES_FILES =	constants.h				\
 					minirt.h				\
 					dtos.h					\
 					options.h				\
+					resolution.h			\
 					functions/coloring.h	\
 					functions/parser.h		\
 					functions/utils.h

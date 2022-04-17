@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:01:28 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/28 22:39:13 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/17 14:21:46 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	set_cam_margins(t_coords **matrix)
 
 	ctr = 1;
 	max_x = HORIZ_RESOLUTION - 1;
-	max_y = RESOLUTION - 1;
-	while (ctr < RESOLUTION)
+	max_y = VERT_RESOLUTION - 1;
+	while (ctr < VERT_RESOLUTION)
 	{
 		diff.x = matrix[0][max_y].x - matrix[0][0].x;
 		diff.y = matrix[0][max_y].y - matrix[0][0].y;
@@ -49,7 +49,7 @@ static void	set_cam_middle(t_coords **matrix)
 
 	ctr_y = 0;
 	max_x = HORIZ_RESOLUTION - 1;
-	while (ctr_y < RESOLUTION)
+	while (ctr_y < VERT_RESOLUTION)
 	{
 		ctr_x = 0;
 		diff.x = matrix[max_x][ctr_y].x - matrix[0][ctr_y].x;
@@ -78,13 +78,13 @@ t_coords	**set_cam_vectors(t_corners corn)
 	ctr = 0;
 	while (ctr < HORIZ_RESOLUTION)
 	{
-		matrix[ctr] = ft_calloc(sizeof(t_coords), RESOLUTION + 1);
+		matrix[ctr] = ft_calloc(sizeof(t_coords), VERT_RESOLUTION + 1);
 		ctr++;
 	}
 	matrix[0][0] = corn.tl;
 	matrix[HORIZ_RESOLUTION - 1][0] = corn.tr;
-	matrix[0][RESOLUTION - 1] = corn.bl;
-	matrix[HORIZ_RESOLUTION - 1][RESOLUTION - 1] = corn.br;
+	matrix[0][VERT_RESOLUTION - 1] = corn.bl;
+	matrix[HORIZ_RESOLUTION - 1][VERT_RESOLUTION - 1] = corn.br;
 	set_cam_margins(matrix);
 	set_cam_middle(matrix);
 	return (matrix);
