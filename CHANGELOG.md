@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2022-04-17 - Jorge
+### Added
+- Cylinders are detected when a ray collides directly to the cylinder's body ("lids" excluded). 
+	Lighting and color system has been temporary disabled but can be reenabled at *./src/coloring/set_color_matrix.c* (line 46).
+
 ## 2022-04-17 - Edu
 ### Added
 - Added **resolution.h** to handle different resolutions

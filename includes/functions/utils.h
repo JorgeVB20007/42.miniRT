@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/29 22:43:19 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/18 20:04:01 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,5 +187,12 @@ t_vectors			dir_and_cam_2_vector(t_item cam, t_coords dir);
  * a ray collide with the plane.
 */
 t_coords			rotate_plane_if_needed(t_vectors plane, t_vectors ray);
+
+
+//	Cylinder stuff.
+int					get_the_m(t_vectors ray, t_item cylinder, float *m);
+
+//	More cylinder stuff.
+int					second_degree_equation(float a, float b, float c, float d[2]);
 
 #endif

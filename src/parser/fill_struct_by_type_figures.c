@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_struct_by_type_figures.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:11:58 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/17 23:04:02 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/18 21:50:47 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static t_item	*line2cylinder(char **line, t_item	*item)
 	if (!error)
 		error += try_set_atof(&item->diameter, line[3], 0.0, MAX_PARSED_SIZE);
 	if (!error)
-		error += try_set_atof(&item->diameter, line[4], 0.0, MAX_PARSED_SIZE);
+		error += try_set_atof(&item->height, line[4], 0.0, MAX_PARSED_SIZE);
 	if (!error)
 		error += try_set_color(&item->color, line[5]);
 	if (error)
