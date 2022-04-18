@@ -62,7 +62,7 @@ static t_item	*line2cylinder(char **line, t_item	*item)
 	if (!error)
 		error += try_set_atof(&item->diameter, line[3], 0.0, MAX_PARSED_SIZE);
 	if (!error)
-		error += try_set_atof(&item->diameter, line[4], 0.0, MAX_PARSED_SIZE);
+		error += try_set_atof(&item->height, line[4], 0.0, MAX_PARSED_SIZE);
 	if (!error)
 		error += try_set_color(&item->color, line[5]);
 	if (error)
