@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2022-04-18 - Jorge
+### Added
+- Lids of cylinders are now detected.
+- The normal vector and the collision point is now retrieved properly.
+- Reflection of lights over cylinders seems to work fine, including shadows formed by and cast over the cylinder.
+### Bugs
+- In some cases (specially when there's multiple cylinders in a single scene) the lids are not placed properly, but seems like the walls of the cylinder always work fine.
 ## 2022-04-17 - Jorge
 ### Added
 - Cylinders are detected when a ray collides directly to the cylinder's body ("lids" excluded). 

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/17 20:37:48 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/19 22:50:17 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,26 @@ static t_figure_point	get_sphere_point(t_vectors ray, t_item sphere)
 	return (result);
 }
 
+static t_figure_point	get_cylinder_point(t_vectors ray, t_item cylinder)
+{
+	float			m;
+	t_vectors		p_prime;
+	t_figure_point	result;
+
+	if (get_the_m(ray, cylinder, &m, &(p_prime.dir)))
+	{
+		if (!lid_collision(ray, cylinder, &p_prime))
+		{
+			p_prime.loc = v_v_sum(ray.loc, v_f_mult(ray.dir, m));
+		}
+	}
+	result.loc = p_prime.loc;
+	result.dir = p_prime.dir;
+	result.color = cylinder.color;
+	result.id = cylinder.id;
+	return (result);
+}
+
 /*
 *	This function gets the list of items and the ray being evaluated when
 *	there's at least one collision. It will return the closest collision
@@ -69,6 +89,8 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_item *items)
 			new_point = get_sphere_point(ray, *(items));
 		else if (items->type == PLANE && touches_plane(ray, *(items)))
 			new_point = get_plane_point(ray, *(items));
+		else if (items->type == CYLINDER && touches_cylinder(ray, *(items)))
+			new_point = get_cylinder_point(ray, *(items));
 		if (new_point.id != -21 && (top_point.id == -42 || getmodule(v_v_sub(\
 		new_point.loc, ray.loc)) < getmodule(v_v_sub(top_point.loc, ray.loc))))
 			top_point = new_point;
@@ -108,6 +130,8 @@ int	find_light_interruption(t_item light, t_figure_point target, t_item *items)
 				new_point = get_sphere_point(ray, *(items));
 			else if (items->type == PLANE && touches_plane(ray, *(items)))
 				new_point = get_plane_point(ray, *(items));
+			else if (items->type == CYLINDER && touches_cylinder(ray, *(items)))
+				new_point = get_cylinder_point(ray, *(items));
 			if (new_point.id != -42 && getmodule(v_v_sub(new_point.loc, light.loc)) < getmodule(v_v_sub(target.loc, light.loc)))
 				return (0);
 		}
