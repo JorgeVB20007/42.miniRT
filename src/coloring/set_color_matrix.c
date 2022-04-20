@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:04:24 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/19 21:40:55 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/20 23:31:07 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	set_color_pixel(t_item *items, t_item cam, t_coords *pixel)
 	t_figure_point	cp;
 
 	cp = get_closest_fig_point(dir_and_cam_2_vector(cam, *pixel), items);
-	return (rgb2int(cp.color)/*16755370*/);		//!	Remove the number and uncomment the comment at my left to reactivate the lighting/color system.
+	return (rgb2int(cp.color)/*16755370*/);		//!	Comment and uncomment one or the other return value to enable/disable lighting system.
 }
 
 /*

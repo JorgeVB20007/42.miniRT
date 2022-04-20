@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:17:25 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/19 21:35:44 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/20 23:11:20 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,13 @@ int	touches_sphere(t_vectors ray, t_item sphere)
 
 int	touches_cylinder(t_vectors ray, t_item cylinder)
 {
-	float		m;
-	t_vectors	p_prime;
-	t_coords	nothing;
+	t_coords	result;
 
-	if (!get_the_m(ray, cylinder, &m, &nothing))
-			return (0);
-	if (lid_collision(ray, cylinder, &p_prime))
+	if (cylinder_wall(ray, cylinder, &(result)))
 		return (1);
-	p_prime.loc = v_v_sum(ray.loc, v_f_mult(ray.dir, m));
-	if (powf(getmodule(v_v_sub(p_prime.loc, cylinder.loc)), 2.0) > powf(cylinder.height / 2.0, 2.0) + powf(cylinder.diameter / 2.0, 2.0))
-		return (0);
-	return (1);
+	else if (cylinder_lid(ray, cylinder, &result, NULL))
+		return (1);
+	return (0);
 }
 	
 /*

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/19 22:50:17 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/20 22:38:02 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_item *items)
 		else if (items->type == PLANE && touches_plane(ray, *(items)))
 			new_point = get_plane_point(ray, *(items));
 		else if (items->type == CYLINDER && touches_cylinder(ray, *(items)))
-			new_point = get_cylinder_point(ray, *(items));
+			new_point = new_get_cylinder_point(ray, *(items));
 		if (new_point.id != -21 && (top_point.id == -42 || getmodule(v_v_sub(\
 		new_point.loc, ray.loc)) < getmodule(v_v_sub(top_point.loc, ray.loc))))
 			top_point = new_point;
