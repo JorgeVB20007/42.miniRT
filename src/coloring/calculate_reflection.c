@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 21:22:08 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/16 19:49:33 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/21 22:51:08 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,10 @@ t_item item_alight)
 		if (lights->type == LIGHT)
 		{
 			bness = single_light(*point, *(lights), items) * \
-					find_light_interruption(*(lights), *point, items);
+					(float)find_light_interruption(*(lights), *point, items);
 			tot_light_color = color_sum(tot_light_color, 1.0, lights->color, \
 					bness * lights->brightness);
+//			printf("bness = %f  |  tot_color = (%5.1f,%5.1f,%5.1f)\n", bness, tot_light_color.r, tot_light_color.g, tot_light_color.b);
 		}
 		lights = lights->next;
 	}

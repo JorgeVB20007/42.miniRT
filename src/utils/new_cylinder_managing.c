@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:11:05 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/20 23:31:37 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/21 20:34:37 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,17 @@ t_figure_point	new_get_cylinder_point(t_vectors ray, t_item cylinder)
 {
 	t_figure_point	result;
 	int				rev_ori;
+	t_coords		p_min_pprime;
 
 	ray.dir = turn2unit(ray.dir);
 	cylinder.orient = turn2unit(cylinder.orient);
 	if (cylinder_wall(ray, cylinder, &(result.loc)))
-		result.dir = v_v_sum(cylinder.loc, v_f_mult(cylinder.orient, dot_product(v_v_sub(result.loc, cylinder.loc), cylinder.orient)));
+	{
+		p_min_pprime = v_v_sub(result.loc, cylinder.loc);
+		result.dir = v_v_sub(p_min_pprime, v_f_mult(cylinder.orient, dot_product(p_min_pprime, cylinder.orient)));
+	}
 	else if (cylinder_lid(ray, cylinder, &(result.loc), &rev_ori))
-		result.dir = v_f_mult(cylinder.orient, rev_ori);
+		result.dir = turn2unit(v_f_mult(cylinder.orient, rev_ori));
 	result.color = cylinder.color;
 	result.id = cylinder.id;
 	return (result);

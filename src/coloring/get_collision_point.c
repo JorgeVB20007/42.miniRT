@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/20 22:38:02 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/21 22:49:11 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_figure_point	get_sphere_point(t_vectors ray, t_item sphere)
 	result.id = sphere.id;
 	return (result);
 }
-
+/*
 static t_figure_point	get_cylinder_point(t_vectors ray, t_item cylinder)
 {
 	float			m;
@@ -64,7 +64,7 @@ static t_figure_point	get_cylinder_point(t_vectors ray, t_item cylinder)
 	result.color = cylinder.color;
 	result.id = cylinder.id;
 	return (result);
-}
+}*/
 
 /*
 *	This function gets the list of items and the ray being evaluated when
@@ -131,7 +131,10 @@ int	find_light_interruption(t_item light, t_figure_point target, t_item *items)
 			else if (items->type == PLANE && touches_plane(ray, *(items)))
 				new_point = get_plane_point(ray, *(items));
 			else if (items->type == CYLINDER && touches_cylinder(ray, *(items)))
-				new_point = get_cylinder_point(ray, *(items));
+			{
+				new_point = new_get_cylinder_point(ray, *(items));
+////				printf("( %.2f, %.2f, %.2f ) = %d\n", new_point.loc.x, new_point.loc.y, new_point.loc.z, (new_point.id != -42 && getmodule(v_v_sub(new_point.loc, light.loc)) < getmodule(v_v_sub(target.loc, light.loc))));
+			}
 			if (new_point.id != -42 && getmodule(v_v_sub(new_point.loc, light.loc)) < getmodule(v_v_sub(target.loc, light.loc)))
 				return (0);
 		}

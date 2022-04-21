@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   resolution.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 14:33:12 by emadriga          #+#    #+#             */
-/*   Updated: 2022/04/17 15:05:54 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:43:52 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RESOLUTION_H
 # define RESOLUTION_H
 
-# define RESOLUTION 2
+# define RESOLUTION 0
 
 # if RESOLUTION==0					//	WVGA		16/9
 #  define HORIZ_RESOLUTION 850
