@@ -6,14 +6,14 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 14:33:12 by emadriga          #+#    #+#             */
-/*   Updated: 2022/04/21 21:43:52 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/22 21:04:31 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RESOLUTION_H
 # define RESOLUTION_H
 
-# define RESOLUTION 0
+# define RESOLUTION 2
 
 # if RESOLUTION==0					//	WVGA		16/9
 #  define HORIZ_RESOLUTION 850

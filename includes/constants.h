@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/18 21:53:17 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/22 20:38:31 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //* This should be temporary, as "RESOLUTION * (16/9)" doesnt work sometimes.
 // # define HORIZ_RESOLUTION 1920
 //* We can change things here for reference when doing screenshots.
-# define MLX_TITLE "MiniRT Test | Cylinders"
+# define MLX_TITLE "MiniRT Test"
 # define NONE 0
 # define LIT_ERROR "Error"
 

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:11:05 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/21 20:34:37 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/22 20:52:54 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	cylinder_lid(t_vectors ray, t_item cylinder, t_coords *coords, int *rev_ori)
 	pc = v_v_sub(ray.loc, cylinder.loc);
 	possible_ms[0] = (cylinder.height / 2.0 - dot_product(cylinder.orient, pc)) / dot_product(cylinder.orient, ray.dir);
 	possible_ms[1] = (- cylinder.height / 2.0 - dot_product(cylinder.orient, pc)) / dot_product(cylinder.orient, ray.dir);
-	if (possible_ms[0] >= 0.0 && possible_ms[0] < possible_ms[1])
+	if (possible_ms[0] >= 0.0 && (possible_ms[0] < possible_ms[1] || possible_ms[1] < 0.0))
 	{
 		m = possible_ms[0];
 		if (rev_ori)
 			*rev_ori = 1;
 	}
-	else if (possible_ms[1] >= 0.0)
+	else if (possible_ms[1] >= 0.0 && (possible_ms[1] < possible_ms[0] || possible_ms[0] < 0.0))
 	{
 		m = possible_ms[1];
 		if (rev_ori)
@@ -57,9 +57,9 @@ int	cylinder_wall(t_vectors ray, t_item cylinder, t_coords *coords)
 	if (!second_degree_equation(do_the_f(ray.dir, ray.dir, turn2unit(cylinder.orient)), 2.0 * do_the_f(pc, ray.dir, turn2unit(cylinder.orient)), \
 	do_the_f(pc, pc, turn2unit(cylinder.orient)) - powf(cylinder.diameter / 2.0, 2.0), possible_ms))
 		return (0);
-	if (possible_ms[0] >= 0.0 && possible_ms[0] < possible_ms[1])
+	if (possible_ms[0] >= 0.0 && (possible_ms[0] < possible_ms[1] || possible_ms[1] < 0.0))
 		m = possible_ms[0];
-	else if (possible_ms[1] >= 0.0)
+	else if (possible_ms[1] >= 0.0 && (possible_ms[1] < possible_ms[0] || possible_ms[0] < 0.0))
 		m = possible_ms[1];
 	else
 		return (0);
