@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2022-04-24 - Jorge
+### Added
+- First version of a Phong reflection. It looks fine, but the reflection should lose intensity when the light is far away.
+
 ## 2022-04-20 - Jorge
 ### Changed
 - Changed the whole system to detect cylinders and find their collision point and with a ray and normal vector.

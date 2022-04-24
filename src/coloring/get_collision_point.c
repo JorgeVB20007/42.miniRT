@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/21 22:49:11 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/24 20:17:03 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_item *items)
 			break ;
 		items = items->next;
 	}
-	calculate_reflection(&top_point, items2, item_alight);
+	calculate_reflection(&top_point, items2, item_alight, ray);
 	return (top_point);
 }
 

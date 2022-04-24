@@ -6,7 +6,7 @@
 #    By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/04/20 23:31:14 by jvacaris         ###   ########.fr        #
+#    Updated: 2022/04/24 18:35:39 by jvacaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC_FILES	= 	main.c									\
 				coloring/line_collision_checker.c		\
 				coloring/set_color_matrix.c				\
 				coloring/get_collision_point.c			\
+                coloring/specular_reflection.c          \
 				parser/fill_struct_by_type.c			\
 				parser/fill_struct_by_type_figures.c	\
 				parser/parser.c							\
