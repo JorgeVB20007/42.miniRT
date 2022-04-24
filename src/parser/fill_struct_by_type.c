@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:11:58 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/17 23:08:28 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/24 21:10:14 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,17 @@ static t_item	*line2light(char **line, t_item	*item)
 	return (item);
 }
 
-t_item	*init_new_item(t_item	*item)
+static t_item	*line2blackhole(char **line, t_item	*item)
 {
-	item->brightness = 0.0;
-	item->color.r = 0.0;
-	item->color.g = 0.0;
-	item->color.b = 0.0;
-	item->diameter = 0.0;
-	item->fov = 0.0;
-	item->height = 0.0;
-	item->id = -1;
-	item->loc.x = 0.0;
-	item->loc.y = 0.0;
-	item->loc.z = 0.0;
-	item->orient.x = 0.0;
-	item->orient.y = 0.0;
-	item->orient.z = 0.0;
-	item->next = NULL;
-	item->type = -1;
+	int	error;
+
+	error = (line[2] != NULL || !ENABLE_EXTRA_ITEMS);
+	item->type = BLACK_HOLE;
+	if (!error)
+		error += try_set_coords(&item->loc, line[1], MIN_PARSED_SIZE, \
+				MAX_PARSED_SIZE);
+	if (error)
+		ft_free((void **) &item);
 	return (item);
 }
 
@@ -102,6 +95,8 @@ t_item	*fill_struct_by_type(char **line)
 		item = line2camera(line, item);
 	else if (!ft_strcmp(line[0], "L"))
 		item = line2light(line, item);
+	else if (!ft_strcmp(line[0], "bh"))
+		item = line2blackhole(line, item);
 	else
 		ft_free((void **) &item);
 	return (item);
