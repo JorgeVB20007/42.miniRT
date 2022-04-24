@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 21:16:37 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/17 23:18:31 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/24 21:09:36 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,27 @@ typedef struct s_mandatory_items
 	int	light;
 }t_mandatory_items;
 
+t_item	*init_new_item(t_item	*item)
+{
+	item->brightness = 0.0;
+	item->color.r = 0.0;
+	item->color.g = 0.0;
+	item->color.b = 0.0;
+	item->diameter = 0.0;
+	item->fov = 0.0;
+	item->height = 0.0;
+	item->id = -1;
+	item->loc.x = 0.0;
+	item->loc.y = 0.0;
+	item->loc.z = 0.0;
+	item->orient.x = 0.0;
+	item->orient.y = 0.0;
+	item->orient.z = 0.0;
+	item->next = NULL;
+	item->type = -1;
+	return (item);
+}
+
 /**
  * * Get item from a line read of a scene file regarding element's type
  * @param line	line to process from scene file
@@ -35,7 +56,7 @@ static	t_item	*get_item(char	*line)
 	item = NULL;
 	sep_line = ft_split(line, ' ');
 	if (!ft_strcmp(sep_line[0], "A") || !ft_strcmp(sep_line[0], "C") || \
-		!ft_strcmp(sep_line[0], "L"))
+		!ft_strcmp(sep_line[0], "L") || !ft_strcmp(sep_line[0], "bh"))
 		item = fill_struct_by_type(sep_line);
 	else if (!ft_strcmp(sep_line[0], "sp") || !ft_strcmp(sep_line[0], "pl") || \
 		!ft_strcmp(sep_line[0], "cy"))
@@ -58,8 +79,8 @@ static int	try_get_item(t_item **list, char *line, t_mandatory_items *m, \
 
 	while (ft_isspace(*line))
 		line++;
-	if (*line == '\0')
-		return (TRUE);
+	if (*line == '\0' || *line == '\n')
+		return (FALSE);
 	item = get_item(line);
 	if (item == NULL)
 		return (TRUE);
@@ -89,10 +110,11 @@ static void	try_get_items(t_item **list, int fd, t_mandatory_items	*m)
 	id = 0;
 	while (get_next_line(fd, &line) > 0 && !error)
 	{
-		if (*line != '\n' && *line != '\0')
-			error = try_get_item(list, line, m, id++);
+		error = try_get_item(list, line, m, id++);
 		free(line);
 	}
+	if (!error)
+		error = try_get_item(list, line, m, id++);
 	free(line);
 	if (error || m->ambient != 1 || m->camera != 1 || \
 	(m->light != 1 && !MULTIPLE_LIGHTS))

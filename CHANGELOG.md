@@ -5,11 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2022-04-24 - Edu
+### Added
+- Added **black_hole**
+### Fixed
+- Fix mac bug item + '\0' not parsed
+
 ## 2022-04-20 - Jorge
 ### Changed
 - Changed the whole system to detect cylinders and find their collision point and with a ray and normal vector.
-	- Some "old" functions haven't been removed yet, but should serve no purpose.
-	- Most bugs with the cylinders' lids have been fixed with this new system. Although, there's now some minor issues with certain areas of a cylinder where random black pixels appear.
+- Some "old" functions haven't been removed yet, but should serve no purpose.
+- Most bugs with the cylinders' lids have been fixed with this new system. Although, there's now some minor issues with certain areas of a cylinder where random black pixels appear.
 
 ## 2022-04-19 - Jorge
 ### Added
@@ -21,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 2022-04-17 - Jorge
 ### Added
-- Cylinders are detected when a ray collides directly to the cylinder's body ("lids" excluded). 
+- Cylinders are detected when a ray collides directly to the cylinder's body ("lids" excluded).
 	Lighting and color system has been temporary disabled but can be reenabled at *./src/coloring/set_color_matrix.c* (line 46).
 
 ## 2022-04-17 - Edu
