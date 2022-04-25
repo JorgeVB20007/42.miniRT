@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_struct_by_type.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:11:58 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/24 21:10:14 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/25 22:18:57 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ static t_item	*line2blackhole(char **line, t_item	*item)
 	if (!error)
 		error += try_set_coords(&item->loc, line[1], MIN_PARSED_SIZE, \
 				MAX_PARSED_SIZE);
+	item->brightness = -1.0;
+	item->color = set_color("255,255,255");
 	if (error)
 		ft_free((void **) &item);
 	return (item);

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 21:22:08 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/24 21:14:02 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/25 21:45:42 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,16 @@ t_item item_alight, t_vectors ray)
 		if (lights->type == LIGHT)
 		{
 			interruption = find_light_interruption(*(lights), *point, items);
-			bness = single_light(*point, *(lights), items) * \
-					(float)interruption;
-			tot_light_color = color_sum(tot_light_color, 1.0, lights->color, \
-					bness * lights->brightness);
 			if (interruption)
-				tot_phong_color = color_sum(tot_phong_color, 1.0, lights->color, specular_reflection(*lights, *point, ray) * lights->brightness);
-//			printf("bness = %f  |  tot_color = (%5.1f,%5.1f,%5.1f)\n", bness, tot_light_color.r, tot_light_color.g, tot_light_color.b);
+			{
+				bness = single_light(*point, *(lights), items);
+				tot_light_color = color_sum(tot_light_color, 1.0, lights->color, \
+					bness * lights->brightness);
+				if (RENDER_PHONG)
+					tot_phong_color = color_sum(tot_phong_color, 1.0, lights->color, specular_reflection(*lights, *point, ray) * lights->brightness * (0.45 / (0.5 + 0.1 * (getmodule(v_v_sub(point->loc, lights->loc)))) + 0.1));
+			}
 		}
 		lights = lights->next;
 	}
-	point->color = color_sum(alight2fig(point->color, tot_light_color, 1.0), 1.0, tot_phong_color, 1.0);
+	point->color = color_sum(alight2fig(point->color, tot_light_color, 1.0), 1.0, tot_phong_color, (float)RENDER_PHONG);
 }

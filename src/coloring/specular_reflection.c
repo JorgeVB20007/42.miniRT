@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 18:38:30 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/24 20:56:33 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/25 19:16:05 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ float	specular_reflection(t_item light, t_figure_point object, t_vectors ray)
 //	result = (result - 0.9) * 10;
 	if (result < 0.0)
 		return (0.0);
-	result = powf(result, 5.0);
+//	result = powf(result, 5.0);
 	if (result < 0.0)
 		return (0.0);
 	else

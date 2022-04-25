@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   options.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:19:40 by emadriga          #+#    #+#             */
-/*   Updated: 2022/04/24 21:10:30 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/25 22:13:32 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # define MAX_PARSED_SIZE 2147483647
 # define MIN_PARSED_SIZE -2147483648
 # define ENABLE_EXTRA_ITEMS FALSE
+# define RENDER_PHONG FALSE
 
 #endif
