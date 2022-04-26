@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:57:46 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/26 21:11:40 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:13:52 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <string.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include "../minilibx_mms_20200219/mlx.h"
 # include <math.h>
+# include "../minilibx_mms_20200219/mlx.h"
 # include "libft.h"
 # include "constants.h"
 # include "dtos.h"
