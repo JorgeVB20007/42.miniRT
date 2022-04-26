@@ -6,17 +6,18 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/24 20:17:03 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 19:52:54 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-/*
-*	Here we'll get the exact point where the ray collided with each figure, 
-*	the normal vector of the collision point and the resulting color.
-! 	The resulting color is not implemented yet.
-*/
 
+/*
+!	Function only called when the ray collides with the plane.
+*	Gets the collision point of the ray with the plane, along with the
+*	normal vector of that point, the color of the plane (without lights)
+*	and its ID.
+*/
 static t_figure_point	get_plane_point(t_vectors ray, t_item plane)
 {
 	t_vectors		plane_vectors;
@@ -34,6 +35,12 @@ static t_figure_point	get_plane_point(t_vectors ray, t_item plane)
 	return (result);
 }
 
+/*
+!	Function only called when the ray collides with the sphere.
+*	Gets the collision point of the ray with the sphere, along with the
+*	normal vector of that point, the color of the sphere (without lights)
+*	and its ID.
+*/
 static t_figure_point	get_sphere_point(t_vectors ray, t_item sphere)
 {
 	t_figure_point	result;
@@ -45,26 +52,32 @@ static t_figure_point	get_sphere_point(t_vectors ray, t_item sphere)
 	result.id = sphere.id;
 	return (result);
 }
+
 /*
+!	Function only called when the ray collides with the cylinder.
+*	Gets the collision point of the ray with the cylinder, along with the
+*	normal vector of that point, the color of the cylinder (without lights)
+*	and its ID.
+*/
 static t_figure_point	get_cylinder_point(t_vectors ray, t_item cylinder)
 {
-	float			m;
-	t_vectors		p_prime;
 	t_figure_point	result;
+	int				rev_ori;
+	t_coords		p_min_pprime;
 
-	if (get_the_m(ray, cylinder, &m, &(p_prime.dir)))
+	ray.dir = turn2unit(ray.dir);
+	cylinder.orient = turn2unit(cylinder.orient);
+	if (cylinder_wall(ray, cylinder, &(result.loc)))
 	{
-		if (!lid_collision(ray, cylinder, &p_prime))
-		{
-			p_prime.loc = v_v_sum(ray.loc, v_f_mult(ray.dir, m));
-		}
+		p_min_pprime = v_v_sub(result.loc, cylinder.loc);
+		result.dir = v_v_sub(p_min_pprime, v_f_mult(cylinder.orient, dot_product(p_min_pprime, cylinder.orient)));
 	}
-	result.loc = p_prime.loc;
-	result.dir = p_prime.dir;
+	else if (cylinder_lid(ray, cylinder, &(result.loc), &rev_ori))
+		result.dir = turn2unit(v_f_mult(cylinder.orient, rev_ori));
 	result.color = cylinder.color;
 	result.id = cylinder.id;
 	return (result);
-}*/
+}
 
 /*
 *	This function gets the list of items and the ray being evaluated when
@@ -90,7 +103,7 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_item *items)
 		else if (items->type == PLANE && touches_plane(ray, *(items)))
 			new_point = get_plane_point(ray, *(items));
 		else if (items->type == CYLINDER && touches_cylinder(ray, *(items)))
-			new_point = new_get_cylinder_point(ray, *(items));
+			new_point = get_cylinder_point(ray, *(items));
 		if (new_point.id != -21 && (top_point.id == -42 || getmodule(v_v_sub(\
 		new_point.loc, ray.loc)) < getmodule(v_v_sub(top_point.loc, ray.loc))))
 			top_point = new_point;
@@ -131,10 +144,7 @@ int	find_light_interruption(t_item light, t_figure_point target, t_item *items)
 			else if (items->type == PLANE && touches_plane(ray, *(items)))
 				new_point = get_plane_point(ray, *(items));
 			else if (items->type == CYLINDER && touches_cylinder(ray, *(items)))
-			{
-				new_point = new_get_cylinder_point(ray, *(items));
-////				printf("( %.2f, %.2f, %.2f ) = %d\n", new_point.loc.x, new_point.loc.y, new_point.loc.z, (new_point.id != -42 && getmodule(v_v_sub(new_point.loc, light.loc)) < getmodule(v_v_sub(target.loc, light.loc))));
-			}
+				new_point = get_cylinder_point(ray, *(items));
 			if (new_point.id != -42 && getmodule(v_v_sub(new_point.loc, light.loc)) < getmodule(v_v_sub(target.loc, light.loc)))
 				return (0);
 		}

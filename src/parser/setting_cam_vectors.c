@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   setting_cam_vectors.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:01:28 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/17 14:21:46 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:09:20 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/*
+*	Setting all the vectors from the two vertical margins knowing the vectors
+*	of the 4 corners.
+*/
 static void	set_cam_margins(t_coords **matrix)
 {
 	int			ctr;
@@ -40,6 +44,9 @@ static void	set_cam_margins(t_coords **matrix)
 	}
 }
 
+/*
+*	Setting all the other vectors knowing the vectors of the margins (right and left).
+*/
 static void	set_cam_middle(t_coords **matrix)
 {
 	int			ctr_x;
@@ -69,6 +76,11 @@ static void	set_cam_middle(t_coords **matrix)
 	}
 }
 
+/*
+*	Creates a matrix with the vector of every pixel and fills it with the
+*	appropriate values.
+*	The input parameter is a struct with the vectors of the 4 corners.
+*/
 t_coords	**set_cam_vectors(t_corners corn)
 {
 	t_coords	**matrix;

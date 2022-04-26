@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+         #
+#    By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/04/25 23:01:26 by emadriga         ###   ########.fr        #
+#    Updated: 2022/04/26 19:36:59 by jvacaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ INCLUDES_FILES =	constants.h				\
 
 # Source and object files
 SRC_FILES	= 	main.c									\
-				coloring/alight2fig.c					\
+				coloring/light2fig.c					\
 				coloring/calculate_reflection.c			\
 				coloring/line_collision_checker.c		\
 				coloring/set_color_matrix.c				\

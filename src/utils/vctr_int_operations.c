@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 20:37:51 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/26 20:51:38 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:37:38 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ t_coords	v_i_mult(t_coords v, int i)
 	return (result);
 }
 
+/*
+*	Multiplication of a vector with a float.
+*/
 t_coords	v_f_mult(t_coords v, float i)
 {
 	t_coords	result;

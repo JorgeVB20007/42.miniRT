@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alight2fig.c                                       :+:      :+:    :+:   */
+/*   light2fig.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,21 @@
 
 #include "minirt.h"
 
-/*
-*	This function gets the color of a surface and the color and brightness of 
-*	the incident light and returns the resulting color. 
-////It does NOT take into account directional lights yet.
+/**
+* *	This function gets the color of a surface and the color and brightness of 
+* *	the light appllied to it and returns the resulting color.
+* @param fig_color Color of the point being evaluated.
+* @param light_color Color of the incident light.
+* @param light_brightness Brightness (0-1) of the sum of lights at that point.
 */
-t_colors	alight2fig(t_colors fig_color, t_colors alight_color, \
-float alight_brightness)
+t_colors	light2fig(t_colors fig_color, t_colors light_color, \
+float light_brightness)
 {
 	t_colors	result;
 
-	result.r = (fig_color.r) * ((alight_color.r * alight_brightness) / 255);
-	result.g = (fig_color.g) * ((alight_color.g * alight_brightness) / 255);
-	result.b = (fig_color.b) * ((alight_color.b * alight_brightness) / 255);
+	result.r = (fig_color.r) * ((light_color.r * light_brightness) / 255);
+	result.g = (fig_color.g) * ((light_color.g * light_brightness) / 255);
+	result.b = (fig_color.b) * ((light_color.b * light_brightness) / 255);
 	if (result.r > 255.0)
 		result.r = 255.0;
 	if (result.g > 255.0)
@@ -34,6 +36,16 @@ float alight_brightness)
 	return (result);
 }
 
+/**
+* *	This function gets the color of two lights colliding at the same point
+* * and merges them toghether.
+* @param color1 First color to be added.
+* @param bright1 Brightness of the first color to be added.
+* @param color2 Second color to be added.
+* @param bright2 Brightness of the second color to be added.
+* @retval Returns a t_colors with the resulting color (brightness = 1.0).
+* Calculated by c1 * b1 + c2 * b2.
+*/
 t_colors	color_sum(t_colors color1, float bright1, t_colors color2, float bright2)
 {
 	t_colors	result;

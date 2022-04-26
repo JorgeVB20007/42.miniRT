@@ -6,16 +6,16 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:17:25 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/20 23:11:20 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:00:08 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 /*
-*	In this file, we're just gonna check whether a line collides with one of
-*	the shapes or not.
-!	We're not checking the point nor the angle of such collision yet.
+*	This function recieves the ray being casted and the sphere being 
+*	evaluated and returns 1 if the ray collides at some point with the sphere
+*	and 0 otherwise.
 */
 int	touches_sphere(t_vectors ray, t_item sphere)
 {
@@ -27,6 +27,11 @@ int	touches_sphere(t_vectors ray, t_item sphere)
 		return (1);
 }
 
+/*
+*	This function recieves the ray being casted and the cylinder being 
+*	evaluated and returns 1 if the ray collides at some point with the 
+*	cylinder and 0 otherwise.
+*/
 int	touches_cylinder(t_vectors ray, t_item cylinder)
 {
 	t_coords	result;
@@ -39,6 +44,9 @@ int	touches_cylinder(t_vectors ray, t_item cylinder)
 }
 	
 /*
+*	This function recieves the ray being casted and the plane being 
+*	evaluated and returns 1 if the ray collides at some point with the 
+*	plane and 0 otherwise.
 *	Intersection plane-line
 ?	https://www.youtube.com/watch?v=Is_wLo6yhxE
 */
@@ -56,6 +64,12 @@ int	touches_plane(t_vectors ray, t_item plane)
 		return (0);
 }
 
+/*
+*	This function goes through all the items checking if any of them are in
+*	the way of the ray. Returns the number of collisions.
+TODO:	Unsure if it's necessary to check all the collisions when we only need
+TODO:	to know if there's at least one collision.
+*/
 int	check4collisions(t_coords vector, t_item *items, t_item	cam)
 {
 	t_vectors	ray;

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/20 23:29:40 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 19:35:54 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,24 +188,10 @@ t_vectors			dir_and_cam_2_vector(t_item cam, t_coords dir);
 */
 t_coords			rotate_plane_if_needed(t_vectors plane, t_vectors ray);
 
-
-//	Cylinder stuff.
-//!	Unused?
-int					get_the_m(t_vectors ray, t_item cylinder, float *m, t_coords *norm_vector);
-
-//	More cylinder stuff.
 int					second_degree_equation(float a, float b, float c, float d[2]);
 
-//	Even more cylinder stuff.
-//!	Unused?
-int					lid_collision(t_vectors ray, t_item cylinder, t_vectors *result);
-
-//	Stuff for the NEW cylinder
 int					cylinder_lid(t_vectors ray, t_item cylinder, t_coords *coords, int *rev_ori);
 
-//	More stuff for the NEW cylinder
 int					cylinder_wall(t_vectors ray, t_item cylinder, t_coords *coords);
-
-t_figure_point		new_get_cylinder_point(t_vectors ray, t_item cylinder);
 
 #endif

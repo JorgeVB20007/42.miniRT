@@ -6,12 +6,17 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 19:54:09 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/30 21:52:01 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:36:19 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/*
+*	If the ray comes from the "other side" of the plane, this function will
+*	return the inverted normal vector in order to make the reflections look
+*	good. The inversion is done by multiplying all the x,y,z values by -1.
+*/
 t_coords	rotate_plane_if_needed(t_vectors plane, t_vectors ray)
 {
 	float	module1;
@@ -26,6 +31,8 @@ t_coords	rotate_plane_if_needed(t_vectors plane, t_vectors ray)
 }
 
 /*
+*	Turning a plane given by its normal vector and a point to a plane
+*	represented as an equation ax + by + cz = d
 ?	https://tutorial.math.lamar.edu/classes/calciii/eqnsofplanes.aspx
 */
 t_plane_equation	plane_vector2equation(t_vectors norm_vector)
@@ -83,11 +90,3 @@ int	line_plane_correlation(t_vectors ray, t_plane_equation equation)
 	else
 		return (0);
 }
-
-/*
-*	Turn plane from vector and point form to equation
-?	https://www.youtube.com/watch?v=M5JQvPGueMI
-
-*	Intersection plane-line
-?	https://www.youtube.com/watch?v=Is_wLo6yhxE
-*/

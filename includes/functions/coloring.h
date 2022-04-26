@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:01:43 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/24 20:17:01 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 19:37:40 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_item *items);
 int				touches_sphere(t_vectors ray, t_item sphere);
 int				touches_cylinder(t_vectors ray, t_item cylinder);
 int				touches_plane(t_vectors ray, t_item plane);
-t_colors		alight2fig(t_colors fig_color, t_colors alight_color, \
-						float alight_brightness);
+t_colors		light2fig(t_colors fig_color, t_colors light_color, \
+						float light_brightness);
 void			calculate_reflection(t_figure_point *point, t_item *items, \
 t_item item_alight, t_vectors ray);
 t_colors		color_sum(t_colors color1, float bright1, t_colors color2, \

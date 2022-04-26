@@ -6,18 +6,33 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:11:05 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/22 20:52:54 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 19:35:48 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/*
+* Nameless operation done multiple times in cylinder_lid and cylinder_wall.
+*/
 static float	do_the_f(t_coords vec_u, t_coords vec_w, t_coords vec_ori)
 {
 	return (dot_product(vec_u, vec_w) - dot_product(vec_ori, vec_u) * \
 	dot_product(vec_ori, vec_w));
 }
 
+/**
+* * This functions checks whether a ray collides with the LID of a cylinder.
+* 
+* @param ray Loc and dir (unit vector) of the ray coming out from the camera.
+* @param cylinder The t_item struct of the cylinder being evaluated.
+* @param coords Used to return the coordinates of the collision when successful.
+* @param rev_ori Set to 1 if the normal vector of the lid matches the normal 
+* vector of the cylinder. Otherwise, it returns -1.
+* @retval 0 if the ray doesn't collide with the wall of the cylinder and 1 if 
+* it does. The coordinates of the collision are returned via the coords 
+* parameter.
+*/
 int	cylinder_lid(t_vectors ray, t_item cylinder, t_coords *coords, int *rev_ori)
 {
 	float	m;
@@ -47,6 +62,18 @@ int	cylinder_lid(t_vectors ray, t_item cylinder, t_coords *coords, int *rev_ori)
 	return (1);
 }
 
+/**
+* * This functions checks whether a ray collides with the WALL of a cylinder.
+* * If the ray collides with a lid first and then comes out from a wall, this
+* * function will consider it DOES NOT collide.
+* 
+* @param ray Loc and dir (unit vector) of the ray coming out from the camera.
+* @param cylinder The t_item struct of the cylinder being evaluated.
+* @param coords Used to return the coordinates of the collision when successful.
+* @retval 0 if the ray doesn't collide with the wall of the cylinder and 1 if 
+* it does. The coordinates of the collision are returned via the coords 
+* parameter.
+*/
 int	cylinder_wall(t_vectors ray, t_item cylinder, t_coords *coords)
 {
 	float		m;
@@ -68,24 +95,4 @@ int	cylinder_wall(t_vectors ray, t_item cylinder, t_coords *coords)
 	if (coords)
 		*coords = v_v_sum(ray.loc, v_f_mult(ray.dir, m));
 	return (1);
-}
-
-t_figure_point	new_get_cylinder_point(t_vectors ray, t_item cylinder)
-{
-	t_figure_point	result;
-	int				rev_ori;
-	t_coords		p_min_pprime;
-
-	ray.dir = turn2unit(ray.dir);
-	cylinder.orient = turn2unit(cylinder.orient);
-	if (cylinder_wall(ray, cylinder, &(result.loc)))
-	{
-		p_min_pprime = v_v_sub(result.loc, cylinder.loc);
-		result.dir = v_v_sub(p_min_pprime, v_f_mult(cylinder.orient, dot_product(p_min_pprime, cylinder.orient)));
-	}
-	else if (cylinder_lid(ray, cylinder, &(result.loc), &rev_ori))
-		result.dir = turn2unit(v_f_mult(cylinder.orient, rev_ori));
-	result.color = cylinder.color;
-	result.id = cylinder.id;
-	return (result);
 }

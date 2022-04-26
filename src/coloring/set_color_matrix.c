@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:04:24 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/21 22:49:02 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:01:36 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,12 @@ static int	set_color_pixel(t_item *items, t_item cam, t_coords *pixel)
 	t_figure_point	cp;
 
 	cp = get_closest_fig_point(dir_and_cam_2_vector(cam, *pixel), items);
-	return (rgb2int(cp.color)/*16755370*/);		//!	Comment and uncomment one or the other return value to enable/disable lighting system.
+	return (rgb2int(cp.color));
 }
 
 /*
-?		In this file, we'll fill each matrix pixel with its color.
-TODO	We may or may not draw the pixels on the MiniLibX here. If we plan to
-TODO	use multiple threads, I'd create a whole new section for "printing"
-TODO	the pixels.
-		- Jorge
-*/
-
-/*
 *	In this function, we're creating a matrix to store the color of each pixel
-*	in rgb.
-*
-*	For each vector, we'll:
-*		*	Check if the vector collides with a figure (otherwise, we set the pixel's color to black).
-*		*	Check the collision figure and a collision point.
-*		*	Get a normal vector of the collision point so ve can calculate ray angles.
-*		*	Apply the color mixing (color of the figure + color of the lights).
+*	in rgb (transformed to an int).
 */
 int	**set_color_matrix(t_item *items, t_coords **v_matrix, t_item cam)
 {
