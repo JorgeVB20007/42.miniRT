@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:01:28 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/26 20:09:20 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:34:50 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static void	set_cam_margins(t_coords **matrix)
 }
 
 /*
-*	Setting all the other vectors knowing the vectors of the margins (right and left).
+*	Setting all the other vectors knowing the vectors of the margins 
+*	(right and left).
 */
 static void	set_cam_middle(t_coords **matrix)
 {

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/16 19:36:44 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:36:49 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ typedef struct s_item
 {
 	int				id;
 	int				type;
-	t_coords		loc;		//  Doesn't apply to ALIGHT.
-	t_colors		color;		//  Doesn't apply to CAMERA and LIGHT.
-	t_coords		orient;		//  Doesn't apply to ALIGHT, LIGHT and SPHERE.
-	float			brightness;	//* Applies only to ALIGHT and LIGHT.
-	float			diameter;	//* Applies only to SPHERE and CYLINDER.
-	float			height;		//* Applies only to CYLINDER;
-	float			fov;		//* Applies only to CAMERA.
+	t_coords		loc;
+	t_colors		color;
+	t_coords		orient;
+	float			brightness;
+	float			diameter;
+	float			height;
+	float			fov;
 	struct s_item	*next;
 }	t_item;
 

@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 19:54:09 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/26 20:36:19 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:25:18 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_plane_equation	plane_vector2equation(t_vectors norm_vector)
 	result.a = norm_vector.dir.x;
 	result.b = norm_vector.dir.y;
 	result.c = norm_vector.dir.z;
-	result.d = - norm_vector.loc.x * norm_vector.dir.x - norm_vector.loc.y * \
+	result.d = -norm_vector.loc.x * norm_vector.dir.x - norm_vector.loc.y * \
 	norm_vector.dir.y - norm_vector.loc.z * norm_vector.dir.z;
 	return (result);
 }
@@ -62,7 +62,7 @@ float	get_the_t(t_vectors ray, t_plane_equation equation)
 	ray.dir.z;
 	not_t = equation.a * ray.loc.x + equation.b * ray.loc.y + equation.c * \
 	ray.loc.z + equation.d;
-	return ((- not_t) / times_t);
+	return ((-not_t) / times_t);
 }
 
 /*
@@ -85,7 +85,7 @@ int	line_plane_correlation(t_vectors ray, t_plane_equation equation)
 		return (1);
 	else if (!times_t)
 		return (2);
-	else if ((- not_t) / times_t < 0.0)
+	else if ((-not_t) / times_t < 0.0)
 		return (3);
 	else
 		return (0);

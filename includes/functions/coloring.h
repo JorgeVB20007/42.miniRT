@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:01:43 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/26 19:37:40 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:38:09 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_colors		color_sum(t_colors color1, float bright1, t_colors color2, \
 						float bright2);
 int				find_light_interruption(t_item light, t_figure_point target, \
 						t_item *items);
-float	specular_reflection(t_item light, t_figure_point object, t_vectors ray);
+float			specular_reflection(t_item light, t_figure_point object, \
+t_vectors ray);
 
 #endif

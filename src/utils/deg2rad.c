@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deg2rad.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 18:31:45 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/03/15 20:02:42 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:16:50 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 float	deg2rad(float deg)
 {
-	return(deg * (M_PI / 180.0));
+	return (deg * (M_PI / 180.0));
 }
 
 /**
@@ -25,5 +25,5 @@ float	deg2rad(float deg)
 */
 float	rad2deg(float rad)
 {
-	return(rad * (180.0 / M_PI));
+	return (rad * (180.0 / M_PI));
 }

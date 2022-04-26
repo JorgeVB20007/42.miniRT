@@ -6,10 +6,9 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 18:38:30 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/26 20:09:25 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:34:11 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minirt.h"
 
@@ -18,7 +17,7 @@
 */
 t_coords	get_reflection_vector(t_coords vec_in, t_coords vec_norm)
 {
-    return (turn2unit(v_v_sub(vec_in, v_f_mult(vec_norm, 2 * \
+	return (turn2unit(v_v_sub(vec_in, v_f_mult(vec_norm, 2 * \
 	dot_product(vec_in, vec_norm)))));
 }
 

@@ -46,7 +46,8 @@ float light_brightness)
 * @retval Returns a t_colors with the resulting color (brightness = 1.0).
 * Calculated by c1 * b1 + c2 * b2.
 */
-t_colors	color_sum(t_colors color1, float bright1, t_colors color2, float bright2)
+t_colors	color_sum(t_colors color1, float bright1, t_colors color2, float \
+bright2)
 {
 	t_colors	result;
 

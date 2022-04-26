@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:17:25 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/26 21:03:36 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:33:51 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	touches_cylinder(t_vectors ray, t_item cylinder)
 		return (1);
 	return (0);
 }
-	
+
 /*
 *	This function recieves the ray being casted and the plane being 
 *	evaluated and returns 1 if the ray collides at some point with the 

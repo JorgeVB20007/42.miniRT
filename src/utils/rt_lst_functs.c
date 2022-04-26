@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/21 21:11:53 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:26:02 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 Y\033[0m %f\t\033[1mZ\033[0m %f"
 #define LIT_ORIENTATION "\n\033[1morientantion:\033[0m\n\t\033[1mX\033[0m \
 %f\t\033[1mY\033[0m %f\t\033[1mZ\033[0m %f"
-
 
 /**
  * * Add new node into list at begining
@@ -138,14 +137,14 @@ void	lst_rt_print(t_item *i)
 			printf(LIT_FOV, i->fov);
 		if (i->type == CYLINDER)
 			printf(LIT_HEIGHT, i->height);
-		if (i->type != CAMERA && i->type != LIGHT)	// Multidirectional lights can't have a color in the  mandatory part :(
+		if (i->type != CAMERA && i->type != LIGHT)
 			printf(LIT_COLOR, i->color.r, i->color.g, i->color.b);
 		if (i->type != ALIGHT)
 			printf(LIT_POSITION, i->loc.x, i->loc.y, i->loc.z);
 		if (i->type != ALIGHT && i->type != SPHERE && i->type != LIGHT)
 			printf(LIT_ORIENTATION, i->orient.x, i->orient.y, i->orient.z);
 		printf("\n\033[1mID:\033[0m %d\n", i->id);
-		printf("\n\n\033[0;33m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \033[0m");	//Plz don't kill me
+		printf("\n\n\033[0;33m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \033[0m");
 		i = i->next;
 	}
 	megafree(&type);

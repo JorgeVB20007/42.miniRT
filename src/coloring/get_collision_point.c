@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:55:21 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/26 19:52:54 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:32:48 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ static t_figure_point	get_cylinder_point(t_vectors ray, t_item cylinder)
 	if (cylinder_wall(ray, cylinder, &(result.loc)))
 	{
 		p_min_pprime = v_v_sub(result.loc, cylinder.loc);
-		result.dir = v_v_sub(p_min_pprime, v_f_mult(cylinder.orient, dot_product(p_min_pprime, cylinder.orient)));
+		result.dir = v_v_sub(p_min_pprime, v_f_mult(cylinder.orient, \
+		dot_product(p_min_pprime, cylinder.orient)));
 	}
 	else if (cylinder_lid(ray, cylinder, &(result.loc), &rev_ori))
 		result.dir = turn2unit(v_f_mult(cylinder.orient, rev_ori));
@@ -89,12 +90,10 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_item *items)
 {
 	t_figure_point	new_point;
 	t_figure_point	top_point;
-	t_item			item_alight;
 	t_item			*items2;
 
 	top_point.id = -42;
 	items2 = items;
-	item_alight = get_item_by_type(&items, ALIGHT);
 	while (items)
 	{
 		new_point.id = -21;
@@ -111,7 +110,8 @@ t_figure_point	get_closest_fig_point(t_vectors ray, t_item *items)
 			break ;
 		items = items->next;
 	}
-	calculate_reflection(&top_point, items2, item_alight, ray);
+	calculate_reflection(&top_point, items2, get_item_by_type(&items, ALIGHT), \
+	ray);
 	return (top_point);
 }
 
@@ -145,7 +145,8 @@ int	find_light_interruption(t_item light, t_figure_point target, t_item *items)
 				new_point = get_plane_point(ray, *(items));
 			else if (items->type == CYLINDER && touches_cylinder(ray, *(items)))
 				new_point = get_cylinder_point(ray, *(items));
-			if (new_point.id != -42 && getmodule(v_v_sub(new_point.loc, light.loc)) < getmodule(v_v_sub(target.loc, light.loc)))
+			if (new_point.id != -42 && getmodule(v_v_sub(new_point.loc, \
+			light.loc)) < getmodule(v_v_sub(target.loc, light.loc)))
 				return (0);
 		}
 		items = items->next;

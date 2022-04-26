@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:41:18 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/26 19:35:54 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:38:37 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,10 +188,13 @@ t_vectors			dir_and_cam_2_vector(t_item cam, t_coords dir);
 */
 t_coords			rotate_plane_if_needed(t_vectors plane, t_vectors ray);
 
-int					second_degree_equation(float a, float b, float c, float d[2]);
+int					second_degree_equation(float a, float b, float c, \
+float d[2]);
 
-int					cylinder_lid(t_vectors ray, t_item cylinder, t_coords *coords, int *rev_ori);
+int					cylinder_lid(t_vectors ray, t_item cyli, t_coords *coords, \
+int *rev_ori);
 
-int					cylinder_wall(t_vectors ray, t_item cylinder, t_coords *coords);
+int					cylinder_wall(t_vectors ray, t_item cylinder, t_coords \
+*coords);
 
 #endif

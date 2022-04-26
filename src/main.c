@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/26 21:35:34 by jvacaris          #+#    #+#             */
+/*   Updated: 2022/04/26 21:35:35 by jvacaris         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 static void	doing_calculations(char **argv)
@@ -7,7 +19,6 @@ static void	doing_calculations(char **argv)
 	t_coords	**v_matrix;
 	int			**c_matrix;
 	t_item		cam;
-
 
 	items = NULL;
 	items2 = NULL;

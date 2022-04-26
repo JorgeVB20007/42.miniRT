@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:11:05 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/26 19:35:48 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:27:43 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,34 @@ static float	do_the_f(t_coords vec_u, t_coords vec_w, t_coords vec_ori)
 * it does. The coordinates of the collision are returned via the coords 
 * parameter.
 */
-int	cylinder_lid(t_vectors ray, t_item cylinder, t_coords *coords, int *rev_ori)
+int	cylinder_lid(t_vectors ray, t_item cyli, t_coords *coords, int *rev_ori)
 {
-	float	m;
-	float	possible_ms[2];
+	float		m;
+	float		pos_m[2];
 	t_coords	pc;
 
-	pc = v_v_sub(ray.loc, cylinder.loc);
-	possible_ms[0] = (cylinder.height / 2.0 - dot_product(cylinder.orient, pc)) / dot_product(cylinder.orient, ray.dir);
-	possible_ms[1] = (- cylinder.height / 2.0 - dot_product(cylinder.orient, pc)) / dot_product(cylinder.orient, ray.dir);
-	if (possible_ms[0] >= 0.0 && (possible_ms[0] < possible_ms[1] || possible_ms[1] < 0.0))
+	pc = v_v_sub(ray.loc, cyli.loc);
+	pos_m[0] = (cyli.height / 2.0 - dot_product(cyli.orient, \
+	pc)) / dot_product(cyli.orient, ray.dir);
+	pos_m[1] = (-cyli.height / 2.0 - dot_product(cyli.orient, \
+	pc)) / dot_product(cyli.orient, ray.dir);
+	if (pos_m[0] >= 0.0 && (pos_m[0] < pos_m[1] || pos_m[1] < 0.0))
 	{
-		m = possible_ms[0];
+		m = pos_m[0];
 		if (rev_ori)
 			*rev_ori = 1;
 	}
-	else if (possible_ms[1] >= 0.0 && (possible_ms[1] < possible_ms[0] || possible_ms[0] < 0.0))
+	else if (pos_m[1] >= 0.0 && (pos_m[1] < pos_m[0] || \
+	pos_m[0] < 0.0))
 	{
-		m = possible_ms[1];
+		m = pos_m[1];
 		if (rev_ori)
 			*rev_ori = -1;
 	}
 	else
 		return (0);
-	if (do_the_f(v_v_sum(pc, v_f_mult(ray.dir, m)), v_v_sum(pc, v_f_mult(ray.dir, m)), cylinder.orient) >= powf(cylinder.diameter / 2.0, 2.0))
+	if (do_the_f(v_v_sum(pc, v_f_mult(ray.dir, m)), v_v_sum(pc, v_f_mult(\
+	ray.dir, m)), cyli.orient) >= powf(cyli.diameter / 2.0, 2.0))
 		return (0);
 	*coords = v_v_sum(v_f_mult(ray.dir, m), ray.loc);
 	return (1);
@@ -77,20 +81,23 @@ int	cylinder_lid(t_vectors ray, t_item cylinder, t_coords *coords, int *rev_ori)
 int	cylinder_wall(t_vectors ray, t_item cylinder, t_coords *coords)
 {
 	float		m;
-	float		possible_ms[2];
+	float		pos_m[2];
 	t_coords	pc;
 
 	pc = v_v_sub(ray.loc, cylinder.loc);
-	if (!second_degree_equation(do_the_f(ray.dir, ray.dir, turn2unit(cylinder.orient)), 2.0 * do_the_f(pc, ray.dir, turn2unit(cylinder.orient)), \
-	do_the_f(pc, pc, turn2unit(cylinder.orient)) - powf(cylinder.diameter / 2.0, 2.0), possible_ms))
+	if (!second_degree_equation(do_the_f(ray.dir, ray.dir, turn2unit(\
+	cylinder.orient)), 2.0 * do_the_f(pc, ray.dir, turn2unit(cylinder.orient)), \
+	do_the_f(pc, pc, turn2unit(cylinder.orient)) - powf(cylinder.diameter / \
+	2.0, 2.0), pos_m))
 		return (0);
-	if (possible_ms[0] >= 0.0 && (possible_ms[0] < possible_ms[1] || possible_ms[1] < 0.0))
-		m = possible_ms[0];
-	else if (possible_ms[1] >= 0.0 && (possible_ms[1] < possible_ms[0] || possible_ms[0] < 0.0))
-		m = possible_ms[1];
+	if (pos_m[0] >= 0.0 && (pos_m[0] < pos_m[1] || pos_m[1] < 0.0))
+		m = pos_m[0];
+	else if (pos_m[1] >= 0.0 && (pos_m[1] < pos_m[0] || pos_m[0] < 0.0))
+		m = pos_m[1];
 	else
 		return (0);
-	if (fabs(dot_product(cylinder.orient, v_v_sum(pc, v_f_mult(ray.dir, m)))) > cylinder.height / 2.0)
+	if (fabs(dot_product(cylinder.orient, v_v_sum(pc, v_f_mult(ray.dir, m)))) \
+	> cylinder.height / 2.0)
 		return (0);
 	if (coords)
 		*coords = v_v_sum(ray.loc, v_f_mult(ray.dir, m));
