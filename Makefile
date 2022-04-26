@@ -6,7 +6,7 @@
 #    By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/04/26 19:36:59 by jvacaris         ###   ########.fr        #
+#    Updated: 2022/04/26 20:57:57 by jvacaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ obj:
 	@mkdir -p $(OBJ_DIR)render/
 	@mkdir -p $(OBJ_DIR)utils/
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(INCLUDES)
-	@$(GCC) $(FLAGS)  -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
+	@$(GCC) $(FLAGS) -I $(MINLBX_DIR) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
 $(MINLBX):
@@ -114,6 +114,7 @@ mandatory:	cp_mandatory all
 clean:
 			@rm -Rf $(OBJ_DIR)
 			@make -C $(LIBFT_DIR) clean
+			@make -C $(MINLBX_DIR) clean
 			@echo "\033[1;34m[INFO]\033[0m Objects removed!"
 
 # fclean rule

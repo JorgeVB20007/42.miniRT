@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:57:46 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/17 14:35:40 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/26 21:11:40 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <string.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include <mlx.h>
+# include "../minilibx_mms_20200219/mlx.h"
 # include <math.h>
 # include "libft.h"
 # include "constants.h"
