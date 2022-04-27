@@ -6,7 +6,7 @@
 #    By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/25 19:15:33 by emadriga          #+#    #+#              #
-#    Updated: 2022/03/13 15:16:36 by emadriga         ###   ########.fr        #
+#    Updated: 2022/04/27 22:33:22 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRC_FILES	=		ft_atof.c					\
 					ft_substr.c					\
 					ft_tolower.c				\
 					ft_toupper.c				\
+					get_array_size.c			\
 					get_next_line.c				\
 					megafree.c
 
@@ -112,7 +113,7 @@ clean:
 fclean:		clean
 			@rm -f $(NAME)
 			@echo "\033[1;34m[INFO]\033[0m Library removed!"
-			
+
 # mynorm rule
 mynorm:
 	norminette $(SRC_DIR) $(INC_DIR)

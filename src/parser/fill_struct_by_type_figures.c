@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_struct_by_type_figures.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:11:58 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/18 21:50:47 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/27 22:30:19 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_item	*line2sphere(char **line, t_item	*item)
 {
 	int	error;
 
-	error = (line[4] != NULL);
+	error = (get_array_size(line) != 4);
 	item->type = SPHERE;
 	if (!error)
 		error += try_set_coords(&item->loc, line[1], MIN_PARSED_SIZE, \
@@ -34,7 +34,7 @@ static t_item	*line2plane(char **line, t_item	*item)
 {
 	int	error;
 
-	error = (line[4] != NULL);
+	error = (get_array_size(line) != 4);
 	item->type = PLANE;
 	if (!error)
 		error += try_set_coords(&item->loc, line[1], MIN_PARSED_SIZE, \
@@ -52,7 +52,7 @@ static t_item	*line2cylinder(char **line, t_item	*item)
 {
 	int	error;
 
-	error = (line[6] != NULL);
+	error = (get_array_size(line) != 6);
 	item->type = CYLINDER;
 	if (!error)
 		error += try_set_coords(&item->loc, line[1], MIN_PARSED_SIZE, \

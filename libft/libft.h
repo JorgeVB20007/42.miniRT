@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 19:15:07 by emadriga          #+#    #+#             */
-/*   Updated: 2022/03/13 13:11:49 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/27 22:32:42 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+size_t	get_array_size(char **array);
 int		get_next_line(int fd, char **line);
 void	megafree(char ***list);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_struct_by_type.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:11:58 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/25 22:18:57 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/27 22:30:09 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static t_item	*line2alight(char **line, t_item	*item)
 {
 	int	error;
 
-	error = (line[3] != NULL);
+	error = (get_array_size(line) != 3);
 	item->type = ALIGHT;
 	if (!error)
 		error += try_set_atof(&item->brightness, line[1], 0.0, 1.0);
@@ -33,7 +33,7 @@ static t_item	*line2camera(char **line, t_item	*item)
 {
 	int	error;
 
-	error = (line[4] != NULL);
+	error = (get_array_size(line) != 4);
 	item->type = CAMERA;
 	if (!error)
 		error += try_set_coords(&item->loc, line[1], MIN_PARSED_SIZE, \
@@ -51,7 +51,7 @@ static t_item	*line2light(char **line, t_item	*item)
 {
 	int	error;
 
-	error = (line[4] != NULL);
+	error = (get_array_size(line) != 4);
 	item->type = LIGHT;
 	if (!error)
 		error += try_set_coords(&item->loc, line[1], MIN_PARSED_SIZE, \
@@ -71,7 +71,7 @@ static t_item	*line2blackhole(char **line, t_item	*item)
 {
 	int	error;
 
-	error = (line[2] != NULL || !ENABLE_EXTRA_ITEMS);
+	error = (!ENABLE_EXTRA_ITEMS || get_array_size(line) != 2);
 	item->type = BLACK_HOLE;
 	if (!error)
 		error += try_set_coords(&item->loc, line[1], MIN_PARSED_SIZE, \
