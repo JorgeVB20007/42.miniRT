@@ -6,7 +6,7 @@
 #    By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2022/04/26 20:57:57 by jvacaris         ###   ########.fr        #
+#    Updated: 2022/04/27 19:11:00 by jvacaris         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRC_FILES	= 	main.c									\
 				utils/new_cylinder_managing.c			\
 				utils/dir_and_loc_2_vector.c			\
 				utils/rt_lst_functs.c					\
+				utils/rt_lst_functs2.c					\
 				utils/rgb2int.c							\
 				utils/deg2rad.c							\
 				utils/getmodule.c						\

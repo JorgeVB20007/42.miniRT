@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 21:35:34 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/26 21:35:35 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/27 20:01:11 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ static void	doing_calculations(char **argv)
 		render_image_on_mlx(c_matrix);
 		free_array_coords(&v_matrix);
 		free_array_colors(&c_matrix);
-		// lst_rt_print(items);
-		// get_items_by_type(&items2, items, SPHERE);
-		// lst_rt_print(items2);
 		lst_rt_free(&items);
 		lst_rt_free(&items2);
 	}

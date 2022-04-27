@@ -6,7 +6,7 @@
 /*   By: jvacaris <jvacaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 21:22:08 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/26 21:29:59 by jvacaris         ###   ########.fr       */
+/*   Updated: 2022/04/27 19:58:41 by jvacaris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,42 @@ static float	single_light(t_figure_point point, t_item light, t_item *items)
 	if (vect_cos < 0.0)
 		vect_cos = 0.0;
 	return (vect_cos);
+}
+
+static t_colors	bness2rgb(t_colors *init_color, float brightness)
+{
+	t_colors	final_colors;
+
+	if (!init_color)
+	{
+		final_colors.r = 0.0;
+		final_colors.g = 0.0;
+		final_colors.b = 0.0;
+	}
+	else
+	{
+		final_colors.r = init_color->r * brightness;
+		final_colors.g = init_color->g * brightness;
+		final_colors.b = init_color->b * brightness;
+	}
+	return (final_colors);
+}
+
+static t_colors	render_specular(t_colors tot_phong_color, \
+t_figure_point *point, t_vectors ray, t_item *lights)
+{
+	t_colors	result;
+
+	if (RENDER_PHONG)
+	{
+		result = color_sum(tot_phong_color, 1.0, \
+		lights->color, specular_reflection(*lights, *point, ray) \
+		* lights->brightness * (0.45 / (0.5 + 0.1 * (getmodule(\
+		v_v_sub(point->loc, lights->loc)))) + 0.1));
+		return (result);
+	}
+	else
+		return (tot_phong_color);
 }
 
 /**
@@ -49,35 +85,25 @@ t_item item_alight, t_vectors ray)
 	t_item		*lights;
 	t_colors	tot_light_color;
 	float		bness;
-	t_colors	tot_phong_color;
-	int			interruption;
+	t_colors	phong;
 
-	tot_light_color.r = item_alight.color.r * item_alight.brightness;
-	tot_light_color.g = item_alight.color.g * item_alight.brightness;
-	tot_light_color.b = item_alight.color.b * item_alight.brightness;
-	tot_phong_color.r = 0.0;
-	tot_phong_color.g = 0.0;
-	tot_phong_color.b = 0.0;
+	tot_light_color = bness2rgb(&(item_alight.color), item_alight.brightness);
+	phong = bness2rgb(NULL, 0);
 	lights = items;
 	while (lights)
 	{
-		if (lights->type == LIGHT)
+		if (lights->type == LIGHT || lights->type == BLACK_HOLE)
 		{
-			interruption = find_light_interruption(*(lights), *point, items);
-			if (interruption)
+			if (find_light_interruption(*(lights), *point, items))
 			{
 				bness = single_light(*point, *(lights), items);
 				tot_light_color = color_sum(tot_light_color, 1.0, \
 				lights->color, bness * lights->brightness);
-				if (RENDER_PHONG)
-					tot_phong_color = color_sum(tot_phong_color, 1.0, \
-					lights->color, specular_reflection(*lights, *point, ray) \
-					* lights->brightness * (0.45 / (0.5 + 0.1 * (getmodule(\
-					v_v_sub(point->loc, lights->loc)))) + 0.1));
+				phong = render_specular(phong, point, ray, lights);
 			}
 		}
 		lights = lights->next;
 	}
 	point->color = color_sum(light2fig(point->color, tot_light_color, 1.0), \
-	1.0, tot_phong_color, (float)RENDER_PHONG);
+	1.0, phong, (float)RENDER_PHONG);
 }
