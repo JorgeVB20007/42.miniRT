@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 21:10:31 by emadriga          #+#    #+#             */
-/*   Updated: 2022/04/17 14:21:57 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/04/30 13:04:53 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static void	render_pixels(t_data	*img, int **matrix_colors)
 		}
 		y++;
 	}
+	free_array_colors(&matrix_colors);
 }
 
 /**

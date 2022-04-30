@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 2022-04-27 - Edu
+### Changed
+- Free variables as soon as they aren't needed
+### Fixed
+- Fixed bonus & mandatory headers
+
+## 2022-04-27 - Edu
 ### Added
 - Added libft's **get_array_size**
 ### Fixed
