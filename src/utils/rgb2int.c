@@ -28,6 +28,12 @@ int	rgb2int(t_colors rgb)
 		rgb.g = 0.0;
 	if (rgb.b < 0.0)
 		rgb.b = 0.0;
+	if (rgb.r > 255.0)
+		rgb.r = 255.0;
+	if (rgb.g > 255.0)
+		rgb.g = 255.0;
+	if (rgb.b > 255.0)
+		rgb.b = 255.0;
 	result = (int)rgb.b + (int)rgb.g * 256 + (int)rgb.r * 256 * 256;
 	return (result);
 }

@@ -22,6 +22,8 @@ static float	single_light(t_figure_point point, t_item light, t_item *items)
 	vect_cos = get_cos(incision_vector, point.dir);
 	if (vect_cos < 0.0)
 		vect_cos = 0.0;
+	if (vect_cos > 1.0)
+		vect_cos = 1.0;
 	return (vect_cos);
 }
 
