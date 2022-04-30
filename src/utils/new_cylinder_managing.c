@@ -61,12 +61,14 @@ int	cylinder_lid(t_vectors ray, t_item cyli, t_coords *coords, int *rev_ori)
 	float		m;
 	float		pos_m[2];
 	t_coords	pc;
+	float		dp;
 
+	dp = dot_product(cyli.orient, ray.dir);
+	if (!dp)
+		return (0);
 	pc = v_v_sub(ray.loc, cyli.loc);
-	pos_m[0] = (cyli.height / 2.0 - dot_product(cyli.orient, \
-	pc)) / dot_product(cyli.orient, ray.dir);
-	pos_m[1] = (-cyli.height / 2.0 - dot_product(cyli.orient, \
-	pc)) / dot_product(cyli.orient, ray.dir);
+	pos_m[0] = (cyli.height / 2.0 - dot_product(cyli.orient, pc)) / dp;
+	pos_m[1] = (-cyli.height / 2.0 - dot_product(cyli.orient, pc)) / dp;
 	if (!set_m_and_pos_ori(pos_m, &m, rev_ori))
 		return (0);
 	if (do_the_f(v_v_sum(pc, v_f_mult(ray.dir, m)), v_v_sum(pc, v_f_mult(\
