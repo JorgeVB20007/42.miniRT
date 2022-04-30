@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Control MAXVALUE in get_cos & rgb2int
 ### Fixed
 - Control cylinder_lid exception between perpendicular's ray and cylinder axis
-
+- Control border cylinder_wall now eval if cam is inside infinite cylinder
 ## 2022-04-30 - Edu
 ### Changed
 - Free variables as soon as they aren't needed

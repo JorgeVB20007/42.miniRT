@@ -102,6 +102,9 @@ int	cylinder_wall(t_vectors ray, t_item cylinder, t_coords *coords)
 	do_the_f(pc, pc, turn2unit(cylinder.orient)) - powf(cylinder.diameter / \
 	2.0, 2.0), pos_m))
 		return (0);
+	if ((pos_m[0] < 0.0 && pos_m[1] > 0.0) || \
+		(pos_m[1] < 0.0 && pos_m[0] > 0.0))
+		return (0);
 	if (pos_m[0] >= 0.0 && (pos_m[0] < pos_m[1] || pos_m[1] < 0.0))
 		m = pos_m[0];
 	else if (pos_m[1] >= 0.0 && (pos_m[1] < pos_m[0] || pos_m[0] < 0.0))
