@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 18:11:58 by jvacaris          #+#    #+#             */
-/*   Updated: 2022/04/27 22:30:19 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/05/04 11:01:09 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static t_item	*line2cylinder(char **line, t_item	*item)
 				MAX_PARSED_SIZE);
 	if (!error)
 		error += try_set_coords(&item->orient, line[2], -1.0, 1.0);
+	if (!error)
+		item->orient = turn2unit(item->orient);
 	if (!error)
 		error += try_set_atof(&item->diameter, line[3], 0.0, MAX_PARSED_SIZE);
 	if (!error)
