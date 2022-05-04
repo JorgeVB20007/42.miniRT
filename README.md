@@ -40,4 +40,4 @@ Example: `bh -10.0,0.0,0.0`
 
 ## Gratitude
  * https://harm-smits.github.io/42docs/libs/minilibx.html | MiniLibX documentation
- * <b>Pol Sànchez Forns</b> | Assistance with the camera setup and cylinder managing.
+ * <b>Pol Sánchez Forns</b> | Assistance with the camera setup and cylinder managing.
